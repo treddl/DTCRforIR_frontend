@@ -20,15 +20,11 @@ const db = firebase.firestore()
 
 // collection references
 const userDashboard = db.collection('cyberrangeDashboard')
-const postsCollection = db.collection('posts')
-const commentsCollection = db.collection('comments')
-const likesCollection = db.collection('likes')
+
 
 // export utils/refs
 export {
   db,
-  userDashboard,
-  postsCollection,
-  commentsCollection,
-  likesCollection
+  userDashboard
+
 }
