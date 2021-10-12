@@ -2,6 +2,8 @@
 node_modules
 /dist
 
+/src/firebase.js
+
 screenlog.0
 
 # local env files
