@@ -1,10 +1,8 @@
 <template >
   <body>
     <div v-if="!gameStarted" class="is-vhcentered has-text-centered">
-      <h1 class="is-json title mb-6">Welcome to DigitalTwinCyberrange.</h1>
-      <h2 class="is-json subtitle mb-6">
-        A project of University of Regensburg and Ionian University.
-      </h2>
+      <h1 class="is-json title mb-6">Welcome 👋 to the digital-twin based cyber range for incident response.</h1>
+
       <div class="margin-big">
         <form @submit.prevent="validateId()">
           <input
@@ -15,7 +13,7 @@
             <input
               class="input input-short is-long is-size-6 blank-input"
               v-model="traineeID"
-              :placeholder="'ID'"
+              :placeholder="'ID (e.g., 1234)'"
             />
           </span>
            <div
@@ -26,7 +24,7 @@
     <div
       class="has-text-danger"
       v-if="wrongUsername">
-      ID not valid.
+      ID is not valid.
     </div>
 
           <div class="buttons is-centered mt-5">
@@ -42,19 +40,21 @@
          
         </form>
       </div>
+      <h2 class="is-json subtitle mb-6">A master's project at the University of Regensburg.</h2>
+      <img src="./assets/Unisiegel.png" alt="UR-seal" width="80%" height="80%">
     </div>
 
     <div v-if="gameCompleted" class="is-vhcentered has-text-centered">
      
-      <h1 class="is-json title  mt-5">GameCompleted.</h1>
+      <h1 class="is-json title  mt-5">Game Completed.🥳</h1>
         
       <h2 class="is-json subtitle  mb-2">
-        <strong>Congratulations.</strong> With your help the attacker was defeated. 
-        You earned <strong>{{this.points}} points.</strong> 
+        <strong>Congratulations.</strong> Thanks to your efforts the impact of the attacks on the filling plant were minimal. 
+        You achieved <strong>{{this.points}} points.</strong> 
         
       </h2>
       <h2 class="is-json mb-6">
-       Please let one of the coaches know you finished to take part in the final quiz.  &#128640; 
+       Please let one of the trainers know you've finished the exercise🎙. Now there's only a quick final quiz left to complete ✅.  &#128640; 
       </h2>
       <img src="./assets/attackerDefeated.png" class="image is-hcentered" style="width: 500px">
 
@@ -161,7 +161,7 @@
                       @click="
                         (fullscreen = true), hideScoreboard=true, rememberScrollPos()
                       "
-                      :data-tooltip="'Show SIEM in Fullscreen'"
+                      :data-tooltip="'Show SIEM dashboard in fullscreen'"
                       v-if="!fullscreen"
                     >
                       <font-awesome-icon :icon="['fa', 'expand']" />
@@ -172,19 +172,19 @@
                       @click="
                         (fullscreen = false), hideScoreboard=false, scrollBack()
                       "
-                      :data-tooltip="'Show Tasks'"
+                      :data-tooltip="'Split display and show exercise units'"
                       v-else
                     >
                       <font-awesome-icon :icon="['fa', 'compress']" />
                     </button>
 
                      <button v-if="!hideScoreboard" class="button show-button is-small has-tooltip-arrow has-tooltip-multiline has-tooltip-top"
-                     :data-tooltip="'Hide Scoreboard'" @click="this.hideScoreboard=true">
+                     :data-tooltip="'Hide scoreboard'" @click="this.hideScoreboard=true">
                        &#128469;
                     </button>
 
                     <button v-else class="button show-button is-small has-tooltip-arrow has-tooltip-multiline has-tooltip-top"
-                     :data-tooltip="'Show Scoreboard'" @click="this.hideScoreboard=false">
+                     :data-tooltip="'Show scoreboard'" @click="this.hideScoreboard=false">
                       &#128470;
                     </button>
 
@@ -339,6 +339,8 @@
     </div>
   </body>
 </template>
+
+
 
 <script>
 import BlankTask from "./components/BlankTask.vue";
