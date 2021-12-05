@@ -41,7 +41,7 @@
           </button>
         </div>
 
-        <!-- actual text-based lesson -->
+        <!-- display text-based lesson -->
         <div class="pt-4" style="display: table-cell !important"
           v-if="showContent">
           <div>
@@ -79,23 +79,23 @@
             </p>
           </div>
 
-          <!-- additional educational material -->
+          <!-- display additional educational material -->
           <div>
             <div class="buttons is-left mt-5">
               <button class="button is-rounded"
-                v-if="!showAdditionalInformation"
-                @click="this.showAdditionalInformation = true"          
+                v-if="!showAdditionalContent"
+                @click="showAdditional()"          
               >
                 Show More
               </button>
               <button class="button is-rounded"
                 v-else
-                @click="this.showAdditionalInformation = false"
+                @click="hideAdditional()"
               >
                 Show Less
               </button>
             </div>
-            <div v-if="showAdditionalInformation">
+            <div v-if="showAdditionalContent">
               <ul>
                 <li>
                   <strong>src_ip:</strong>
@@ -115,8 +115,6 @@
               </ul>
             </div>
           </div>
-
-        <div class="buttons is-left mt-5"></div>
         </div>
       </div>
     </div>
@@ -124,23 +122,29 @@
 </template>
 
 <script>
-export default {
+
+
+export default {  
   name: "DirInfo1",
+
+  components: {
+
+  },
 
   props: {
     order: {},
   },
   data() {
     return {
-      showAdditionalInformation: false,
       showContent: true,
+      showAdditionalContent: false,
     };
   },
 
   methods: {
     proceed() {
       this.hide();
-      this.showAdditionalInformation = false;
+      this.hideAdditional();
       var nextSection = this.order.indexOf("info1") + 1;
       console.log(nextSection);
       this.scrollToElement(this.order[nextSection]);
@@ -152,6 +156,14 @@ export default {
 
     show() {
       this.showContent = true;
+    },
+
+    hideAdditional() {
+      this.showAdditionalContent = false;
+    },
+
+    showAdditinoal() {
+      this.showAdditionalContent = true;
     },
 
     scrollToElement(id) {

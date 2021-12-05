@@ -64,7 +64,7 @@
           v-if="emptyInput"
           >
           Input cannot be empty.
-        </div>
+        </div>            
         <div class="has-text-danger"
           v-else-if="triesLeft < 3 && triesLeft > 0 && !completedBefore && !this.blank.rightTry"
           >
@@ -132,9 +132,13 @@ export default {
     validateInput() {
       if (this.userInput == "") {
         this.emptyInput = true;
-      } else if (this.userInput.trim() != this.blank.flag) {
+      } 
+      else if (this.userInput.trim() != this.blank.flag) {
         this.emptyInput = false;
         this.triesLeft -= 1;
+        if (this.triesLeft == 1) {
+            alert("Sorry, that was not correct.\nYou've only got one try left!")
+        }
         try {
           var allTries = JSON.parse(localStorage.getItem("storedData"));
           allTries[this.tileNo][this.index] =
@@ -145,7 +149,8 @@ export default {
         }
 
         this.blank.wrongTry = true;
-      } else {
+      } 
+      else {
         this.emptyInput = false;
         this.blank.rightTry = true;
         this.blank.wrongTry = false;
@@ -161,6 +166,7 @@ export default {
       if (this.completed()) {
         this.points = this.triesLeft;
         this.$emit("blank-completed", this.points); //the trainee gets as many points for the blank as he or she has tries left
+        this.$emit("tries-count", this.triesLeft);
       }
     },
   },

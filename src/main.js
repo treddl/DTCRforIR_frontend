@@ -1,8 +1,10 @@
 import { createApp } from 'vue'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
+import shell from 'vue-shell'
 
 import App from './App.vue'
+
 
 import vueJsonEditor from 'vue-json-editor'
 
@@ -18,7 +20,9 @@ library.add(faInfoCircle, faChevronDown, faChevronRight, faCopy,faEnvelope, faEx
 
 
 const app = createApp(App)
+
 app.use(VueAxios, axios)
+app.use(shell)
 
 app.component('vue-json-editor', vueJsonEditor)
 app.component('font-awesome-icon', FontAwesomeIcon)

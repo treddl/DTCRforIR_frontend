@@ -229,7 +229,8 @@
               '@task-completed="markAsCompleted"' listens for the component's broadcast 'task-completed' and calls the function 'markAsCompleted()' in this file
               --->
             <flag-submission
-              :customData="Task1_1" 
+              :customData="Task1_1"
+              :shellData="Plc1Shell" 
               :order="this.order"
               :tasksCompleted="tasksCompleted"
               @submit-points="submitPoints"
@@ -255,15 +256,15 @@
             </dir-info-3>
 
             <!-- 2.3 Task:Unknown Ip Address --->
-            <blank-task
+            <blank-task-new
               v-if="tasksCompleted >= 1"
-              :taskData="Task2"
+              :customData="Task2"
               :order="this.order"
               :tasksCompleted="tasksCompleted"
               @submit-points="submitPoints"
               @task-completed="markAsCompleted"
             >
-            </blank-task>
+            </blank-task-new>
 
             <!-- 3.1 Man-In-The-Middle-Attack --->
             <video-tile
@@ -392,7 +393,9 @@ import Task1_1 from "./data/task1_1.js";
 
 // TODO start delete
 import BlankTask from "./components/BlankTask.vue";
+import BlankTaskNew from "./components/BlankTaskNew.vue";
 import EditorTask from "./components/EditorTask.vue"; 
+import Plc1_Shell from "./data/plc1_shell.js"
 import Task2 from "./data/directives_dt_attacker.js";
 import Task3 from "./data/directives_dt_mitm.js";
 import Task4 from "./data/directives_dt_arp.js";
@@ -408,10 +411,11 @@ import { userDashboard } from "@/firebase"; // TODO rename to userScoreboard
 
 export default {
   name: "App",
+
   components: {
     VideoTile,
     FlagSubmission,
-    
+    BlankTaskNew,    
     BlankTask,
     EditorTask,
     DirInfo1,
@@ -425,6 +429,7 @@ export default {
     return {
       VideoData: VideoData,
       
+      Plc1Shell: Plc1_Shell,
       Task1_1: Task1_1,
       Task2: Task2,
       Task3: Task3,
