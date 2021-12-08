@@ -1,12 +1,11 @@
 <template>
-  <div>
+  <div class="b-black">
     <v-shell 
       :banner="banner"
       :shell_input="send_to_terminal"
       :commands="commands"
       @shell_output="prompt"
       id="container"
-      style="color:white; background-color:black"
     ></v-shell>
   </div>
 </template>
@@ -69,12 +68,4 @@ export default {
 };
 </script>
 
-<style>
-#container {
-  color: white;
-  background-color: black;
-  font-size: 11pt;
-  font-family: Inconsolata, monospace;
-  padding: 0.5em 1.5em 1em 1em;
-}
-</style>
+

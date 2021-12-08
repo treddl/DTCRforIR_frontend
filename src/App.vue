@@ -194,6 +194,8 @@
                 </div>
               </div>
             </nav>
+
+            
             
           </div>
 
@@ -202,6 +204,8 @@
           <div
             class="column right is-half" 
             v-if="!fullscreen">
+
+            <glossary :order="this.order"></glossary>
             
             <!-- introductory video --->
             <video-tile 
@@ -381,6 +385,7 @@ import DirInfo2 from "./components/DirInfo2.vue";
 import DirInfo3 from "./components/DirInfo3.vue";
 import DirInfo4 from "./components/DirInfo4.vue";
 import DirInfo5 from "./components/DirInfo5.vue";
+import Glossary from "./components/Glossary.vue";
 // component for the playbook
 // TODO insert playbook component here
 
@@ -406,13 +411,13 @@ import Info4 from "./data/info_4.js";
 import Info5 from "./data/info_5.js";
 // TODO end delete
 
-import userIDs from "./data/usernames.js"; 
 import { userDashboard } from "@/firebase"; // TODO rename to userScoreboard
-
+import { VM_db } from "@/firebase"; // TODO rename to userScoreboard
 export default {
   name: "App",
 
   components: {
+    Glossary,
     VideoTile,
     FlagSubmission,
     BlankTaskNew,    
@@ -428,7 +433,6 @@ export default {
   data() {
     return {
       VideoData: VideoData,
-      
       Plc1Shell: Plc1_Shell,
       Task1_1: Task1_1,
       Task2: Task2,
@@ -436,11 +440,9 @@ export default {
       Task4: Task4,
       Task5: Task5,
       Task6: Task6,
-
       Info2: Info2,
       Info4: Info4,
       Info5: Info5,
-
       order: [
         "video_0.1",
         "info1",
@@ -462,10 +464,7 @@ export default {
 
       gameCompleted: false,
       gameStarted: false,
-      userIDs: userIDs,
       userID: null,
-      wrongUserID: false,
-
       taskTimes: [],
       startTime: null,
       evaluationData: [],
@@ -473,7 +472,6 @@ export default {
       points: null,
       round: null,
       tasksCompleted: 0,
-
       emptyInput: false,
       fullscreen: false,
       hideScoreboard: false,
@@ -491,13 +489,8 @@ export default {
       console.log(message);
       if (this.userID == null) {
         this.emptyInput = true;
-        this.wrongUserID = false;
-      } else if (!this.userIDs.includes(parseInt(this.userID))) {
-        this.wrongUserID = true;
-        this.emptyInput = false;
       } else {
         this.emptyInput = false;
-        this.wrongUserID = false;
         this.gameStarted = true;
         this.restartDigitalTwinContainer(); 
         this.getUserPoints();
@@ -532,7 +525,7 @@ export default {
                 this.taskTimes = JSON.parse(doc.data().taskTimes);
               }
             } else {
-              //registered player who didnt log in before
+              //registered player who didn't log in before
               console.log(doc.data().startTime);
               this.tasksCompleted = 0;
               this.startTime = new Date();
@@ -557,20 +550,32 @@ export default {
             }
           } else {
             // if not only played with preset users
-            console.log("No such document!");
             this.points = 0;
             this.tasksCompleted = 0;
             this.startTime = new Date();
-            userDashboard.doc(this.userID).update({
+            userDashboard.doc(this.userID).set({
               startTime: this.startTime,
+              round: 1,
+              level: 0,
+              points: 0,
+      
+              
             });
+            console.log(this.getVM());
+            
           }
           this.getMarker();
         })
         .catch((error) => {
           console.log("Error getting document:", error);
         });
-    },    
+    },   
+    
+    async getVM(){
+      const snapshot = await VM_db.limit(1).get();
+          console.log(snapshot.docs.map((doc) => doc.data()));
+          return JSON.stringify(snapshot.docs.map((doc) => doc.data().pseudonym)) //funktioniert so nicht
+    },
 
     async getMarker() {
       const snapshot = await userDashboard
@@ -579,6 +584,7 @@ export default {
         .get();
       //const snapshot = await userDashboard.orderBy("points", "desc").get();
       this.dashboard = snapshot.docs.map((doc) => doc.data());
+     
     },
 
     async uploadPoints() {
