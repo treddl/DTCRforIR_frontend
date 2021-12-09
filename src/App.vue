@@ -483,6 +483,19 @@ export default {
     };
   },
 
+  mounted() {
+    this.url_param = new URL(location.href).searchParams.get('userID')
+    console.log(this.url_param)
+      if (this.url_param != null){
+        this.userID = this.url_param
+        this.validateId()
+ 
+      }
+      else{
+        console.log("url is empty")
+      }
+  },
+
   methods: {
     validateId() {
       var message = localStorage.getItem("storedData");
@@ -508,6 +521,23 @@ export default {
           console.log(response.data);
         });
     },
+
+    getUnits: function() {
+
+      if (this.$route.query.userID != null){
+        this.userID = this.$route.query.userID
+        this.validateId()
+        console.log("found url")
+      }
+      else{
+        console.log("url is empty")
+      }
+    }
+ ,
+
+ beforeMount(){
+    this.getUnits()
+ },
 
     getUserPoints() {
       var docRef = userDashboard.doc(String(this.userID));

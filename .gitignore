@@ -5,6 +5,7 @@ node_modules
 
 src/firebase.js
 firebase.js
+UserDataScripts/ServiceAccount.json
 
 screenlog.0
 
