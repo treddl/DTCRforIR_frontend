@@ -5,7 +5,7 @@
             
             <div class="buttons is-right">
 
-                      <button class="button is-primary is-small is-nav-button has-tooltip-arrow has-tooltip-left"
+                      <button class="button is-primary is-large is-nav-button has-tooltip-arrow has-tooltip-left"
                         @click="(showGlossary = true), scrollToElement(this.info1)"
                         :data-tooltip="'Show Glossary'"
                         v-if="!showGlossary"
@@ -13,7 +13,7 @@
                         <font-awesome-icon :icon="['fa', 'book-open']" />
                       </button>
 
-                      <button class="button is-primary is-small is-nav-button has-tooltip-arrow has-tooltip-left"
+                      <button class="button is-primary is-large is-nav-button has-tooltip-arrow has-tooltip-left"
                         @click="(showGlossary = false), scrollToElement(this.info1)"
                         :data-tooltip="'Hide Glossary'"
                         v-else

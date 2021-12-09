@@ -3,7 +3,6 @@
     <div>
       <!-- layout prior exercise: prompts user to login -->
       <div v-if="!gameStarted" class="is-vhcentered has-text-centered">
-        <p style="font-size:48px;text-align:center">👋</p>
         <h1 class="is-json title mb-6">
           Welcome 👋 to the digital-twin based cyber range for incident response.
         </h1>
@@ -43,12 +42,6 @@
         <h2 class="is-json subtitle mb-6">
           A master's project 🎓 at the University of Regensburg.
         </h2>
-        <img
-          src="./assets/Unisiegel.png"
-          alt="UR-seal"
-          width="80%"
-          height="80%"
-        />
       </div>
 
       <!-- layout post exercise: informs user about completion exercise -->
@@ -479,7 +472,7 @@ export default {
       kibanaOn: true,
       kibanaUrl:
         window.location.href.replace("7080", "5605") +
-        "app/kibana#/dashboard/350e16e0-38b3-11ec-a547-a7b24e1b3b31?_g=(refreshInterval:(pause:!t,value:0),time:(from:now-15m,to:now))&_a=(description:'Kibana%20dashboard%20for%20DSIEM',filters:!(),fullScreenMode:!f,options:(darkTheme:!f,hidePanelTitles:!f,useMargins:!t),panels:!((embeddableConfig:(title:'Timeline%20%26%20Count%20of%20Events%20and%20Alarms'),gridData:(h:9,i:'9',w:36,x:12,y:0),id:b4844b80-b45c-11e8-b3e4-11404c6637fe,panelIndex:'9',title:'Timeline%20%26%20Count%20of%20Events%20and%20Alarms',type:visualization,version:'7.6.1'),(embeddableConfig:(title:Alarms,vis:(defaultColors:('0%20-%2020':'rgb(0,104,55)','20%20-%2050':'rgb(255,255,190)','50%20-%20100':'rgb(165,0,38)'),legendOpen:!t)),gridData:(h:9,i:'10',w:12,x:0,y:0),id:'217b62e0-b45e-11e8-b3e4-11404c6637fe',panelIndex:'10',title:Alarms,type:visualization,version:'7.6.1'),(embeddableConfig:(columns:!(timestamp,category,title,sensor,src_ip,dst_ip,plugin_sid),title:'Event%20Search%20%26%20Overview'),gridData:(h:17,i:'14',w:48,x:0,y:25),id:c7aa9f10-e365-11e8-9c9b-556fd2a389b2,panelIndex:'14',title:'Event%20Search%20%26%20Overview',type:search,version:'7.6.1'),(embeddableConfig:(columns:!(title,src_ips,dst_ips,risk_class,category,kingdom),title:'Alarm%20Search%20%26%20Overview'),gridData:(h:16,i:'15',w:48,x:0,y:9),id:'334c77b0-b338-11e8-b3e4-11404c6637fe',panelIndex:'15',title:'Alarm%20Search%20%26%20Overview',type:search,version:'7.6.1')),query:(language:lucene,query:''),timeRestore:!t,title:SIEM_IR,viewMode:view)",
+        "app/kibana#/dashboard/350e16e0-38b3-11ec-a547-a7b24e1b3b31?_g=(refreshInterval:(pause:!t,value:0),time:(from:now-2h,to:now))&_a=(description:'Kibana%20dashboard%20for%20DSIEM',filters:!(),fullScreenMode:!f,options:(darkTheme:!f,hidePanelTitles:!f,useMargins:!t),panels:!((embeddableConfig:(title:'Timeline%20%26%20Count%20of%20Events%20and%20Alarms'),gridData:(h:9,i:'9',w:36,x:12,y:0),id:b4844b80-b45c-11e8-b3e4-11404c6637fe,panelIndex:'9',title:'Timeline%20%26%20Count%20of%20Events%20and%20Alarms',type:visualization,version:'7.6.1'),(embeddableConfig:(title:Alarms,vis:(defaultColors:('0%20-%2020':'rgb(0,104,55)','20%20-%2050':'rgb(255,255,190)','50%20-%20100':'rgb(165,0,38)'),legendOpen:!t)),gridData:(h:9,i:'10',w:12,x:0,y:0),id:'217b62e0-b45e-11e8-b3e4-11404c6637fe',panelIndex:'10',title:Alarms,type:visualization,version:'7.6.1'),(embeddableConfig:(columns:!(timestamp,category,title,sensor,src_ip,dst_ip,plugin_sid),title:'Event%20Search%20%26%20Overview'),gridData:(h:17,i:'14',w:48,x:0,y:25),id:c7aa9f10-e365-11e8-9c9b-556fd2a389b2,panelIndex:'14',title:'Event%20Search%20%26%20Overview',type:search,version:'7.6.1'),(embeddableConfig:(columns:!(title,risk_class,kingdom,category),title:'Alarm%20Search%20%26%20Overview'),gridData:(h:16,i:'15',w:48,x:0,y:9),id:'334c77b0-b338-11e8-b3e4-11404c6637fe',panelIndex:'15',title:'Alarm%20Search%20%26%20Overview',type:search,version:'7.6.1')),query:(language:lucene,query:''),timeRestore:!t,title:SIEM_IR,viewMode:view)",
     };
   },
 
