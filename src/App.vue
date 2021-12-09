@@ -209,7 +209,7 @@
             
             <!-- introductory video --->
             <video-tile 
-              :customData="VideoData[0]" 
+              :customData="Video1" 
               :order="this.order"
             >
             </video-tile>
@@ -409,6 +409,7 @@ import Task6 from "./data/directives_dt_dos.js";
 import Info2 from "./data/info_2.js";
 import Info4 from "./data/info_4.js";
 import Info5 from "./data/info_5.js";
+import Video1 from "./data/ex1_video1.js";
 // TODO end delete
 
 import { userDashboard } from "@/firebase"; // TODO rename to userScoreboard
@@ -433,6 +434,7 @@ export default {
   data() {
     return {
       VideoData: VideoData,
+      Video1: Video1,
       Plc1Shell: Plc1_Shell,
       Task1_1: Task1_1,
       Task2: Task2,

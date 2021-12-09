@@ -26,18 +26,18 @@
 
           <button class="button is-rounded is-red-br is-light"
             v-if="!showContent"
-            @click="show()"
-            title="Show hidden content"          
+            @click="this.showContent = true"
+                   
           >
-            Show
+            Show Video
           </button>
 
           <button class="button is-rounded is-light"
             v-else
-            @click="hide()"
-            title="Hide content below"          
+            @click="this.showContent = false"
+        
           >
-            Hide
+            Hide Video
           </button>
         </div>
 
@@ -55,6 +55,38 @@
             allow=""
           ></iframe>
         </div>
+
+  
+  <div class="buttons is-left mt-5">
+
+          <button class="button is-rounded is-red-br is-light"
+            v-if="!showTranscript"
+            @click="this.showTranscript = true"
+                   
+          >
+            Show Transcript
+          </button>
+
+          <button class="button is-rounded is-light"
+            v-else
+            @click="this.showTranscript = false"
+        
+          >
+            Hide Transcript
+          </button>
+        </div>
+
+
+      <div v-if="showTranscript">
+        <text class="has-text-justified"
+            v-html="this.transcript"
+          ></text>
+
+      </div>
+
+
+
+
       </div>
     </div>
   </div>
@@ -82,28 +114,27 @@ export default {
       title: this.customData.title,
       subtitle: this.customData.subtitle,
       url: this.customData.url,      
+      transcript: this.customData.transcript,
       showContent: true,
+      showTranscript: false
     };
   },
 
   // methods to ues in the HTML template
   methods: {
     proceed() {
-      this.hide();
+      this.showContent=false;
       var nextSection = this.order.indexOf(this.tileNo) + 1;
       this.scrollToElement(this.order[nextSection]);
+      this.showTranscript = true;
     },
 
-    hide() {
-      this.showContent = false;
-    },
-
-    show() {
-      this.showContent = true;
-    },
+   
 
     scrollToElement(id) {
+      //const el = document.getElementsByClassName(className)[0];
       const el = document.getElementById(id);
+
       setTimeout(() => {
         el.scrollIntoView({ behavior: "smooth", alignToTop: true });
       });
@@ -111,3 +142,5 @@ export default {
   },
 };
 </script>
+
+

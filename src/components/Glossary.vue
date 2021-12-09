@@ -25,7 +25,7 @@
 
               
            <div class="glossary-content" v-if="showGlossary">
-               <a @click="scrollToElement(this.order[1]), showGlossary=false"> plugin_sid, title </a> <br>
+               <a @click="scrollToElement('testID'), showGlossary=false"> plugin_sid, title </a> <br>
                <a @click="scrollToElement(this.order[2]), showGlossary=false"> Inhalt 2 </a> <br>
                <a @click="scrollToElement(this.order[3]), showGlossary=false"> Inhalt 3 </a> <br>
                <a @click="scrollToElement(this.order[3]), showGlossary=false"> Inhalt 4 </a>
@@ -53,7 +53,9 @@ methods: {
   scrollToElement(id) {
       const el = document.getElementById(id);
       setTimeout(() => {
-        el.scrollIntoView({ behavior: "smooth", alignToTop: true });
+        el.scrollIntoView({ behavior: "smooth",
+            block: 'center',
+            inline: 'center'});
       });
     }
 
