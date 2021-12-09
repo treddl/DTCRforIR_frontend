@@ -89,12 +89,6 @@ display: table !important; }
   border-bottom-left-radius: 3em !important;
 }
 
-
-
-
-
-
-
 .is-transparent{
   background-color: transparent !important;
 }
@@ -1014,6 +1008,8 @@ a.box:active {
   height: 1.5em;
   width: 1.5em;
 }
+
+
 
 .button .icon:first-child:not(:last-child) {
   margin-left: calc(-0.5em - 1px);

@@ -34,21 +34,22 @@ export default {
           second: "",
           time: 750
         },
-        sign: "root@" + this.host + "~#"
+        //sign: this.getHostName(this.customData.host)
+        sign: this.getHostName()
       },
       commands: [
 
-        {
-          name: "uname",
-          get() {
-            return navigator.appVersion;
-          }
-        }
       ]
     };
   },
 
   methods: {
+    getHostName() {
+        //return "root@" + data + "~#"
+        //var data = "plc1"
+        return "root@" + this.host + "~#"
+    },
+      
     prompt(value) {
       switch (value.trim()) {
         case "ifconfig":
