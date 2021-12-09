@@ -125,11 +125,11 @@
                           :key="item"
                           :class="{
                             'has-text-primary has-text-weight-bold':
-                              item.userID == this.userID,
+                              item.userID== this.userID,
                           }"
                         >
                           <td>{{ index + 1 }}</td>
-                          <td>{{ item.username }}</td>
+                          <td>{{ item.pseudonym }}</td>
                           <td>{{ item.points }}</td>
                           <td>{{ item.level }}</td>
                         </tr>
@@ -466,6 +466,7 @@ export default {
       dashboard: null,
       points: null,
       round: null,
+      wrongUserID: false,
       tasksCompleted: 0,
       emptyInput: false,
       fullscreen: false,
@@ -497,12 +498,27 @@ export default {
       console.log(message);
       if (this.userID == null) {
         this.emptyInput = true;
-      } else {
+      } 
+      else {
+
+            var docRef = userDashboard.doc(String(this.userID));
+      docRef
+        .get()
+        .then((doc) => {
+          if (doc.exists) {
         this.emptyInput = false;
         this.gameStarted = true;
         this.restartDigitalTwinContainer(); 
         this.getUserPoints();
-      }
+              }
+             else {
+        
+                this.wrongUserID= true;
+                
+
+      }})}
+      
+    
       window.onbeforeunload = function () {
         return "Your work will be lost.";
       };
@@ -575,7 +591,7 @@ export default {
             }
           } else {
             // if not only played with preset users
-            this.points = 0;
+            /*this.points = 0;
             this.tasksCompleted = 0;
             this.startTime = new Date();
             userDashboard.doc(this.userID).set({
@@ -586,7 +602,10 @@ export default {
       
               
             });
-            console.log(this.getVM());
+            console.log(this.getVM());*/
+
+             this.gameStarted = false;
+            this.wrongUserID = true;
             
           }
           this.getMarker();
