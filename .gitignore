@@ -2,7 +2,7 @@
 node_modules
 /dist
 
-
+*.log
 src/firebase.js
 firebase.js
 UserDataScripts/ServiceAccount.json
