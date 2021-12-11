@@ -1,6 +1,6 @@
 <template>
   <div class="b-black">
-    <v-shell 
+    <v-shell
       :banner="banner"
       :shell_input="send_to_terminal"
       :commands="commands"
@@ -15,19 +15,15 @@ export default {
   name: "Terminal",
 
   props: {
-      customData: {
-          type: Object,
-          required: false
-      }
-  }
-  
-  
-  ,
-
+    terminalData: {
+      type: Object,
+      required: false,
+    },
+  },
 
   data() {
-    return {      
-      host: this.customData.host,
+    return {
+      shellOut: this.terminalData.shellOutput,
       data: this.customData,
       send_to_terminal: "",
       banner: {
@@ -37,76 +33,76 @@ export default {
         emoji: {
           first: "",
           second: "",
-          time: 750
+          time: 750,
         },
-        //sign: this.getHostName(this.customData.host)
-        sign: this.getHostName()
+        sign: this.getHostName(),
+        apiIsRecovered: false,
       },
-    
     };
   },
 
   computed: {
-
-    commands() { 
-      
-      console.log("data: ", this.customData)
-      const out_ifconfig = this.customData.shellOutput.ifconfig
-      const out_arp = this.customData.shellOutput.arp
-      const out_whoami = this.customData.shellOutput.whoami
+    commands() {
+      console.log("data: ", this.customData);
+      const out_ifconfig = this.customData.shellOutput.ifconfig;
+      const out_arp = this.customData.shellOutput.arp;
+      const out_whoami = this.customData.shellOutput.whoami;
       const c = [
-        { name: "ifconfig",
-       
+        {
+          name: "ifconfig",
+
           get() {
             return out_ifconfig;
-        }
+          },
         },
         {
           name: "arp",
-      
+
           get() {
             return out_arp;
-          }
+          },
         },
-         {
+        {
           name: "whoami",
-      
+
           get() {
             return out_whoami;
-          }
-        }
-      ]
+          },
+        },
+      ];
 
-      return c
-
-    }
-
-
-
-
+      return c;
+    },
   },
-
-  
-
-
 
   methods: {
     getHostName() {
-        //return "root@" + data + "~#"
-        //var data = "plc1"
-        return "root@" + this.host + "~#"
+      return "root@HOST~#";
     },
-      
+
     prompt(value) {
       switch (value.trim()) {
-
-
-       
+        case "ifconfig":
+            this.send_to_terminal = this.shellOut.ifconfig;
+            break;
+        case "arp":
+            if (this.arpIsRecovered) {
+                this.send_to_terminal = this.shellOut.arpOutputRecoverd;
+            } else 
+            this.send_to_terminal = this.shellOut.arpOutputPoisend;
+            break;
+        case "arp -s 10.0.0.3 00:00:00:00:00:03":
+            this.send_to_terminal = "";
+            this.arpIsRecovered = true;
+            break;
+        case "whoami":
+            this.send_to_terminal = this.shellOut.whoami;
+            break;
         default:
             this.send_to_terminal = `Command '${value}' not found. Enter 'help' for a list of valid commands.`;
       }
-    }
-  }
+    },
+  },
 };
 </script>
 

@@ -939,9 +939,9 @@ pre {
   -webkit-overflow-scrolling: touch;
   background-color: black;
   color: white;
-  font-size: 0.875em;
+  font-size: 1.0em;
 
-  padding: 1.25rem 1.5rem;
+  padding: 0.0rem 0.0rem;
   white-space: pre;
   word-wrap: normal;
 }

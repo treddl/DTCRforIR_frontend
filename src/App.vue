@@ -82,7 +82,6 @@
           - b) the learning material consisting of the introductory video and the three exercise units 
           -->
         <div class="columns">
-
           <!-- Part 1: the kibana dashboard including a navigation bar -->
           <div
             class="column is-fixed is-full"
@@ -125,11 +124,11 @@
                           :key="item"
                           :class="{
                             'has-text-primary has-text-weight-bold':
-                              item.userID== this.userID,
+                              item.userID == this.userID,
                           }"
                         >
                           <td>{{ index + 1 }}</td>
-                          <td>{{ item.pseudonym }}</td>
+                          <td>{{ item.username }}</td>
                           <td>{{ item.points }}</td>
                           <td>{{ item.level }}</td>
                         </tr>
@@ -202,208 +201,211 @@
             
             <!-- introductory video --->
             <video-tile 
-              :customData="Video1" 
+              :videoData="VideoData[0]" 
               :order="this.order"
             >
             </video-tile>
 
-            <!-- exercise unit 1: --->
+            <!-- Unit 1 / Playbook 1 --->
+            <div class="is-info content" id="playbookOne">
+                <div class="title is-4">
+                    Playbook 1: Introduction to Incident Response
+                </div>
+                
+                    <div class="is-info content">
+                        <div class="title is-5" id="prepOne"> 
+                            Prepration Phase
+                        </div>
+                        
+                        <situational-awareness-1 
+                          :order="this.order"
+                        >                          
+                        </situational-awareness-1>
+                        <!-- 
+                        <div class="buttons is-left mt-5">
+                          <button class="button is-rounded is-red-br is-light"
+                            v-if="!this.showPlaybookOneLessons"
+                            @click="this.showPlaybookOneLessons=true"
+                          >
+                            Show lessons
+                          </button>
 
-            <!-- 1.2 Event types--->
-            <!-- TODO: rename to: Lesson: Event types-->
-            <dir-info-1 
-              :order="this.order"
-            >
-            </dir-info-1>
+                          <button class="button is-rounded is-light" 
+                            v-else
+                            @click="this.showPlaybookOneLessons=false" 
+                            >
+                              Hide lessons
+                          </button>
+                        </div>-->
+                        
+                        <div v-if="this.showPlaybookOneLessons">                            
+                            <video-tile
+                              :videoData="VideoData[1]"
+                              :order="this.order"
+                            >
+                            </video-tile>
 
-            <!-- 1.3 Task:Event-Types--->
-            <!-- TODO: rename to: Lesson: IR methodology-->
-            <!-- doc on Vue.js
-              '<flag-submision' represents the component stored in './components/FlagSubmission.vue'
-              ':taskData=Task1_1' passes down the data stroed in './data/task1_1.js' to the component's prop 'taskData'
-              'order="this.order"' passes down the the variable 'order' stored in this file to the component's prop 'order'
-              '@submit-points="submitPoints"' listens for the component's broadcast 'submit-points' and calls the function 'submitPoints()' in this file
-              '@task-completed="markAsCompleted"' listens for the component's broadcast 'task-completed' and calls the function 'markAsCompleted()' in this file
-              --->
-            <flag-submission
-              :customData="Task1_1"
-              :shellData="Plc1Shell" 
-              :order="this.order"
-              :tasksCompleted="tasksCompleted"
-              @submit-points="submitPoints"
-              @task-completed="markAsCompleted"
-            >
-            </flag-submission>
+                            <video-tile
+                              :videoData="VideoData[2]"
+                              :order="this.order"
+                            >
+                            </video-tile>
 
-            <!-- 2.1 Directive Header --->
-            <dir-info-2
-              v-if="tasksCompleted >= 1"
-              :infoData="Info2"
+                            <text-lesson-1
+                              :order="this.order"
+                              >
+                            </text-lesson-1>
+                        </div>    
+                    </div>
 
-              :order="this.order"
-            >
-            </dir-info-2>
+                    <div class="is-info content" id="identOne">
+                        <div class="title is-5">
+                            Identification Phase
+                        </div>
 
-            <!-- 2.2 Name and Plugin_SID --->
-            <dir-info-3
-              v-if="tasksCompleted >= 1"
-              :infoData="Info2"            
-              :order="this.order"
-            >
-            </dir-info-3>
+                        <!-- doc on Vue.js
+                        '<flag-submision' represents the component stored in './components/FlagSubmission.vue'
+                        ':taskData=Task1_1' passes down the data stroed in './data/task1_1.js' to the component's prop 'taskData'
+                        'order="this.order"' passes down the the variable 'order' stored in this file to the component's prop 'order'
+                        '@submit-points="submitPoints"' listens for the component's broadcast 'submit-points' and 
+                        calls the function 'submitPoints()' in this file
+                        '@task-completed="markAsCompleted"' listens for the component's broadcast 'task-completed' and 
+                        calls the function 'markAsCompleted()' in this file
+                              --->
+                        <div>                              
+                          <flag-submission
+                            :taskData="Unit1IdentTasks"
+                            :order="this.order"
+                            :tasksCompleted="tasksCompleted"
+                            @submit-points="submitPoints"
+                            @task-completed="markAsCompleted"
+                          >
+                          </flag-submission>
+                        </div>
 
-            <!-- 2.3 Task:Unknown Ip Address --->
-            <blank-task-new
-              v-if="tasksCompleted >= 1"
-              :customData="Task2"
-              :order="this.order"
-              :tasksCompleted="tasksCompleted"
-              @submit-points="submitPoints"
-              @task-completed="markAsCompleted"
-            >
-            </blank-task-new>
+                        
+                    </div>
+                
+                    <div class="is-info content">
+                        <div class="title is-5" id="respOne">
+                            Response Phase
+                        </div>
+                        <div class="block">
+                        Congrats, you've finished playbook 1. As this was a test alarm, there's no need for response actions. 
+                        You can revist some lessons or head on to playbook 2. 
+                        </div>
+                        <!-- display buttons Continue and Show/Hide to 
+                              - continue to the next lesson/task/unit while hiding the content below the title and subtile, or to
+                              - show/hide the content below the title and subtitle -->
+                        <div class="buttons is-left mt-5">
+                          <button class="button is-rounded submit-button"
+                             @click="this.playbookOneIsComplete = true; this.scrollToElement('playbookTwo')"                                  
+                            >
+                            Conitinue
+                          </button>
+                        </div>                        
+                    </div>
+            </div>
 
-            <!-- 3.1 Man-In-The-Middle-Attack --->
-            <video-tile
-              v-if="tasksCompleted >= 2"
-              :customData="VideoData[1]"
-              :order="this.order"
-            >
-            </video-tile>
+            <!-- Unit 2 / Playbook 2 --->
+            <div class="is-info content" id="playbookTwo"
+                 v-if="playbookOneIsComplete"
+                 >
+                <div class="title is-4">
+                    Playbook 2: Responding to a MitM attack
+                </div>
+                
+                    <div class="is-info content">
+                        <div class="title is-5" id="prepTwo">
+                            Prepration Phase
+                        </div>
+                        
+                        <div>
+                          <situational-awareness-2 
+                            :order="this.order"
+                          >                          
+                          </situational-awareness-2>
+                          
+                          <video-tile
+                            :videoData="VideoData[3]"
+                            :order="this.order"
+                          >
+                          </video-tile>
+                          
+                          <text-lesson-2
+                            :order="this.order"
+                          >                                                      
+                          </text-lesson-2>
+                        <div>
+                        
+                        
+                    </div>
 
-            <!-- 3.2 Stages, Occurrences and Timeouts --->
-            <dir-info-4
-              v-if="tasksCompleted >= 2"
-              :infoData="Info4"
-              :order="this.order"
-            >
-            </dir-info-4>
+                    <div class="is-info content"
+                         v-if="playbookTwoIdentStart">
+                        <div class="title is-5" id="identTwo">
+                            Identification Phase
+                        </div>
+                        
+                        <flag-submission
+                          :taskData="Unit2IdentTasks"
+                          :order="this.order"
+                          :tasksCompleted="tasksCompleted"
+                          @submit-points="submitPoints"
+                          @task-completed="markAsCompleted"
+                        >
+                        </flag-submission>
+                        
+                        
+                    </div>
+                
+                    <div class="is-info content" id="respTwo"
+                         v-if="playbookTwoIdentIsComplete"
+                         >
+                        <div class="title is-5">
+                            Response Phase
+                        </div>
 
-            <!-- 3.3 Task:Man-In-The-Middle-Attack --->
-            <blank-task
-              v-if="tasksCompleted >= 2"
-              :taskData="Task3"
-              :order="this.order"
-              :tasksCompleted="tasksCompleted"
-              @submit-points="submitPoints"
-              @task-completed="markAsCompleted"
-            >
-            </blank-task>
+                        <flag-submission
+                          :taskData="Unit2RespTasks"
+                          :order="this.order"
+                          :tasksCompleted="tasksCompleted"
+                          @submit-points="submitPoints"
+                          @task-completed="markAsCompleted"
+                        >
+                        </flag-submission>
+                        
+                        
+                    </div>
 
-            <!-- 4.1 ARP-Spoofing --->
-            <video-tile
-              v-if="tasksCompleted >= 3"
-              :customData="VideoData[2]"            
-              :order="this.order"
-            >
-            </video-tile>
-
-            <!-- 4.2 IP addresses:to and from --->
-            <dir-info-5
-              v-if="tasksCompleted >= 3"
-              :infoData="Info5"
-              :order="this.order"
-            >
-            </dir-info-5>
-
-            <!-- 4.3 Task:ARP-Spoofing --->
-            <blank-task
-              v-if="tasksCompleted >= 3"
-              :taskData="Task4"
-              :order="this.order"
-              :tasksCompleted="tasksCompleted"
-              @submit-points="submitPoints"
-              @task-completed="markAsCompleted"
-            >
-            </blank-task>
-
-            <!-- 5.1 Log-File-Manipulation --->
-            <video-tile
-              v-if="tasksCompleted >= 4"
-              :customData="VideoData[3]"
-              :order="this.order"
-            >
-            </video-tile>
-
-            <!-- 5.2 Task:Log File Manipulation --->
-            <editor-task
-              v-if="tasksCompleted >= 4"
-              :taskData="Task5"
-              :order="this.order"
-              :tasksCompleted="tasksCompleted"
-              @submit-points="submitPoints"
-              @task-completed="markAsCompleted"
-
-            >
-            </editor-task>
-
-            <!-- 6.1 ICMP-DOS-Attack --->
-            <video-tile
-              v-if="tasksCompleted >= 5"
-              :customData="VideoData[4]"            
-              :order="this.order"
-            >
-            </video-tile>
-
-            <!-- 6.2 Task:DOS-Attack --->
-            <editor-task
-              v-if="tasksCompleted >= 5"
-              :taskData="Task6"
-              :order="this.order"
-              :tasksCompleted="tasksCompleted"
-              @submit-points="submitPoints"
-              @task-completed="markAsCompleted"
-              @finish-game="finishGame"
-            >
-            </editor-task>
+            </div>
           </div>
 
+            </div>
+          </div>
         </div>
-
       </div>
     </div>
-
   </body>
 </template>
 
 
 <script>
-
-// // components that provide the HTML strucutre (and the necessary JS script)
-// component for the video-based lessons
-import VideoTile from "./components/VideoTile.vue";
-// components for the text-based lessons
-import DirInfo1 from "./components/DirInfo1.vue";
-import DirInfo2 from "./components/DirInfo2.vue";
-import DirInfo3 from "./components/DirInfo3.vue";
-import DirInfo4 from "./components/DirInfo4.vue";
-import DirInfo5 from "./components/DirInfo5.vue";
 import Glossary from "./components/Glossary.vue";
-// component for the playbook
-// TODO insert playbook component here
+import VideoTile from "./components/VideoTile.vue";
+import SituationalAwareness1 from "./components/SituationalAwareness1.vue";
+import SituationalAwareness2 from "./components/SituationalAwareness2.vue";
+import TextLesson1 from "./components/TextLesson1.vue";
+import TextLesson2 from "./components/TextLesson2.vue";
 
-// components for the tasks
+
+
 import FlagSubmission from "./components/FlagSubmission.vue";
 
-// // custom data for the components
 import VideoData from "./data/video_data.js";
-import Task1_1 from "./data/task1_1.js";
-
-// TODO start delete
-import BlankTask from "./components/BlankTask.vue";
-import BlankTaskNew from "./components/BlankTaskNew.vue";
-import EditorTask from "./components/EditorTask.vue"; 
-import Plc1_Shell from "./data/plc1_shell.js"
-import Task2 from "./data/directives_dt_attacker.js";
-import Task3 from "./data/directives_dt_mitm.js";
-import Task4 from "./data/directives_dt_arp.js";
-import Task5 from "./data/directives_dt_log_manipulation.js";
-import Task6 from "./data/directives_dt_dos.js";
-import Info2 from "./data/info_2.js";
-import Info4 from "./data/info_4.js";
-import Info5 from "./data/info_5.js";
-import Video1 from "./data/ex1_video1.js";
-// TODO end delete
+import Unit1IdentTasks from "./data/Unit1IdentTasks.js";
+import Unit2IdentTasks from "./data/Unit2IdentTasks.js";
+import Unit2RespTasks from "./data/Unit2RespTasks.js";
 
 import { userDashboard } from "@/firebase"; // TODO rename to userScoreboard
 import { VM_db } from "@/firebase"; // TODO rename to userScoreboard
@@ -413,50 +415,43 @@ export default {
   components: {
     Glossary,
     VideoTile,
+    SituationalAwareness1,
+    SituationalAwareness2,
+    TextLesson1,
+    TextLesson2,
     FlagSubmission,
-    BlankTaskNew,    
-    BlankTask,
-    EditorTask,
-    DirInfo1,
-    DirInfo2,
-    DirInfo3,
-    DirInfo4,
-    DirInfo5,
   },
 
   data() {
     return {
       VideoData: VideoData,
-      Video1: Video1,
-      Plc1Shell: Plc1_Shell,
-      Task1_1: Task1_1,
-      Task2: Task2,
-      Task3: Task3,
-      Task4: Task4,
-      Task5: Task5,
-      Task6: Task6,
-      Info2: Info2,
-      Info4: Info4,
-      Info5: Info5,
+      Unit1IdentTasks: Unit1IdentTasks,
+      Unit2IdentTasks: Unit2IdentTasks,
+      Unit2RespTasks: Unit2RespTasks,
+
       order: [
-        "video_0.1",
-        "info1",
-        "task1_1",
-        "info2",
-        "info3",
-        "task2",
+        "video1",
+        "sa1",
         "video2",
-        "info4",
-        "task3",
         "video3",
-        "info5",
-        "task4",
+        "textlesson1",
+        "identOne",
+        "unit1Ident",
+        "respOne",
+        "playbookTwo",
+        "sa2",
         "video4",
-        "task5",
-        "video5",
-        "task6",
+        "textlesson2",
+        "identTwo",
+        "unit2Ident",
+        "respTwo",
+        "unit2Resp"
       ],
 
+      playbookOneIsComplete: true,
+      playbookTwoIdentStart: true,
+      playbookTwoIdentIsComplete: true,
+      showPlaybookOneLessons: true,
       gameCompleted: false,
       gameStarted: false,
       userID: null,
@@ -466,7 +461,6 @@ export default {
       dashboard: null,
       points: null,
       round: null,
-      wrongUserID: false,
       tasksCompleted: 0,
       emptyInput: false,
       fullscreen: false,
@@ -475,21 +469,19 @@ export default {
       kibanaOn: true,
       kibanaUrl:
         window.location.href.replace("7080", "5605") +
-        "app/kibana#/dashboard/350e16e0-38b3-11ec-a547-a7b24e1b3b31?_g=(refreshInterval:(pause:!t,value:0),time:(from:now-2h,to:now))&_a=(description:'Kibana%20dashboard%20for%20DSIEM',filters:!(),fullScreenMode:!f,options:(darkTheme:!f,hidePanelTitles:!f,useMargins:!t),panels:!((embeddableConfig:(title:'Timeline%20%26%20Count%20of%20Events%20and%20Alarms'),gridData:(h:9,i:'9',w:36,x:12,y:0),id:b4844b80-b45c-11e8-b3e4-11404c6637fe,panelIndex:'9',title:'Timeline%20%26%20Count%20of%20Events%20and%20Alarms',type:visualization,version:'7.6.1'),(embeddableConfig:(title:Alarms,vis:(defaultColors:('0%20-%2020':'rgb(0,104,55)','20%20-%2050':'rgb(255,255,190)','50%20-%20100':'rgb(165,0,38)'),legendOpen:!t)),gridData:(h:9,i:'10',w:12,x:0,y:0),id:'217b62e0-b45e-11e8-b3e4-11404c6637fe',panelIndex:'10',title:Alarms,type:visualization,version:'7.6.1'),(embeddableConfig:(columns:!(timestamp,category,title,sensor,src_ip,dst_ip,plugin_sid),title:'Event%20Search%20%26%20Overview'),gridData:(h:17,i:'14',w:48,x:0,y:25),id:c7aa9f10-e365-11e8-9c9b-556fd2a389b2,panelIndex:'14',title:'Event%20Search%20%26%20Overview',type:search,version:'7.6.1'),(embeddableConfig:(columns:!(title,risk_class,kingdom,category),title:'Alarm%20Search%20%26%20Overview'),gridData:(h:16,i:'15',w:48,x:0,y:9),id:'334c77b0-b338-11e8-b3e4-11404c6637fe',panelIndex:'15',title:'Alarm%20Search%20%26%20Overview',type:search,version:'7.6.1')),query:(language:lucene,query:''),timeRestore:!t,title:SIEM_IR,viewMode:view)",
+        "app/kibana#/dashboard/350e16e0-38b3-11ec-a547-a7b24e1b3b31?_g=(refreshInterval:(pause:!f,value:50000),time:(from:now-2h,to:now))&_a=(description:'Kibana%20dashboard%20for%20DSIEM',filters:!(),fullScreenMode:!f,options:(darkTheme:!f,hidePanelTitles:!f,useMargins:!t),panels:!((embeddableConfig:(title:'Timeline%20%26%20Count%20of%20Events%20and%20Alarms'),gridData:(h:9,i:'9',w:36,x:12,y:0),id:b4844b80-b45c-11e8-b3e4-11404c6637fe,panelIndex:'9',title:'Timeline%20%26%20Count%20of%20Events%20and%20Alarms',type:visualization,version:'7.6.1'),(embeddableConfig:(title:Alarms,vis:(defaultColors:('0%20-%2020':'rgb(0,104,55)','20%20-%2050':'rgb(255,255,190)','50%20-%20100':'rgb(165,0,38)'),legendOpen:!t)),gridData:(h:9,i:'10',w:12,x:0,y:0),id:'217b62e0-b45e-11e8-b3e4-11404c6637fe',panelIndex:'10',title:Alarms,type:visualization,version:'7.6.1'),(embeddableConfig:(columns:!(timestamp,category,title,sensor,src_ip,dst_ip,plugin_sid),title:'Event%20Search%20%26%20Overview'),gridData:(h:17,i:'14',w:48,x:0,y:25),id:c7aa9f10-e365-11e8-9c9b-556fd2a389b2,panelIndex:'14',title:'Event%20Search%20%26%20Overview',type:search,version:'7.6.1'),(embeddableConfig:(columns:!(title,risk_class,kingdom,category),title:'Alarm%20Search%20%26%20Overview'),gridData:(h:16,i:'15',w:48,x:0,y:9),id:'334c77b0-b338-11e8-b3e4-11404c6637fe',panelIndex:'15',title:'Alarm%20Search%20%26%20Overview',type:search,version:'7.6.1')),query:(language:lucene,query:''),timeRestore:!t,title:SIEM_IR,viewMode:view)",
     };
   },
 
   mounted() {
-    this.url_param = new URL(location.href).searchParams.get('userID')
-    console.log(this.url_param)
-      if (this.url_param != null){
-        this.userID = this.url_param
-        this.validateId()
- 
-      }
-      else{
-        console.log("url is empty")
-      }
+    this.url_param = new URL(location.href).searchParams.get("userID");
+    console.log(this.url_param);
+    if (this.url_param != null) {
+      this.userID = this.url_param;
+      this.validateId();
+    } else {
+      console.log("url is empty");
+    }
   },
 
   methods: {
@@ -498,27 +490,12 @@ export default {
       console.log(message);
       if (this.userID == null) {
         this.emptyInput = true;
-      } 
-      else {
-
-            var docRef = userDashboard.doc(String(this.userID));
-      docRef
-        .get()
-        .then((doc) => {
-          if (doc.exists) {
+      } else {
         this.emptyInput = false;
         this.gameStarted = true;
-        this.restartDigitalTwinContainer(); 
+        this.restartDigitalTwinContainer();
         this.getUserPoints();
-              }
-             else {
-        
-                this.wrongUserID= true;
-                
-
-      }})}
-      
-    
+      }
       window.onbeforeunload = function () {
         return "Your work will be lost.";
       };
@@ -527,28 +504,26 @@ export default {
     // restarts the digital twin docker container via the Flask API
     restartDigitalTwinContainer() {
       this.$http
-        .get(window.location.href.replace("7080", "9090") + "restart_dt_container")
+        .get(
+          window.location.href.replace("7080", "9090") + "restart_dt_container"
+        )
         .then((response) => {
           console.log(response.data);
         });
     },
 
-    getUnits: function() {
-
-      if (this.$route.query.userID != null){
-        this.userID = this.$route.query.userID
-        this.validateId()
-        console.log("found url")
+    getUnits: function () {
+      if (this.$route.query.userID != null) {
+        this.userID = this.$route.query.userID;
+        this.validateId();
+        console.log("found url");
+      } else {
+        console.log("url is empty");
       }
-      else{
-        console.log("url is empty")
-      }
-    }
- ,
-
- beforeMount(){
-    this.getUnits()
- },
+    },
+    beforeMount() {
+      this.getUnits();
+    },
 
     getUserPoints() {
       var docRef = userDashboard.doc(String(this.userID));
@@ -591,7 +566,7 @@ export default {
             }
           } else {
             // if not only played with preset users
-            /*this.points = 0;
+            this.points = 0;
             this.tasksCompleted = 0;
             this.startTime = new Date();
             userDashboard.doc(this.userID).set({
@@ -599,26 +574,20 @@ export default {
               round: 1,
               level: 0,
               points: 0,
-      
-              
             });
-            console.log(this.getVM());*/
-
-             this.gameStarted = false;
-            this.wrongUserID = true;
-            
+            console.log(this.getVM());
           }
           this.getMarker();
         })
         .catch((error) => {
           console.log("Error getting document:", error);
         });
-    },   
-    
-    async getVM(){
+    },
+
+    async getVM() {
       const snapshot = await VM_db.limit(1).get();
-          console.log(snapshot.docs.map((doc) => doc.data()));
-          return JSON.stringify(snapshot.docs.map((doc) => doc.data().pseudonym)) //funktioniert so nicht
+      console.log(snapshot.docs.map((doc) => doc.data()));
+      return JSON.stringify(snapshot.docs.map((doc) => doc.data().pseudonym)); //funktioniert so nicht
     },
 
     async getMarker() {
@@ -628,7 +597,6 @@ export default {
         .get();
       //const snapshot = await userDashboard.orderBy("points", "desc").get();
       this.dashboard = snapshot.docs.map((doc) => doc.data());
-     
     },
 
     async uploadPoints() {
@@ -717,6 +685,12 @@ export default {
       this.points += points2;
       this.uploadPoints();
     },
+    scrollToElement(id) {
+      const el = document.getElementById(id);
+      setTimeout(() => {
+        el.scrollIntoView({ behavior: "smooth", alignToTop: true });
+      });
+    }
   },
 };
 </script>

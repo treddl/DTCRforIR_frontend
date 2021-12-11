@@ -1,20 +1,7 @@
 <template>
   <div>
-    <div class="is-task" :id="this.tileNo">
+    <div class="is-task" :id="this.taskData.tileNo">
       <div class="is-directive">
-        <!-- display title and subtitle -->
-        <div>
-          <text
-            class="title is-json is-text-red"
-            :class="{ 'has-text-grey': taskCompleted || completedBefore }">
-            {{ this.title }}
-          </text>
-          <br>
-          <text class="has-text-grey subtitle nice-subtitle">
-            {{ this.subtitle }}
-          </text>
-        </div>
-
         <!-- display post task completion: information for the user and buttons to proceed -->
         <div v-if="taskCompleted">
           <div class="is-primary-darker subtitle is-json">
@@ -52,13 +39,13 @@
           <div class="buttons is-left mt-5">
             <!-- TODO update task6 to your final key to show button "Finish Game" -->
             <button class="button is-rounded submit-button"
-              v-if="this.tileNo != 'task6'"
+              v-if="this.taskData.tileNo != 'unit2Resp'"
               @click="proceed()"            
             >
               Continue
             </button>          
             <button class="button is-rounded submit-button"
-              v-if="this.tileNo == 'task6'"
+              v-if="this.tileNo == 'unit2Resp'"
               @click="finishGame()"             
             >
               Finish Game
@@ -83,15 +70,16 @@
 
         <!-- diplay prior task completion: actual task  -->
         <div v-if="showContent">
-          <terminal :customData="this.shell"> </terminal>
+          
           <!-- bind the display style of this element to the truthiness of 'taskCompleted' or 'completedBefore' -->
           <div :class="{ 'directive-completed': taskCompleted || completedBefore }">
+            <div class="block" v-html="this.phaseIntroduction"></div>
             <div v-for="(blank, index) in this.blanks" :key="blank">
               <!-- use component Blank.vue with the data from blanks -->
               <blank class="pt-4 pb-4"
                 :blankData="blank"
                 :index="index"
-                :tileNo="this.tileNo"                            
+                :tileNo="this.taskData.tileNo"                            
                 :completedBefore="completedBefore"
                 @blank-completed="completeTask"              
                 @buy-hint="this.$emit('submit-points', -1)"
@@ -109,25 +97,20 @@
 
 <script>
 import Blank from "./Blank.vue";
-import Terminal from "./Terminal.vue"
 
 export default {
   name: "FlagSubmission",
 
   components: {
     Blank,
-    Terminal
   },
 
   props: {
-    customData: {
+    taskData: {
       type: Object,
       required: true,
     },
-    shellData: {
-      type: Object,
-      required: false
-    },
+
     order: {},
     tasksCompleted: {}
     
@@ -135,16 +118,13 @@ export default {
 
   data() {
     return {
-      shell: this.shellData,
-      tileNo: this.customData.tileNo,
-      level: this.customData.level,
-      apiPath: this.customData.apiPath,
+      level: this.taskData.level, 
+      apiPath: this.taskData.apiPath,
+      
+      responsePhase: this.taskData.responsePhase,
+      phaseIntroduction: this.taskData.phaseIntroduction,
 
-      title: this.customData.title,
-      subtitle: this.customData.subtitle,
-      taskDescription: this.customData.taskDescription,
-
-      blanks: this.customData.blanks,      
+      blanks: this.taskData.blanks,      
 
       blanks_completed: 0,
       taskCompleted: false,
@@ -193,13 +173,13 @@ export default {
           this.timestamp_after,
           this.timeToComplete,
         ]);
-        this.scrollToElement(this.tileNo);
+        this.scrollToElement(this.taskData.tileNo);
       }
     },
 
     proceed() {
       this.hide();
-      var nextSection = this.order.indexOf(this.tileNo) + 1;
+      var nextSection = this.order.indexOf(this.taskData.tileNo) + 1;
       this.scrollToElement(this.order[nextSection]);
     },
 
