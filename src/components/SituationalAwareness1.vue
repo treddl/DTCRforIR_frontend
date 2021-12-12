@@ -2,7 +2,7 @@
   <div class="is-info content" :id="this.tileNo">
     <div>
       <div class="has-text-yellow has-text-left title is-3 is-json" >
-          Situational Awarenes & Workflow
+          Situational Awareness & Workflow
       </div>
 
       <div class="buttons is-left mt-5">
