@@ -9,11 +9,22 @@
             <div class="block" v-html="this.blank.responseActionID"></div>
             <div class="block" v-html="this.blank.responseActionInstruction"></div>
 
-            <terminal
-              v-if="this.blank.terminalData != null"
-              :terminalData="this.blank.terminalData"
-            >
-            </terminal>
+
+            <div v-if="blank.isTerminalTask">
+                <terminal
+                  v-if="!this.ipLinkDown"
+                  :termData="blank"
+                  @ip-link-down="this.ipLinkDown = true"
+                >
+                </terminal>
+
+                <div v-else>
+                   <img v-if="blank.terminalData.host == 'work-station'" src="../assets/attackerDefeated.png">
+                   <img v-if="blank.terminalData.host == 'plc1' || blank.terminalData.host == 'plc3'" src="../assets/Unisiegel.png">     
+                </div>
+                           
+                           
+            </div>
               
             <br>
 
@@ -108,7 +119,7 @@ export default {
   name: "Blank",
 
   components: {
-    Terminal,
+   Terminal,
   },
 
   props: {
@@ -128,6 +139,7 @@ export default {
       emptyInput: false,
       triesLeft: this.getTriesLeft(),
       points: null,
+      ipLinkDown: false,
     };
   },
 

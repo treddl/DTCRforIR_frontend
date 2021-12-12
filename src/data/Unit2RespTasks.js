@@ -2,36 +2,56 @@ const Unit2RespTasks = {
     tileNo: "unit2Resp",
     level: 2, 
     responsePhase: "identification",
-    phaseIntroduction: '<div class="block">This is going great. We established which host acts as the MitM and which hosts are the tragets. Now it is time to stop the attack and recover the affected systems.</div> <div class="block">Follow the response steps below and make a name for yourself as first class incident responder.</div>',
-    apiPath: "",
+    phaseIntroduction: '<div class="block">This is going great. We established which host acts as the MitM and which hosts are the tragets.</div> <div class="block">Now it is time to stop the attack and recover the affected systems.</div> <div class="block">Follow the response steps below and make a name for yourself as first class incident responder.</div>',
     blanks: [
         {
-
             responseActionID: "RA5",
             responseActionInstruction: 'Isolate the attacking host by turning off its network interface.',
-            
-            
+               
             flagInstruction: "Submit the keyword that indicates the success of the action:",
             flag: "DOWN",
             placeholder: "",
             hint: 'First you need to find the name of the network interface for ethernet connections. You may want to check out the lesson on <span class="has-text-weight-bold">bash</span> again.',
 
+            isTerminalTask: true,
             level: 4,
             apiPath: "",
-            
+
             triesLeft: 3,
             wrongTry: false,
             rightTry: false,
             terminalData: {
                     host: "work-station",
-                    shellOutput: {    
-                        ifconfig: ``,
-                    arp: `>`,
-                    whoami: `<pre>root</pre>`,
-                    arpStatic: ``,
+                    arpIsRecovered: false,
+                    inputOutput: {    
+                        ipLinkShow: [
+                            `ip link show`,
+                            `1: lo: <LOOPBACK,UP,LOWER_UP>  state UNKNOWN 
+                            link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+                        2: work-station-eth0: <BROADCAST,MULTICAST> state UP
+                            link/ether 00:00:00:00:00:05 brd ff:ff:ff:ff:ff:ff link-netnsid 0`
+                        ],
+                        ipLinkDown: [
+                            `ip link set dev work-station-eth0 down`,
+                            ``
+                        ],
+                        whoami: [
+                            `whoami`,
+                            `root`
+                        ],
+                        arpCache: [
+                            `arp`,
+                            `Address                  HWtype  HWaddress           Flags Mask            Iface
+                            10.0.0.3                 ether   00:00:00:00:00:03   C                     work-station-eth0
+                            10.0.0.1                 ether   00:00:00:00:00:01   C                     work-station-eth0
+                            10.0.0.2                 ether   00:00:00:00:00:02   C                     work-station-eth0
+                            10.0.0.4                 ether   00:00:00:00:00:04   C                     work-station-eth0`
+                        ],
+                        command: [
+                            ``,
+                            ``
+                        ],
                     },
-                    arpFlag: "arp -s 10.0.0.2 00:00:00:00:00:02",
-                    empty: `<pre></pre>`
                 }
         },
         {
@@ -53,40 +73,43 @@ const Unit2RespTasks = {
             rightTry: false,
             terminalData: {
                     host: "plc1",
-                    shellOutput: {    
-                        ifconfig: `<pre>lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
-                    inet 127.0.0.1  netmask 255.0.0.0
-                    inet6 ::1  prefixlen 128  scopeid 0x10<host>
-                    loop  txqueuelen 1000  (Local Loopback)
-                    RX packets 313774  bytes 21480200 (21.4 MB)
-                    RX errors 0  dropped 0  overruns 0  frame 0
-                    TX packets 313774  bytes 21480200 (21.4 MB)
-                    TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
-
-                plc1-eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
-                    inet 10.0.0.1  netmask 255.255.255.0  broadcast 10.0.0.255
-                    inet6 fe80::200:ff:fe00:1  prefixlen 64  scopeid 0x20<link>
-                    ether 00:00:00:00:00:01  txqueuelen 1000  (Ethernet)
-                    RX packets 65675  bytes 5452486 (5.4 MB)
-                    RX errors 0  dropped 0  overruns 0  frame 0
-                    TX packets 91471  bytes 7500318 (7.5 MB)
-                    TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0</pre>`,
-                    arp: `<pre>Address                  HWtype  HWaddress           Flags Mask            Iface
-                    10.0.0.5                 ether   00:00:00:00:00:05   C                     plc1-eth0
-                    10.0.0.3                 ether   00:00:00:00:00:03   C                     plc1-eth0
-                    10.0.0.4                 ether   00:00:00:00:00:00   C                     plc1-eth0
-                    10.0.0.2                 ether   00:00:00:00:00:02   C                     plc1-eth0</pre>`,
-                    whoami: `<pre>root</pre>`,
-                    arpStatic: `<pre>Address                  HWtype  HWaddress           Flags Mask            Iface
-                10.0.0.3                 ether   00:00:00:00:00:03   CM                    plc1-eth0
-                10.0.0.5                 ether   00:00:00:00:00:05   C                     plc1-eth0
-                10.0.0.2                 ether   00:00:00:00:00:02   C                     plc1-eth0
-                10.0.0.4                 ether   00:00:00:00:00:00   C                     plc1-eth0</pre>`,
+                    arpIsRecovered: false,
+                    inputOutput: {    
+                        ipLinkShow: [
+                            `ip link show`,
+                            `1: lo: <LOOPBACK,UP,LOWER_UP>  state UNKNOWN 
+                            link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+                        2: plc1-eth0: <BROADCAST,MULTICAST> state UP
+                            link/ether 00:00:00:00:00:01 brd ff:ff:ff:ff:ff:ff link-netnsid 0`
+                        ],
+                        ipLinkDown: [
+                            ``,
+                            ``
+                        ],
+                        whoami: [
+                            `whoami`,
+                            `root`
+                        ],
+                        arpCache: [
+                            `arp`,
+                            `Address                  HWtype  HWaddress           Flags Mask            Iface
+                            10.0.0.5                 ether   00:00:00:00:00:05   C                     plc1-eth0
+                            10.0.0.2                 ether   00:00:00:00:00:02   C                     plc1-eth0
+                            10.0.0.4                 ether   00:00:00:00:00:04   C                     plc1-eth0
+                            10.0.0.3                 ether   00:00:00:00:00:05   C                     plc1-eth0`,
+                            `Address                  HWtype  HWaddress           Flags Mask            Iface
+                            10.0.0.5                 ether   00:00:00:00:00:05   C                     plc1-eth0
+                            10.0.0.2                 ether   00:00:00:00:00:02   C                     plc1-eth0
+                            10.0.0.4                 ether   00:00:00:00:00:04   C                     plc1-eth0
+                            10.0.0.3                 ether   00:00:00:00:00:03   CM                    plc1-eth0`
+                        ],
+                        arpRecovery: [
+                            `arp -s 10.0.0.3 00:00:00:00:00:03`,
+                            ``
+                        ],
 
                     },
-                    arpFlag: "arp -s 10.0.0.2 00:00:00:00:00:02",
-                    empty: `<pre></pre>`
-},
+            },
         },
         {
             responseActionID: "RA7",
@@ -98,6 +121,7 @@ const Unit2RespTasks = {
             placeholder: "",
             hint: 'The answer lies in the ARP cache, more precicely, in the column <span class="is-family-monospace has-background-light">Flags Mask</span>',
 
+            isTerminalTask: true,            
             level: 6,
             apiPath: "stop_mitm",
             
@@ -105,41 +129,44 @@ const Unit2RespTasks = {
             wrongTry: false,
             rightTry: false,
             terminalData: {
-                    host: "plc3",
-                    shellOutput: {    
-                        ifconfig: `<pre>lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
-                    inet 127.0.0.1  netmask 255.0.0.0
-                    inet6 ::1  prefixlen 128  scopeid 0x10<host>
-                    loop  txqueuelen 1000  (Local Loopback)
-                    RX packets 313774  bytes 21480200 (21.4 MB)
-                    RX errors 0  dropped 0  overruns 0  frame 0
-                    TX packets 313774  bytes 21480200 (21.4 MB)
-                    TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+                host: "plc3",
+                arpIsRecovered: false,
+                inputOutput: {    
+                    ipLinkShow: [
+                        `ip link show`,
+                        `1: lo: <LOOPBACK,UP,LOWER_UP>  state UNKNOWN 
+                        link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+                    2: plc3-eth1: <BROADCAST,MULTICAST> state UP
+                        link/ether 00:00:00:00:00:03 brd ff:ff:ff:ff:ff:ff link-netnsid 0`
+                    ],
+                    ipLinkDown: [
+                        ``,
+                        ``
+                    ],
+                    whoami: [
+                        `whoami`,
+                        `root`
+                    ],
+                    arpCache: [
+                        `arp`,
+                        `Address                  HWtype  HWaddress           Flags Mask            Iface
+                        10.0.0.2                 ether   00:00:00:00:00:02   C                     plc3-eth1
+                        10.0.0.4                 ether   00:00:00:00:00:04   C                     plc3-eth1
+                        10.0.0.1                 ether   00:00:00:00:00:05   C                     plc3-eth1
+                        10.0.0.5                 ether   00:00:00:00:00:05   C                     plc3-eth1`,
+                        `Address                  HWtype  HWaddress           Flags Mask            Iface
+                        10.0.0.2                 ether   00:00:00:00:00:02   C                     plc3-eth1
+                        10.0.0.4                 ether   00:00:00:00:00:04   C                     plc3-eth1
+                        10.0.0.1                 ether   00:00:00:00:00:01   CM                    plc3-eth1
+                        10.0.0.5                 ether   00:00:00:00:00:05   C                     plc3-eth1`
+                    ],
+                    arpRecovery: [
+                        `arp -s 10.0.0.1 00:00:00:00:00:01`,
+                        ``
+                    ],
 
-                plc1-eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
-                    inet 10.0.0.1  netmask 255.255.255.0  broadcast 10.0.0.255
-                    inet6 fe80::200:ff:fe00:1  prefixlen 64  scopeid 0x20<link>
-                    ether 00:00:00:00:00:01  txqueuelen 1000  (Ethernet)
-                    RX packets 65675  bytes 5452486 (5.4 MB)
-                    RX errors 0  dropped 0  overruns 0  frame 0
-                    TX packets 91471  bytes 7500318 (7.5 MB)
-                    TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0</pre>`,
-                    arp: `<pre>Address                  HWtype  HWaddress           Flags Mask            Iface
-                    10.0.0.5                 ether   00:00:00:00:00:05   C                     plc1-eth0
-                    10.0.0.3                 ether   00:00:00:00:00:03   C                     plc1-eth0
-                    10.0.0.4                 ether   00:00:00:00:00:00   C                     plc1-eth0
-                    10.0.0.2                 ether   00:00:00:00:00:02   C                     plc1-eth0</pre>`,
-                    whoami: `<pre>root</pre>`,
-                    arpStatic: `<pre>Address                  HWtype  HWaddress           Flags Mask            Iface
-                10.0.0.3                 ether   00:00:00:00:00:03   CM                    plc1-eth0
-                10.0.0.5                 ether   00:00:00:00:00:05   C                     plc1-eth0
-                10.0.0.2                 ether   00:00:00:00:00:02   C                     plc1-eth0
-                10.0.0.4                 ether   00:00:00:00:00:00   C                     plc1-eth0</pre>`,
-
-                    },
-                    arpFlag: "arp -s 10.0.0.2 00:00:00:00:00:02",
-                    empty: `<pre></pre>`
-                }
+                },
+        },
         },
         {
             responseActionID: "RA8",
@@ -156,6 +183,7 @@ const Unit2RespTasks = {
             triesLeft: 3,
             wrongTry: false,
             rightTry: false,
+            
         },
 
 

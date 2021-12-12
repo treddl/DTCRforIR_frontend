@@ -119,7 +119,6 @@ export default {
   data() {
     return {
       level: this.taskData.level, 
-      apiPath: this.taskData.apiPath,
       
       responsePhase: this.taskData.responsePhase,
       phaseIntroduction: this.taskData.phaseIntroduction,

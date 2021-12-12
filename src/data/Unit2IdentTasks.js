@@ -3,7 +3,6 @@ const Unit2IdentTasks = {
     level: 1, 
     responsePhase: "identification",
     phaseIntroduction: 'This time it is critical to get all the information right. Otherwise we risk isolating the wrong systems, causing even more disruptions!',
-    apiPath: "",
     blanks: [
         {
 
@@ -21,6 +20,7 @@ const Unit2IdentTasks = {
             triesLeft: 3,
             wrongTry: false,
             rightTry: false,
+            terminalData: {}
         },
         {
             responseActionID: "RA4",
@@ -37,6 +37,7 @@ const Unit2IdentTasks = {
             triesLeft: 3,
             wrongTry: false,
             rightTry: false,
+            terminalData: {}
         },
 
     ]

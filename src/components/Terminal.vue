@@ -15,91 +15,140 @@ export default {
   name: "Terminal",
 
   props: {
-    terminalData: {
-      type: Object,
-      required: false,
-    },
+      termData: {
+      }
   },
 
   data() {
     return {
-      shellOut: this.terminalData.shellOutput,
-      data: this.terminalData,
+      terminalData: this.termData.terminalData,
       send_to_terminal: "",
       banner: {
         header: "Cyber Range Shell",
         subHeader: "",
-        helpHeader: 'Enter "help" for more information.',
+        helpHeader: 'Enter "help" for a list of valid command options.',
         emoji: {
-          first: "",
-          second: "",
-          time: 750,
+            first: "",
+            second: "",
+            time: 750
         },
-        sign: this.getHostName(),
-        apiIsRecovered: false,
+        sign: this.getTerminalSign(),
       },
     };
   },
-
+  
   computed: {
     commands() {
-      console.log("data: ", this.customData);
-      const out_ifconfig = this.shellOut.ifconfig;
-      const out_arp = this.shellOut.arp;
-      const out_whoami = this.shellOut.whoami;
+      console.log("data: ", this.terminalData);
       const c = [
         {
-          name: "ifconfig",
-
-          get() {
-            return out_ifconfig;
-          },
+          name: "clear : clears terminal screen"
         },
         {
-          name: "arp",
-
-          get() {
-            return out_arp;
-          },
+          name: "ip link [show|set] [INTERFACE] [OPTIONS] : lists|sets network interfaces"
         },
         {
-          name: "whoami",
-
-          get() {
-            return out_whoami;
-          },
+          name: "arp [OPTIONS] [IP_ADDR] [MAC_ADDR] : lists|sets arp Cache (entries)"
+        },
+        {
+          name: "whoami : shows current user"
         },
       ];
-
       return c;
     },
   },
 
   methods: {
     getHostName() {
-      return "root@HOST~#";
+        return String(this.termData.terminalData.host);
     },
-
+    getTerminalSign() {
+      return "root@" + this.getHostName() + "~#";
+      //  return "not";
+    },
+    pinging() {
+        var ping = 0;
+        var pingInterval = setInterval(pingOutput, 10);
+        function pingOutput() {
+            if (ping == 5) {
+                clearInterval(pingInterval);
+            } else {
+                ping++;
+                this.send_to_terminal = `pinging 10.0.0.5 ... `;
+            }
+        }
+    },             
     prompt(value) {
+      const hostName = this.getHostName();
       switch (value.trim()) {
-        case "ifconfig":
-            this.send_to_terminal = this.shellOut.ifconfig;
+        case "ip":
+            this.send_to_terminal = `Command '${value}' not complete: missing arguments.`;
             break;
+        case "ip link":
+            this.send_to_terminal = `Command '${value}' not complete: missing arguments.`;
+            break;
+        case "ip link show":
+            this.send_to_terminal = this.terminalData.inputOutput.ipLinkShow[1];
+          break;
+        case "ip link set dev work-station-eth0 down":
+            if (hostName == 'work-station') {
+                this.send_to_terminal = "";
+                setTimeout(this.$emit("ip-link-down"), 1000);
+            } else {
+                `Command '${value}' not valid: arguments don't match device.`
+            }
+          break;
+        case "ip link set dev plc1-eth0 down":
+            if (hostName == 'plc1') {
+                this.send_to_terminal = "";
+                setTimeout(this.$emit("ip-link-down"), 1000);
+            } else {
+                `Command '${value}' not valid: arguments don't match device.`
+            }
+          break;
+        case "ip link set dev plc3-eth1 down":
+            if (hostName == 'plc3') {
+                this.send_to_terminal = "";
+                setTimeout(this.$emit("ip-link-down"), 1000);
+            } else {
+                `Command '${value}' not valid: arguments don't match device.`
+            }
+          break;
+        
         case "arp":
-            if (this.arpIsRecovered) {
-                this.send_to_terminal = this.shellOut.arpOutputRecoverd;
-            } else 
-            this.send_to_terminal = this.shellOut.arpOutputPoisend;
+          if (!this.arpIsRecovered) {
+              this.send_to_terminal = this.terminalData.inputOutput.arpCache[1];
+          } else {
+              this.send_to_terminal = this.terminalData.inputOutput.arpCache[2];
+            }
+          break;
+        case "arp -s":
+            this.send_to_terminal = `Command '${value}' not complete: missing arguments`;
             break;
         case "arp -s 10.0.0.3 00:00:00:00:00:03":
-            this.send_to_terminal = "";
+          if (hostName == "plc1") {
+            this.send_to_terminal = " ";
             this.arpIsRecovered = true;
-            break;
+          } else if (hostName == "plc3") {
+            this.send_to_terminal = `Invalid command: ARP cache cannot be set for own interface.`;
+          }
+          break;
+        case "arp -s 10.0.0.1 00:00:00:00:00:01":
+          if (hostName == "plc1") {
+            this.send_to_terminal = `Invalid command: ARP cache cannot be set for own interface.`;
+          } else if (hostName == "plc3") {
+            this.send_to_terminal = " ";
+            this.arpIsRecovered = true;
+          }
+          break;
+       // case "ping 10.0.0.5":
+       //    this.pinging();
+       //    break;
         case "whoami":
-            this.send_to_terminal = this.shellOut.whoami;
-            break;
+          this.send_to_terminal = this.terminalData.inputOutput.whoami[1];     
+          break;
         default:
-            this.send_to_terminal = `Command '${value}' not found. Enter 'help' for a list of valid commands.`;
+          this.send_to_terminal = `Command '${value}' not valid. Enter 'help' for a list of valid commands.`;
       }
     },
   },

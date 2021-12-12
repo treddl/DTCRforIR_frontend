@@ -299,16 +299,16 @@
                               - show/hide the content below the title and subtitle -->
                         <div class="buttons is-left mt-5">
                           <button class="button is-rounded submit-button"
-                             @click="this.playbookOneIsComplete = true; this.scrollToElement('playbookTwo')"                                  
+                             @click="this.playbookOneIsComplete = true"                                  
                             >
-                            Conitinue
+                            Conitinue with Playbook 2
                           </button>
                         </div>                        
                     </div>
             </div>
 
             <!-- Unit 2 / Playbook 2 --->
-            <div class="is-info content" :id="playbookTwo"
+            <div class="is-info content" id="playbookTwo"
                  v-if="playbookOneIsComplete"
                  >
                 <div class="title is-4">
@@ -448,7 +448,7 @@ export default {
         "unit2Resp"
       ],
 
-      playbookOneIsComplete: false,
+      playbookOneIsComplete: true,
       playbookTwoIdentStart: true,
       playbookTwoIdentIsComplete: true,
       showPlaybookOneLessons: true,

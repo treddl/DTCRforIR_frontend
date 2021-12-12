@@ -3,7 +3,6 @@ const Unit1IdentTasks = {
     level: 0, 
     responsePhase: "identification",
     phaseIntroduction: 'The purpose of the identification phase is to establish the scope of the security incident. It is paramount to know, e.g., which systems behave maliciously and which normally. Only then is an effective response possible.',
-    apiPath: "",
     blanks: [
         {
 
@@ -21,6 +20,7 @@ const Unit1IdentTasks = {
             triesLeft: 3,
             wrongTry: false,
             rightTry: false,
+            terminalData: {}
         },
         {
             responseActionID: "RA2",
@@ -37,6 +37,7 @@ const Unit1IdentTasks = {
             triesLeft: 3,
             wrongTry: false,
             rightTry: false,
+            terminalData: {}
         },
 
     ]
