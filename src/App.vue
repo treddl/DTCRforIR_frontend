@@ -308,7 +308,7 @@
             </div>
 
             <!-- Unit 2 / Playbook 2 --->
-            <div class="is-info content" id="playbookTwo"
+            <div class="is-info content" :id="playbookTwo"
                  v-if="playbookOneIsComplete"
                  >
                 <div class="title is-4">
@@ -448,7 +448,7 @@ export default {
         "unit2Resp"
       ],
 
-      playbookOneIsComplete: true,
+      playbookOneIsComplete: false,
       playbookTwoIdentStart: true,
       playbookTwoIdentIsComplete: true,
       showPlaybookOneLessons: true,

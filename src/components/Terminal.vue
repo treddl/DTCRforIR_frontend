@@ -24,7 +24,7 @@ export default {
   data() {
     return {
       shellOut: this.terminalData.shellOutput,
-      data: this.customData,
+      data: this.terminalData,
       send_to_terminal: "",
       banner: {
         header: "Cyber Range Shell",
@@ -44,9 +44,9 @@ export default {
   computed: {
     commands() {
       console.log("data: ", this.customData);
-      const out_ifconfig = this.customData.shellOutput.ifconfig;
-      const out_arp = this.customData.shellOutput.arp;
-      const out_whoami = this.customData.shellOutput.whoami;
+      const out_ifconfig = this.shellOut.ifconfig;
+      const out_arp = this.shellOut.arp;
+      const out_whoami = this.shellOut.whoami;
       const c = [
         {
           name: "ifconfig",

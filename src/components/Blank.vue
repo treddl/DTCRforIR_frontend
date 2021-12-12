@@ -154,7 +154,7 @@ export default {
     validateInput() {
       if (this.userInput == "") {
         this.emptyInput = true;
-      } else if (this.userInput.trim() != this.blank.flag) {
+      } else if (this.userInput.trim() != this.blank.flag) {        
         this.emptyInput = false;
         this.triesLeft -= 1;
         if (this.triesLeft == 1) {
@@ -171,16 +171,23 @@ export default {
 
         this.blank.wrongTry = true;
       } else {
-        this.emptyInput = false;
-        this.blank.rightTry = true;
-        this.blank.wrongTry = false;
-        this.hintActivated = false;
-        try {
-          var allTries2 = JSON.parse(localStorage.getItem("storedData"));
-          allTries2[this.tileNo][this.index] = 0;
-          localStorage.setItem("storedData", JSON.stringify(allTries2));
-        } catch (err) {
-          console.log("localStorage empty");
+            this.emptyInput = false;
+            this.blank.rightTry = true;
+            this.blank.wrongTry = false;
+            this.hintActivated = false;
+            if (this.blank.apiPath == "stop_mitm") {
+              this.makeAPICall("stop_mitm");         
+            } else if (this.blank.apiPath == "start_mitm") {
+              this.makeAPICall("start_mitm"); 
+            
+            }
+          
+            try {
+              var allTries2 = JSON.parse(localStorage.getItem("storedData"));
+              allTries2[this.tileNo][this.index] = 0;
+              localStorage.setItem("storedData", JSON.stringify(allTries2));
+            } catch (err) {
+              console.log("localStorage empty");
         }
       }
       if (this.completed()) {
@@ -189,6 +196,15 @@ export default {
         this.$emit("tries-count", this.triesLeft);
       }
     },
+    makeAPICall(apiPath) {  
+      this.$http
+        .get(
+          window.location.href.replace("7080", "9090") + apiPath
+        )
+        .then((response) => {
+          console.log(response.data);
+        });
+    },      
   },
 
   computed: {},

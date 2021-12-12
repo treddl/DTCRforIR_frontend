@@ -2,17 +2,10 @@
   <div>
     <!-- maps the videos tileNo to this elememt's id -->
     <div class="is-info content" :id="this.tileNo">
-      <div class="mr-2 content is-size-6 has-text-justified">
-        <!-- display title and subtitle -->
-        <div>
-        <text class="has-text-yellow has-text-left title is-json">
-          {{ this.title }}
-        </text>
-        <br>
-        <text class="has-text-grey subtitle nice-subtitle">
-          {{ this.subtitle }}
-        </text>
+      <div class="content">
+        <div class="has-text-yellow has-text-left title is-3 is-json" v-html="this.title">
         </div>
+
         <!-- display buttons Continue and Show/Hide
               - continue to the next lesson/task/unit while hiding the content below the title and subtile, or to
               - show/hide the content below the title and subtitle --> 

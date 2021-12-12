@@ -46,7 +46,7 @@ const Unit2RespTasks = {
 
             isTerminalTask: true,
             level: 5,
-            apiPath: "",
+            apiPath: "stop_mitm",
             
             triesLeft: 3,
             wrongTry: false,
@@ -99,7 +99,7 @@ const Unit2RespTasks = {
             hint: 'The answer lies in the ARP cache, more precicely, in the column <span class="is-family-monospace has-background-light">Flags Mask</span>',
 
             level: 6,
-            apiPath: "",
+            apiPath: "stop_mitm",
             
             triesLeft: 3,
             wrongTry: false,
