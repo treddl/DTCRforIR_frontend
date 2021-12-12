@@ -1,7 +1,7 @@
 <template>
   <div class="is-info content" :id="this.tileNo">
     <div>
-      <div class="has-text-yellow has-text-left title is-3 is-json" >
+      <div class="has-text-link-dark has-text-left title is-5 is-json" >
           Situational Awareness & Workflow
       </div>
 
@@ -29,12 +29,12 @@
       <div class="content"
         v-if="showInfo">
          
-        <div class="block">This time the SIEM triggered a serious looking alarm 
-            <span class="is-family-monospace has-background-light">MitM attack via ARP spoofing</span> 
+        <div class="block">This time the SIEM triggered a serious looking alarm:   
+            <span class="is-family-monospace has-background-danger-light">MitM attack via ARP spoofing</span> 
         </div>
         <div class="block">Based on the type of the alarm we know that there is an intruder in our network.</div>
         <div class="block">One of the targets seems to be PLC1. We know this because PLC1 produces WARING logs.</div>
-        <div class="block">The attack discrupts the filling process. This is no good news at all.</div>
+        <div class="block">The attack discrupts the filling process. The highest priority is to get the filling process back up running.</div>
         <div class="block">Your job is now to</div>    
             <ul>
             <li>
@@ -45,7 +45,7 @@
             </li>
             </ul>
 
-        <div class="block">Below you'll find fruther lessons. Best of luck to you and happy responding
+        <div class="block">Below you'll find further lessons. Best of luck to you and happy responding 🧑‍💻
         </div>
       </div>
     </div>

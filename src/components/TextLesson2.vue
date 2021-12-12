@@ -1,7 +1,7 @@
 <template>
   <div class="is-info content" :id="this.tileNo">
     <div>
-      <div class="has-text-yellow has-text-left title is-3 is-json" >
+      <div class="has-text-link-dark has-text-left title is-5 is-json" >
           Lesson 5: Terminal to Rescue (text)
       </div>
       <div class="buttons is-left mt-5">
@@ -59,11 +59,9 @@
                 is e.g. for information purposes only this is the same as th
                 Source-IP.
                 </li>
-
                 <li>
-                <strong>plugin_id:</strong>
-                a ID that it used by the SIEM to identify SIEM Events in the
-                system
+                <strong>plugin_sid:</strong>
+                an ID that is unique to a specific event, e.g., plugin_sid=100 is unique to 'value-udpate-successful'
                 </li>
             </ul>
             </div>

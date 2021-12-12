@@ -208,12 +208,14 @@
 
             <!-- Unit 1 / Playbook 1 --->
             <div class="is-info content" id="playbookOne">
-                <div class="title is-4">
-                    Playbook 1: Introduction to Incident Response
+                <div class="has-text-link-dark has-text-left title is-3 is-json">
+                    Playbook 1 
+                </div>
+                <div class="subtitle nice-subtitle">Introduction to Incident Response
                 </div>
                 
                     <div class="is-info content">
-                        <div class="title is-5" id="prepOne"> 
+                        <div class="has-text-link-dark has-text-left title is-4 is-json" id="prepOne"> 
                             Prepration Phase
                         </div>
                         
@@ -259,7 +261,7 @@
                     </div>
 
                     <div class="is-info content" id="identOne">
-                        <div class="title is-5">
+                        <div class="has-text-link-dark has-text-left title is-4 is-json">
                             Identification Phase
                         </div>
 
@@ -287,11 +289,13 @@
                     </div>
                 
                     <div class="is-info content">
-                        <div class="title is-5" id="respOne">
+                        <div class="has-text-link-dark has-text-left title is-4 is-json" id="respOne">
                             Response Phase
                         </div>
                         <div class="block">
                         Congrats, you've finished playbook 1. As this was a test alarm, there's no need for response actions. 
+                        </div>
+                        <div class="block">
                         You can revist some lessons or head on to playbook 2. 
                         </div>
                         <!-- display buttons Continue and Show/Hide to 
@@ -311,12 +315,14 @@
             <div class="is-info content" id="playbookTwo"
                  v-if="playbookOneIsComplete"
                  >
-                <div class="title is-4">
-                    Playbook 2: Responding to a MitM attack
+                <div class="has-text-link-dark has-text-left title is-3 is-json">
+                    Playbook 2 
+                </div>
+                <div class="subtitle nice-subtitle">Responding to a MitM attack
                 </div>
                 
                     <div class="is-info content">
-                        <div class="title is-5" id="prepTwo">
+                        <div class="has-text-link-dark has-text-left title is-4 is-json" id="prepTwo">
                             Prepration Phase
                         </div>
                         
@@ -343,7 +349,7 @@
 
                     <div class="is-info content"
                          v-if="playbookTwoIdentStart">
-                        <div class="title is-5" id="identTwo">
+                        <div class="has-text-link-dark has-text-left title is-4 is-json" id="identTwo">
                             Identification Phase
                         </div>
                         
@@ -362,7 +368,7 @@
                     <div class="is-info content" id="respTwo"
                          v-if="playbookTwoIdentIsComplete"
                          >
-                        <div class="title is-5">
+                        <div class="has-text-link-dark has-text-left title is-4 is-json">
                             Response Phase
                         </div>
 
@@ -698,5 +704,6 @@ export default {
 
 <style>
 @import "./../css/bulma.css";
+@import "./../css/bulma.min.css";
 @import "./../css/bulma-tooltip.css";
 </style>

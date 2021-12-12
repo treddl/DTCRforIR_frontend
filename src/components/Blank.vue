@@ -191,9 +191,7 @@ export default {
               this.makeAPICall("stop_mitm");         
             } else if (this.blank.apiPath == "start_mitm") {
               this.makeAPICall("start_mitm"); 
-            
-            }
-          
+            }          
             try {
               var allTries2 = JSON.parse(localStorage.getItem("storedData"));
               allTries2[this.tileNo][this.index] = 0;

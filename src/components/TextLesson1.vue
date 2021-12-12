@@ -1,7 +1,7 @@
 <template>
   <div class="is-info content" :id="this.tileNo">
     <div>
-      <div class="has-text-yellow has-text-left title is-3 is-json" >
+      <div class="has-text-link-dark has-text-left title is-5 is-json" >
           Lesson 3: Deep dive into SIEM alarms & events (text)
       </div>
       <div class="buttons is-left mt-5">

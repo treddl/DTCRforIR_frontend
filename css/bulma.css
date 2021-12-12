@@ -5148,12 +5148,12 @@ fieldset[disabled] .select select:hover {
 }
 
 .card-header-title {
-  align-items: center;
-  color: #363636;
+  align-items: left;
   display: flex;
   flex-grow: 1;
   font-weight: 700;
   padding: 0.75rem 1rem;
+  font-size: 1.5rem;
 }
 
 .card-header-title.is-centered {

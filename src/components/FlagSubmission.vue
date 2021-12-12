@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="is-task" :id="this.taskData.tileNo">
-      <div class="is-directive">
+      <div class="is-directive ">
         <!-- display post task completion: information for the user and buttons to proceed -->
         <div v-if="taskCompleted">
           <div class="is-primary-darker subtitle is-json">

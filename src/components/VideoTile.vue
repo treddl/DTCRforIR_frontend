@@ -3,7 +3,7 @@
     <!-- maps the videos tileNo to this elememt's id -->
     <div class="is-info content" :id="this.tileNo">
       <div class="content">
-        <div class="has-text-yellow has-text-left title is-3 is-json" v-html="this.title">
+        <div class="has-text-link-dark has-text-left title is-5 is-json" v-html="this.title">
         </div>
 
         <!-- display buttons Continue and Show/Hide
@@ -49,7 +49,7 @@
           ></iframe>
         </div>
           
-        <div class="buttons is-left mt-5">
+        <div class="buttons is-left mt-5 is-hidden">
           <button
             class="button is-rounded is-red-br is-light"
             v-if="!showTranscript"
