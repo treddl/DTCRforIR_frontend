@@ -25,9 +25,9 @@ const Unit2IdentTasks = {
         {
             responseActionID: "RA4",
             responseActionInstruction: 'Identify the host acting as the MitM.',
-            flagInstruction: "Submit the host name:",
+            flagInstruction: 'Submit the <span class="has-text-weight-bold">host name</span>:',
             flag: "work-station",
-            placeholder: "",
+            placeholder: "host NAME",
             hint: 'Remember that the <span class="has-text-weight-bold">attacker</span> replaces their MAC address with that of the target.',
 
             isTerminalTask: false,

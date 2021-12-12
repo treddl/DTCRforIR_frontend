@@ -77,7 +77,11 @@ export default {
                 this.send_to_terminal = `pinging 10.0.0.5 ... `;
             }
         }
-    },             
+    },
+    emitIpLinkDown() {
+        setTimeout(this.$emit("ip-link-down"), 2000);
+        
+    },  
     prompt(value) {
       const hostName = this.getHostName();
       switch (value.trim()) {
@@ -93,7 +97,7 @@ export default {
         case "ip link set dev work-station-eth0 down":
             if (hostName == 'work-station') {
                 this.send_to_terminal = "";
-                setTimeout(this.$emit("ip-link-down"), 1000);
+                this.emitIpLinkDown();
             } else {
                 `Command '${value}' not valid: arguments don't match device.`
             }
@@ -101,7 +105,7 @@ export default {
         case "ip link set dev plc1-eth0 down":
             if (hostName == 'plc1') {
                 this.send_to_terminal = "";
-                setTimeout(this.$emit("ip-link-down"), 1000);
+                this.emitIpLinkDown();
             } else {
                 `Command '${value}' not valid: arguments don't match device.`
             }
@@ -109,7 +113,7 @@ export default {
         case "ip link set dev plc3-eth1 down":
             if (hostName == 'plc3') {
                 this.send_to_terminal = "";
-                setTimeout(this.$emit("ip-link-down"), 1000);
+                this.emitIpLinkDown();
             } else {
                 `Command '${value}' not valid: arguments don't match device.`
             }

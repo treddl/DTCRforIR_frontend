@@ -20,8 +20,8 @@
             />
             <span class="ml-4 is-hcentered">              
               <span class="title is-title-smaller is-primary-darker is-json"
-                v-if="!this.triesExhausted">
-                Congrats, you've submitted the corret flag!
+                v-if="this.triesLeft">
+                Congrats!
               </span>
               <!-- display different message in case the traine went out of tries -->
               <span class="title is-title-smaller is-primary-darker is-json"
@@ -31,7 +31,7 @@
               <!-- TODO update this text dynamically depending on what the trainee has achieved
                         e.g., the attack will stop soon etc. or nothing at all if it was only a 
                         search and submit -->
-              <br />The correct response actions have been applied to the systems. ...
+              <br />here could some other text go
             </span>
           </div>
 

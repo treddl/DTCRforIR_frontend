@@ -172,7 +172,7 @@ const Unit2RespTasks = {
             responseActionID: "RA8",
             responseActionInstruction: 'Verify that the malicous activity has stopped. Monitor the SIEM events and verify the normal functioning of the filling plant. From the event that indicates resumed normal operation, submit the plugin_sid, the system’s host name (sensor), and the timestamp.',
             flagInstruction: "Submit the three values, seperated by a comma:",
-            flag: "400, plc1, date.object",
+            flag: "400, plc1",
             placeholder: "",
             hint: 'Remeber that one PLC produced warning logs. The <span class="has-text-weight-medium">same PLC</span> now produces <span class="has-text-weight-medium">info</span> logs indicating <span class="has-text-weight-medium">successful</span> operation.',
 
