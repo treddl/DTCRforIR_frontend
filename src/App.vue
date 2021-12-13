@@ -126,6 +126,7 @@
                             'has-text-primary has-text-weight-bold':
                               item.userID == this.userID,
                           }"
+                        
                         >
                           <td>{{ index + 1 }}</td>
                           <td>{{ item.pseudonym }}</td>
@@ -277,8 +278,10 @@
                               :taskData="Unit1IdentTasks"
                               :order="this.order"
                               :tasksCompleted="tasksCompleted"
+                              :userID="this.userPseudonym" 
                               @submit-points="submitPoints"
                               @task-completed="markAsCompleted"
+                                             
                             >
                             </flag-submission>
                           </div>
@@ -298,14 +301,16 @@
                                 - continue to the next lesson/task/unit while hiding the content below the title and subtile, or to
                                 - show/hide the content below the title and subtitle -->
                           <div class="buttons is-left mt-5">
-                            <button class="button is-rounded submit-button"
+                            <button class="button is-rounded is-success"
                               @click="this.playbookTwoBegin = true; this.scrollToPlaybookTwo()"                                  
                               >
+                               <font-awesome-icon :icon="['fa', 'open-book']" />
                               Conitinue with Playbook 2
                             </button>
                           </div>                        
                       </div>
               </div>
+              <div id="prePlaybookTwo"></div>
 
               <!-- Unit 2 / Playbook 2 --->
               <div class="is-info content" :id="'playbookTwo'"
@@ -347,6 +352,7 @@
                             :taskData="Unit2IdentTasks"
                             :order="this.order"
                             :tasksCompleted="tasksCompleted"
+                            :userID="this.userPseudonym"
                             @submit-points="submitPoints"
                             @task-completed="markAsCompleted"
                           >
@@ -362,6 +368,7 @@
                             :taskData="Unit2RespTasks"
                             :order="this.order"
                             :tasksCompleted="tasksCompleted"
+                            :userPseudonym="this.userPseudonym"
                             @submit-points="submitPoints"
                             @task-completed="markAsCompleted"
                             @game-finished="this.finishGame"
@@ -423,6 +430,7 @@ export default {
         "identOne",
         "unit1Ident",
         "respOne",
+        "prePlaybookTwo",
         "playbookTwo",
         "sa2",
         "video4",
@@ -452,6 +460,7 @@ export default {
       fullscreen: false,
       hideScoreboard: false,
       scrollPos: null,
+      userPseudonym: this.getUserPseudonym(),
       kibanaOn: true,
       kibanaUrl:
         window.location.href.replace("7080", "5605") +
@@ -666,10 +675,19 @@ export default {
       this.uploadPoints();
     },
     scrollToPlaybookTwo() {
-      const el = document.getElementById('playbookTwo');
+      const el = document.getElementById('prePlaybookTwo');
       setTimeout(() => {
         el.scrollIntoView({ behavior: "smooth", alignToTop: true });
       }, 1000);
+    },
+    getUserPseudonym() {
+        //for (let item in this.dashboard) {
+          //  if (item.userID == this.userID) {
+            //    //return item.pseudonym;
+              //  return "userID";
+            //}
+     //}
+            return "userID";
     },
   },
 };

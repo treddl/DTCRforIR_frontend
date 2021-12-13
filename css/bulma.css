@@ -1743,9 +1743,9 @@ fieldset[disabled] .button.is-link.is-inverted.is-outlined {
 }
 
 .button.is-info {
-  background-color: #3298dc;
-  border-color: transparent;
-  color: #fff;
+  background-color: #3298dc !important;
+  border-color: transparent !important;
+  color: #fff !important;
 }
 
 .button.is-info:hover, .button.is-info.is-hovered {
@@ -1849,8 +1849,8 @@ fieldset[disabled] .button.is-info.is-inverted.is-outlined {
 }
 
 .button.is-info.is-light {
-  background-color: #eef6fc;
-  color: #1d72aa;
+  background-color: #eef6fc !important;
+  color: #1d72aa !important;
 }
 
 .button.is-info.is-light:hover, .button.is-info.is-light.is-hovered {

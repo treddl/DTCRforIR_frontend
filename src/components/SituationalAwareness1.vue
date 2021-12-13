@@ -5,27 +5,6 @@
           Situational Awareness & Workflow
       </div>
 
-      <div class="buttons is-left mt-5">
-        <button class="button is-rounded submit-button" 
-            @click="proceed()">
-            CONTINUE
-        </button>
-        <button
-          @click="this.showInfo = true"
-          class="button is-rounded is-light is-red-br"
-          v-if="!showInfo"
-        >
-          Show
-        </button>
-        <button
-          @click="this.showInfo = false"
-          class="button is-rounded is-light"
-          v-else
-        >
-          Hide
-        </button>
-      </div>
-
       <div class="content"
         v-if="showInfo">
          
@@ -49,6 +28,22 @@
         <div class="block">Below we're prepared some lessons with all the relevant background knowledge. 
             You can check them out now. Or, if you feel brave enough, head straight to the tasks in the Identification Phase. Happy investigating! 🧑‍💻
         </div>
+      </div>
+      <div class="buttons is-left mt-5">
+        <button
+          @click="this.showInfo = true"
+          class="button is-rounded is-info"
+          v-if="!showInfo"
+        >
+          Show info
+        </button>
+        <button
+          @click="this.showInfo = false"
+          class="button is-rounded is-info is-light"
+          v-else
+        >
+          Hide info
+        </button>
       </div>
     </div>
   </div>

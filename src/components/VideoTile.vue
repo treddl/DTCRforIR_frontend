@@ -10,31 +10,8 @@
               - continue to the next lesson/task/unit while hiding the content below the title and subtile, or to
               - show/hide the content below the title and subtitle --> 
         <!-- TODO outosource this into a subcomponent if possible -->
-        <div class="buttons is-left mt-5">
-          <button class="button is-rounded submit-button" 
-            @click="proceed()"
-          >
-            Continue
-          </button>
 
-          <button class="button is-rounded is-red-br is-light"
-            v-if="!showContent"
-            @click="show()"
-            title="Show hidden content"          
-          >
-            Show
-          </button>
-
-          <button class="button is-rounded is-light"
-            v-else
-            @click="hide()"
-            title="Hide content below"          
-          >
-            Hide
-          </button>
-        </div>
-
-        <!-- display video from YouTube -->
+          <!-- display video from YouTube -->
         <div class="videoWrapper" 
           v-if="showContent">
           <!-- Copy & Pasted from YouTube -->
@@ -48,27 +25,27 @@
             allow=""
           ></iframe>
         </div>
-          
-        <div class="buttons is-left mt-5 is-hidden">
-          <button
-            class="button is-rounded is-red-br is-light"
-            v-if="!showTranscript"
-            @click="this.showTranscript = true"
-          >
-            Show Transcript
+        <div class="buttons is-left mt-5">   
+          <button class="button is-rounded submit-button" 
+                @click="proceed()"
+                v-if="String(this.videoData.tileNo) == 'video1'"
+              >
+                Continue
           </button>
-
-          <button
-            class="button is-rounded is-light"
+          <button class="button is-rounded is-info"
+            v-if="!showContent"
+            @click="show()"
+            title="Show hidden content"          
+          >
+            Show lesson
+          </button>
+          <button class="button is-rounded is-info is-light"
             v-else
-            @click="this.showTranscript = false"
+            @click="hide()"
+            title="Hide content below"          
           >
-            Hide Transcript
+            Hide lesson
           </button>
-        </div>
-
-        <div v-if="showTranscript">
-          <text class="has-text-justified" v-html="this.transcript"></text>
         </div>
       </div>
     </div>
@@ -98,13 +75,21 @@ export default {
       subtitle: this.videoData.subtitle,
       url: this.videoData.url,      
       transcript: this.videoData.transcript,
-      showContent: false,
+      showContent: this.onIntroVideo(),
       showTranscript: false,
     };
   },
 
   // methods to ues in the HTML template
   methods: {
+    onIntroVideo() {
+        if (String(this.videoData.tileNo) == "video1") {
+            return true;
+        } else {
+            return false;
+        }
+    },
+    
     proceed() {
       this.hide();
       var nextSection = this.order.indexOf(this.tileNo) + 1;

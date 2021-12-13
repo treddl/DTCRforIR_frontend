@@ -5,23 +5,19 @@
           Lesson 3: Deep dive into SIEM alarms & events (text)
       </div>
       <div class="buttons is-left mt-5">
-        <button class="button is-rounded submit-button" 
-            @click="proceed()">
-            CONTINUE
-        </button>
         <button
           @click="this.showInfo = true"
-          class="button is-rounded is-light is-red-br"
+          class="button is-rounded is-info"
           v-if="!showInfo"
         >
-          Show
+          Show lesson
         </button>
         <button
           @click="this.showInfo = false"
-          class="button is-rounded is-light"
+          class="button is-rounded is-info is-light"
           v-else
         >
-          Hide
+          Hide lesson
         </button>
       </div>
 

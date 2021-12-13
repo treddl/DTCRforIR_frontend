@@ -5,23 +5,19 @@
           Lesson 5: Terminal to Rescue (text)
       </div>
       <div class="buttons is-left mt-5">
-        <button class="button is-rounded submit-button" 
-            @click="proceed()">
-            CONTINUE
-        </button>
         <button
           @click="this.showInfo = true"
-          class="button is-rounded is-light is-red-br"
+          class="button is-rounded is-info"
           v-if="!showInfo"
         >
-          Show
+          Show lesson
         </button>
         <button
           @click="this.showInfo = false"
-          class="button is-rounded is-light"
+          class="button is-rounded is-info is-light"
           v-else
         >
-          Hide
+          Hide lesson
         </button>
       </div>
 
@@ -36,14 +32,14 @@
                 class="button is-rounded"
                 v-if="!showAdditionalInformation"
             >
-                Show More
+                Tell me more
             </button>
             <button
                 @click="this.showAdditionalInformation = false"
                 class="button is-rounded"
                 v-else
             >
-                Show Less
+                Show less
             </button>
             </div>
 
@@ -66,8 +62,6 @@
             </ul>
             </div>
         </div>        
-
-
       </div>
     </div>
   </div>
