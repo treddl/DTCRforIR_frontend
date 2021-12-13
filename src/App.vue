@@ -106,11 +106,11 @@
               <div class="navbar-brand navbar-background is-half">
                 <div class="">
                   <!-- implementation of the scoreboard -->
-                  <div class="navbar-brand">
+                  <div class="navbar-brand"   v-if="!hideScoreboard">
                     <table
                       class="table is-size-7 has-text-white dashboard mt-1 mb-1"
                       width="100%"
-                      v-if="!hideScoreboard"
+                    
                     >
                       <tbody class="pt-0 has-text-white">
                         <tr class="has-text-white">
@@ -128,7 +128,7 @@
                           }"
                         >
                           <td>{{ index + 1 }}</td>
-                          <td>{{ item.username }}</td>
+                          <td>{{ item.pseudonym }}</td>
                           <td>{{ item.points }}</td>
                           <td>{{ item.level }}</td>
                         </tr>
@@ -308,7 +308,7 @@
               </div>
 
               <!-- Unit 2 / Playbook 2 --->
-              <div class="is-info content" id="playbookTwo"
+              <div class="is-info content" :id="'playbookTwo'"
                   v-if="playbookTwoBegin">
                       <div class="has-text-link-dark has-text-left title is-3 is-json">
                           Playbook 2 
@@ -683,7 +683,7 @@ export default {
       const el = document.getElementById('playbookTwo');
       setTimeout(() => {
         el.scrollIntoView({ behavior: "smooth", alignToTop: true });
-      });
+      }, 1000);
     },
   },
 };
