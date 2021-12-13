@@ -5,28 +5,36 @@
         <!-- display of task content prior to final submission -->
         <div v-if="!this.blank.rightTry && triesLeft > 0 && !completedBefore">
           <div class="content table-wrapper">
-
             <div class="block" v-html="this.blank.responseActionID"></div>
-            <div class="block" v-html="this.blank.responseActionInstruction"></div>
-
+            <div
+              class="block"
+              v-html="this.blank.responseActionInstruction"
+            ></div>
 
             <div v-if="blank.isTerminalTask">
-                <terminal
-                  v-if="!this.ipLinkDown"
-                  :termData="blank"
-                  @ip-link-down="this.ipLinkDown = true"
-                >
-                </terminal>
+              <terminal
+                v-if="!this.ipLinkDown"
+                :termData="blank"
+                @ip-link-down="this.ipLinkDown = true"
+              >
+              </terminal>
 
-                <div v-else>
-                   <img v-if="blank.terminalData.host == 'work-station'" src="../assets/attackerDefeated.png">
-                   <img v-if="blank.terminalData.host == 'plc1' || blank.terminalData.host == 'plc3'" src="../assets/Unisiegel.png">     
-                </div>
-                           
-                           
+              <div v-else>
+                <img
+                  v-if="blank.terminalData.host == 'work-station'"
+                  src="../assets/attackerDefeated.png"
+                />
+                <img
+                  v-if="
+                    blank.terminalData.host == 'plc1' ||
+                    blank.terminalData.host == 'plc3'
+                  "
+                  src="../assets/Unisiegel.png"
+                />
+              </div>
             </div>
-              
-            <br>
+
+            <br />
 
             <!-- from the Vue.js docs: 
             You can use the v-model directive to create two-way data bindings on form input -->
@@ -63,11 +71,17 @@
         </div>
 
         <!-- display of task content on final submission -->
-        <div v-else>
-          <div class="block" v-html="this.blank.responseActionID"></div>
-          <div class="block" v-html="this.blank.responseActionInstruction"></div>
-          <div class="block" v-html="this.blank.flagInstruction"></div> 
-            
+        <div class="directive-completed has-background-white-ter p-3"
+             v-else>
+          <div class="block"
+               v-html="this.blank.responseActionID">
+          </div>
+          <div
+            class="block"
+            v-html="this.blank.responseActionInstruction"
+          ></div>
+          <div class="block" v-html="this.blank.flagInstruction"></div>
+          <div class="block">The correct flag is:</div>
           <input
             class="input blank-input is-short"
             :value="this.blank.flag"
@@ -77,35 +91,42 @@
       </div>
 
       <!-- display hint -->
-      <br>  
-      <div class="block content" v-if="hintActivated" >
+      <br />
+      <div class="message is-primary" v-if="hintActivated">
+        <div class="message-body">
         Hint: <span v-html="this.blank.hint"></span> (-1 point)
+        </div>
       </div>
 
       <!-- display messages regarding submitted user input -->
       <div>
-        <div class="block content has-text-danger" v-if="emptyInput">
-          Input cannot be empty.
+        <div class="message is-danger" v-if="emptyInput">
+            <div class="message-body">
+            Input cannot be empty.
+            </div>
         </div>
-        <div
-          class="block has-text-danger"
-          v-else-if="
-            triesLeft < 3 &&
-            triesLeft > 0 &&
-            !completedBefore &&
-            !this.blank.rightTry
-          "
+        <div class="message is-danger"
+            v-else-if="triesLeft < 3 && triesLeft > 0 && !completedBefore && !this.blank.rightTry"
         >
-          You were wrong. You have {{ triesLeft }} Tries left.
-        </div>
-        <div class="block content has-text-success-dark" v-else-if="this.blank.rightTry">
-          Good on you! You earned {{ triesLeft }} point(s). 🎉
+            <div class="message-body">
+              You were wrong. You have {{ triesLeft }} Tries left.
+            </div>
         </div>
         <div
-          class="block content has-text-danger"
+          class="message is-success"
+          v-else-if="this.blank.rightTry"
+        >
+            <div class="message-body">
+              Good on you! You earned {{ triesLeft }} point(s). 🎉
+            </div>
+        </div>
+        <div
+          class="message is-danger"
           v-else-if="triesLeft == 0 && this.blank.wrongTry"
         >
-          Sorry. You have no tries left.
+            <div class="message-body">
+              Sorry. You have no tries left.
+            </div>
         </div>
       </div>
     </form>
@@ -119,7 +140,7 @@ export default {
   name: "Blank",
 
   components: {
-   Terminal,
+    Terminal,
   },
 
   props: {
@@ -166,7 +187,7 @@ export default {
     validateInput() {
       if (this.userInput == "") {
         this.emptyInput = true;
-      } else if (this.userInput.trim() != this.blank.flag) {        
+      } else if (this.userInput.trim() != this.blank.flag) {
         this.emptyInput = false;
         this.triesLeft -= 1;
         if (this.triesLeft == 1) {
@@ -183,21 +204,21 @@ export default {
 
         this.blank.wrongTry = true;
       } else {
-            this.emptyInput = false;
-            this.blank.rightTry = true;
-            this.blank.wrongTry = false;
-            this.hintActivated = false;
-            if (this.blank.apiPath == "stop_mitm") {
-              this.makeAPICall("stop_mitm");         
-            } else if (this.blank.apiPath == "start_mitm") {
-              this.makeAPICall("start_mitm"); 
-            }          
-            try {
-              var allTries2 = JSON.parse(localStorage.getItem("storedData"));
-              allTries2[this.tileNo][this.index] = 0;
-              localStorage.setItem("storedData", JSON.stringify(allTries2));
-            } catch (err) {
-              console.log("localStorage empty");
+        this.emptyInput = false;
+        this.blank.rightTry = true;
+        this.blank.wrongTry = false;
+        this.hintActivated = false;
+        if (this.blank.apiPath == "stop_mitm") {
+          this.makeAPICall("stop_mitm");
+        } else if (this.blank.apiPath == "start_mitm") {
+          this.makeAPICall("start_mitm");
+        }
+        try {
+          var allTries2 = JSON.parse(localStorage.getItem("storedData"));
+          allTries2[this.tileNo][this.index] = 0;
+          localStorage.setItem("storedData", JSON.stringify(allTries2));
+        } catch (err) {
+          console.log("localStorage empty");
         }
       }
       if (this.completed()) {
@@ -206,15 +227,13 @@ export default {
         this.$emit("tries-count", this.triesLeft);
       }
     },
-    makeAPICall(apiPath) {  
+    makeAPICall(apiPath) {
       this.$http
-        .get(
-          window.location.href.replace("7080", "9090") + apiPath
-        )
+        .get(window.location.href.replace("7080", "9090") + apiPath)
         .then((response) => {
           console.log(response.data);
         });
-    },      
+    },
   },
 
   computed: {},

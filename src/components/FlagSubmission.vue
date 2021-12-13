@@ -1,11 +1,20 @@
 <template>
-  <div>
     <div class="is-task" :id="this.taskData.tileNo">
-      <div class="is-directive ">
+      <div class="buttons is-left mt-5">
+          <button class="button is-rounded submit-button" 
+            @click="this.beginPhase = true; this.trackBegin"
+            v-if="!this.beginPhase"
+          >
+            Begin
+          </button>
+      </div>
+      <div class="is-directive"
+        v-if="beginPhase">
+
         <!-- display post task completion: information for the user and buttons to proceed -->
         <div v-if="taskCompleted">
           <div class="is-primary-darker subtitle is-json">
-          Phase completed
+            Phase completed
           </div>
 
           <div class="notification notification-green is-light success-message">
@@ -15,73 +24,79 @@
           </div>
 
           <div class="columns is-hcentered mt-5">
-            <img class="image is-hcentered rotate" style="width: 70px"
-              src="./../assets/rocket.svg"           
+            <img
+              class="image is-hcentered rotate"
+              style="width: 70px"
+              src="./../assets/rocket.svg"
             />
-            <span class="ml-4 is-hcentered">              
-              <span class="title is-title-smaller is-primary-darker is-json"
-                v-if="this.triesLeft">
+            <span class="ml-4 is-hcentered">
+              <span
+                class="title is-title-smaller is-primary-darker is-json"
+                v-if="this.triesLeft"
+              >
                 Congrats!
               </span>
               <!-- display different message in case the traine went out of tries -->
-              <span class="title is-title-smaller is-primary-darker is-json"
-                v-else>
-                Don't worry, we've submitted the corret flag for you. You'll have  more luck next time!
+              <span
+                class="title is-title-smaller is-primary-darker is-json"
+                v-else
+              >
+                Don't worry, we've submitted the corret flag for you. You'll
+                have more luck next time!
               </span>
-              <!-- TODO update this text dynamically depending on what the trainee has achieved
-                        e.g., the attack will stop soon etc. or nothing at all if it was only a 
-                        search and submit -->
-              <br />here could some other text go
             </span>
           </div>
 
           <!-- display buttons Continue and Show/Hide -->
           <div class="buttons is-left mt-5">
             <!-- TODO update task6 to your final key to show button "Finish Game" -->
-            <button class="button is-rounded submit-button"
+            <button
+              class="button is-rounded submit-button"
               v-if="this.taskData.tileNo != 'unit2Resp'"
-              @click="proceed()"            
+              @click="proceed()"
             >
               Continue
-            </button>          
-            <button class="button is-rounded submit-button"
-              v-if="this.tileNo == 'unit2Resp'"
-              @click="finishGame()"             
+            </button>
+            <button
+              class="button is-rounded submit-button"
+              v-if="this.taskData.tileNo == 'unit2Resp'"
+              @click="this.$emit('game-finished')"
             >
               Finish Game
             </button>
 
-            <button class="button is-rounded is-light is-red-br"
+            <button
+              class="button is-rounded is-light is-red-br"
               v-if="!showContent"
-              @click="show()"            
+              @click="show()"
             >
               Show
             </button>
-            <button class="button is-rounded is-light"
-              v-else
-              @click="hide()"            
-            >
+            <button class="button is-rounded is-light" 
+              v-else @click="hide()">
               Hide
             </button>
           </div>
         </div>
-        
+
         <br />
 
         <!-- diplay prior task completion: actual task  -->
         <div v-if="showContent">
-          
           <!-- bind the display style of this element to the truthiness of 'taskCompleted' or 'completedBefore' -->
-          <div :class="{ 'directive-completed': taskCompleted || completedBefore }">
+          <div
+            :class="{ 'directive-completed': taskCompleted || completedBefore }"
+          >
             <div class="block" v-html="this.phaseIntroduction"></div>
             <div v-for="(blank, index) in this.blanks" :key="blank">
               <!-- use component Blank.vue with the data from blanks -->
-              <blank class="pt-4 pb-4"
+              <blank
+                class="pt-4 pb-4"
                 :blankData="blank"
                 :index="index"
-                :tileNo="this.taskData.tileNo"                            
+                :tileNo="this.taskData.tileNo"
                 :completedBefore="completedBefore"
-                @blank-completed="completeTask"              
+                @blank-completed="completeTask"
                 @buy-hint="this.$emit('submit-points', -1)"
                 @tries-count="storeTries"
               >
@@ -91,7 +106,6 @@
         </div>
       </div>
     </div>
-  </div>
 </template>
 
 
@@ -112,18 +126,17 @@ export default {
     },
 
     order: {},
-    tasksCompleted: {}
-    
+    tasksCompleted: {},
   },
 
   data() {
     return {
-      level: this.taskData.level, 
-      
+      level: this.taskData.level,
+
       responsePhase: this.taskData.responsePhase,
       phaseIntroduction: this.taskData.phaseIntroduction,
 
-      blanks: this.taskData.blanks,      
+      blanks: this.taskData.blanks,
 
       blanks_completed: 0,
       taskCompleted: false,
@@ -133,8 +146,9 @@ export default {
       timestamp_after: null,
       timeToComplete: null,
 
+      beginPhase: false,
       showContent: true,
-      triesLeft: false
+      triesLeft: false,
     };
   },
 
@@ -146,10 +160,13 @@ export default {
         return false;
       }
     },
-
   },
 
   methods: {
+    trackBegin () {
+     // TODO: create date object with current time & link with scroing system
+    },
+      
     completeTask(points) {
       this.blanks_completed += 1;
       if (this.timestamp_before == null) {
@@ -193,13 +210,13 @@ export default {
     show() {
       this.showContent = true;
     },
-    
+
     scrollToElement(id) {
       const el = document.getElementById(id);
       setTimeout(() => {
         el.scrollIntoView({ behavior: "smooth", alignToTop: true });
       });
-    }
-  }
+    },
+  },
 };
 </script>

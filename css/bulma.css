@@ -863,6 +863,7 @@ textarea {
 }
 
 code,
+
 pre {
   -moz-osx-font-smoothing: auto;
   -webkit-font-smoothing: auto;
@@ -937,20 +938,20 @@ fieldset {
 
 pre {
   -webkit-overflow-scrolling: touch;
-  background-color: black;
-  color: white;
-  font-size: 1.0em;
+  background-color: black !important;
+  color: white !important;
+  font-size: 1em !important;
 
-  padding: 0.0rem 0.0rem;
+  padding: 0.0rem 0.0rem !important;
   white-space: pre;
   word-wrap: normal;
 }
 
 pre code {
-  background-color: transparent;
-  color: currentColor;
+  background-color: black;
+  color: white;
   font-size: 1em;
-  padding: 0;
+  padding: 0.0rem 0.0rem;
 }
 
 table td,
