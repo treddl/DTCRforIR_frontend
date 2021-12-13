@@ -78,7 +78,15 @@ export default {
             }
         }
     },
+    sleep(milliseconds) {
+      const date = Date.now();
+      let currentDate = null;
+      do {
+        currentDate = Date.now();
+      } while (currentDate - date < milliseconds);
+    },
     emitIpLinkDown() {
+        this.sleep(5000);
         setTimeout(this.$emit("ip-link-down"), 2000);
         
     },  
@@ -96,7 +104,7 @@ export default {
           break;
         case "ip link set dev work-station-eth0 down":
             if (hostName == 'work-station') {
-                this.send_to_terminal = "";
+                this.send_to_terminal = this.terminalData.inputOutput.ipLinkDown[1];
                 this.emitIpLinkDown();
             } else {
                 `Command '${value}' not valid: arguments don't match device.`
