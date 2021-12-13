@@ -1,7 +1,7 @@
 <template>
     <div class="is-task" :id="this.taskData.tileNo">
       <div class="buttons is-left mt-5">
-          <button class="button is-rounded submit-button" 
+          <button class="button is-rounded is-success" 
             @click="this.beginPhase = true; this.trackBegin"
             v-if="!this.beginPhase"
           >
@@ -96,6 +96,7 @@
                 :index="index"
                 :tileNo="this.taskData.tileNo"
                 :completedBefore="completedBefore"
+                :userPseudonym="this.userPseudonym"
                 @blank-completed="completeTask"
                 @buy-hint="this.$emit('submit-points', -1)"
                 @tries-count="storeTries"
@@ -124,7 +125,7 @@ export default {
       type: Object,
       required: true,
     },
-
+    userPseudonym: {},
     order: {},
     tasksCompleted: {},
   },

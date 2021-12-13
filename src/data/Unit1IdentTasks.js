@@ -14,7 +14,6 @@ const Unit1IdentTasks = {
             hint: 'Search for and review one of the warning logs “test-warning”.',
 
             isTerminalTask: false,
-            apiPath: "",
 
             triesLeft: 3,
             wrongTry: false,
@@ -32,8 +31,6 @@ const Unit1IdentTasks = {
 
             isTerminalTask: false,
             
-            apiPath: "start_mitm",
-
             triesLeft: 3,
             wrongTry: false,
             rightTry: false,

@@ -13,25 +13,10 @@
 
             <div v-if="blank.isTerminalTask">
               <terminal
-                v-if="!this.ipLinkDown"
                 :termData="blank"
-                @ip-link-down="this.ipLinkDown = true"
+                :userPseudonym="this.userPseudonym"
               >
               </terminal>
-
-              <div v-else>
-                <img
-                  v-if="blank.terminalData.host == 'work-station'"
-                  src="../assets/attackerDefeated.png"
-                />
-                <img
-                  v-if="
-                    blank.terminalData.host == 'plc1' ||
-                    blank.terminalData.host == 'plc3'
-                  "
-                  src="../assets/Unisiegel.png"
-                />
-              </div>
             </div>
 
             <br />
@@ -149,6 +134,7 @@ export default {
     },
     index: {},
     tileNo: {},
+    userPseudonym: {},
     completedBefore: {},
   },
 
@@ -159,8 +145,7 @@ export default {
       hintActivated: false,
       emptyInput: false,
       triesLeft: this.getTriesLeft(),
-      points: null,
-      ipLinkDown: false,
+      points: null
     };
   },
 
@@ -209,11 +194,6 @@ export default {
         this.blank.rightTry = true;
         this.blank.wrongTry = false;
         this.hintActivated = false;
-        if (this.blank.apiPath == "stop_mitm") {
-          this.makeAPICall("stop_mitm");
-        } else if (this.blank.apiPath == "start_mitm") {
-          this.makeAPICall("start_mitm");
-        }
         try {
           var allTries2 = JSON.parse(localStorage.getItem("storedData"));
           allTries2[this.tileNo][this.index] = 0;
@@ -227,13 +207,6 @@ export default {
         this.$emit("blank-completed", this.points); //the trainee gets as many points for the blank as he or she has tries left
         this.$emit("tries-count", this.triesLeft);
       }
-    },
-    makeAPICall(apiPath) {
-      this.$http
-        .get(window.location.href.replace("7080", "9090") + apiPath)
-        .then((response) => {
-          console.log(response.data);
-        });
     },
   },
 
