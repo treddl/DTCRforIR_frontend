@@ -445,6 +445,7 @@ export default {
       dashboard: null,
       points: null,
       round: null,
+      wrongUserID: false,
       tasksCompleted: 0,
       emptyInput: false,
       fullscreen: false,
@@ -470,20 +471,27 @@ export default {
 
   methods: {
     validateId() {
-      var message = localStorage.getItem("storedData");
-      console.log(message);
+
       if (this.userID == null) {
         this.emptyInput = true;
-      } else {
+      } 
+      else {
+      var docRef = userDashboard.doc(String(this.userID));
+      docRef
+        .get()
+        .then((doc) => {
+          if (doc.exists) {
         this.emptyInput = false;
         this.gameStarted = true;
-        this.restartDigitalTwinContainer();
+        
+        //this.restartDigitalTwinContainer(); 
         this.getUserPoints();
-      }
-      window.onbeforeunload = function () {
-        return "Your work will be lost.";
-      };
-    },
+              }
+
+             else {
+                this.wrongUserID= true;
+                
+      }})}},
 
     // restarts the digital twin docker container via the Flask API
     restartDigitalTwinContainer() {
@@ -515,6 +523,7 @@ export default {
         .get()
         .then((doc) => {
           if (doc.exists) {
+            console.log("Here is your doc: ",doc.data())
             this.round = doc.data().round; //in order to only show the trainees from the same round on the dashboard
             if (doc.data().startTime != null) {
               //get data from user who logged in before
