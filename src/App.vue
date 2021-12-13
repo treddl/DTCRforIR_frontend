@@ -308,7 +308,7 @@
               </div>
 
               <!-- Unit 2 / Playbook 2 --->
-              <div class="is-info content" :id="'playbookTwo'"
+              <div class="is-info content" id="playbookTwo"
                   v-if="playbookTwoBegin">
                       <div class="has-text-link-dark has-text-left title is-3 is-json">
                           Playbook 2 
