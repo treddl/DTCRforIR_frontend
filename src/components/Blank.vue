@@ -166,13 +166,14 @@ export default {
 
   methods: {
     getTriesLeft() {
-      if (localStorage.getItem("storedData") != null) {
+      /*if (localStorage.getItem("storedData") != null) {
         return JSON.parse(localStorage.getItem("storedData"))[this.tileNo][
           this.index
         ];
       } else {
         return 3;
-      }
+      }*/
+      return 3;
     },
     buyHint() {
       this.$emit("buy-hint");

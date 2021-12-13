@@ -542,21 +542,7 @@ export default {
               userDashboard.doc(this.userID).update({
                 startTime: this.startTime,
               });
-              // TODO verify that the values are correct here (with Lena)
-              var storedTries = {
-                task1_1: [3],
-                task2: [3, 3],
-                task3: [3, 3, 3, 3, 3, 3, 3, 3, 3],
-                task4: [3, 3, 3, 3, 3],
-                task5: [5],
-                task6: [5],
-              };
-              var blanksCompleted = { task2: 0, task3: 0, task4: 0 };
-              localStorage.setItem("storedData", JSON.stringify(storedTries));
-              localStorage.setItem(
-                "blanksCompleted",
-                JSON.stringify(blanksCompleted)
-              );
+            
             }
           } else {
             // if not only played with preset users
