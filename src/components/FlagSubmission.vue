@@ -5,7 +5,7 @@
         <!-- display post task completion: information for the user and buttons to proceed -->
         <div v-if="taskCompleted">
           <div class="is-primary-darker subtitle is-json">
-          Task completed
+          Phase completed
           </div>
 
           <div class="notification notification-green is-light success-message">
