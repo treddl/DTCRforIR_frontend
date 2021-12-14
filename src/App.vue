@@ -3,9 +3,16 @@
     <div>
       <!-- layout prior exercise: prompts user to login -->
       <div v-if="!gameStarted" class="is-vhcentered has-text-centered">
-        <h1 class="is-json title mb-6">
-          Welcome 👋 to the digital-twin based cyber range for incident response.
-        </h1>
+        
+      
+            <img class="image is-hcentered" style="width: 100px"
+              src="./assets/iceberg.png"
+            /> 
+        
+        <div v-if="!VMAssigned" class="is-json title mt-6 pt-6">
+          Welcome to ICEBERG! 
+          <div class="subtitle mb-6 pb-6"> A Cyber Range for Incident Response Training. </div> </div>
+
 
         <div class="margin-big">
           <form @submit.prevent="validateId()">
@@ -460,7 +467,7 @@ export default {
       fullscreen: false,
       hideScoreboard: false,
       scrollPos: null,
-      userPseudonym: this.getUserPseudonym(),
+      userPseudonym: null,
       kibanaOn: true,
       kibanaUrl:
         window.location.href.replace("7080", "5605") +
@@ -533,13 +540,14 @@ export default {
         .get()
         .then((doc) => {
           if (doc.exists) {
-            console.log("Here is your doc: ",doc.data())
+
             this.round = doc.data().round; //in order to only show the trainees from the same round on the dashboard
             if (doc.data().startTime != null) {
               //get data from user who logged in before
               this.points = doc.data().points;
               this.tasksCompleted = doc.data().level;
               this.startTime = doc.data().startTime;
+              this.userPseudonym = doc.data().pseudonym;
               if (doc.data().taskTimes != null) {
                 this.taskTimes = JSON.parse(doc.data().taskTimes);
               }
@@ -689,15 +697,7 @@ export default {
         el.scrollIntoView({ behavior: "smooth", alignToTop: true });
       }, 1000);
     },
-    getUserPseudonym() {
-        //for (let item in this.dashboard) {
-          //  if (item.userID == this.userID) {
-            //    //return item.pseudonym;
-              //  return "userID";
-            //}
-     //}
-            return "userID";
-    },
+ 
   },
 };
 </script>
