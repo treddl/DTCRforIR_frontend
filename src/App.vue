@@ -295,11 +295,11 @@
                               <div class="has-text-link-dark has-text-left title is-4 is-json" >
                                   Response Phase
                               </div>
-                              <div class="block">
-                              Congrats, you've finished playbook 1. As this was a test alarm, there's no need for response actions. 
+                              <div class="block has-text-weight-medium is-size-5 ">
+                                  You've finished your first incident repsonse playbook! As this was a test alarm, there's no need for response actions. 
                               </div>
-                              <div class="block">
-                              You can revist some lessons or head on to playbook 2. 
+                              <div class="block has-text-weight-medium is-size-5 ">
+                                  You can revist some lessons or head on to playbook 2. 
                               </div>
                               <!-- display buttons Continue and Show/Hide to 
                                     - continue to the next lesson/task/unit while hiding the content below the title and subtile, or to

@@ -6,12 +6,19 @@ const Unit1IdentTasks = {
     failMessage: "Don't worry, next time you'll have more luck.",
     rememberMessage: "Remember you can always revisit lessons.",
     responsePhase: "identification",
-    phaseIntroduction: 'The purpose of the identification phase is to establish the scope of the security incident. It is paramount to know, e.g., which systems behave maliciously and which normally. Only then is an effective response possible.',
+    phaseIntroduction: 'The purpose of the identification phase is to establish the scope of the security incident. It is paramount to know, e.g., which systems behave maliciously and which normally. Only then is an effective response possible. To clear the ground, perform the following two steps.',
     blanks: [
         {
             level: 0,
             responseActionID: "Step 1",
-            responseActionInstruction: 'Identify the source <span class="has-tooltip-multiline has-text-primary has-text-weight-bold is-underlined" :data-tooltip="Any type of computer in a network is a host.">host</span> of the network scan.',
+            responseActionInstruction: 
+            `Identify the source 
+<span class="has-tooltip-arrow has-tooltip-multiline has-tooltip-top" 
+data-tooltip="Any type of computer in a network is a host.">
+    <span class="has-text-primary-dark has-text-weight-bold is-italic">
+        host
+    </span>
+</span> of the network scan.`,
             flagInstruction: "Submit the host's IP address:",
             flag: "10.0.0.4",
             placeholder: "e.g., 10.0.0.10",

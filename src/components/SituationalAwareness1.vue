@@ -8,25 +8,74 @@
       <div class="content"
         v-if="showInfo">
          
-        <div class="block">The SIEM triggered our first alarm 
-            <span class="is-family-monospace has-background-light">Successful test of SIEM alarm function</span> 
+        <div class="block">The SIEM triggered our first alarm:  
+            <span class="is-family-monospace has-background-light m-1">
+                Successful test of SIEM alarm function
+            </span> 
         </div>
-        <div class="block">This test alarms tells us that all hosts in the network are online.</div>
+        <div class="block">This test alarms tells us that 
+            <span class="has-text-dark has-text-weight-bold">
+              all hosts
+            </span>
+            in the network are 
+            <span class="has-text-dark has-text-weight-bold">
+              online
+            </span>
+            .</div>
 
-        <div class="block">As the name suggests. This is not a real security indicent. The alarm does however show us that all security measures are functioning fine.</div>
+        <div class="block">As the name suggests, this is not a real security indicent. The alarm does however show us that all 
+            <span class="has-tooltip-arrow has-tooltip-multiline has-tooltip-top"
+                :data-tooltip="'e.g., the SIEM successfuly correlates warning logs'"
+             >
+                <span class="has-text-primary-dark has-text-weight-bold is-italic">
+                     security measures
+                </span>
+            </span> 
+            are functioning fine.
+        </div>
         <div class="block">We'll use this test alarm to get you started with incident response.</div>
-        <div class="block">Your job is now to</div>    
+        <div class="block">Your job now is to</div>    
             <ul>
             <li>
-                identify the source host of the network scan
+                <span class="has-text-dark has-text-weight-bold">
+                identify
+                </span>
+                the 
+                <span class="has-text-dark has-text-weight-bold">
+                source host
+                </span>
+                of the network scan
             </li>
             <li>
-                identify the events that indicate the normal operation of the filling plant
+                <span class="has-text-dark has-text-weight-bold">
+                identify
+                </span>
+                the 
+                <span class="has-text-dark has-text-weight-bold">
+                events
+                </span>
+                that indicate the 
+                <span class="has-text-dark has-text-weight-bold">
+                normal operation
+                </span>
+                of the filling plant
             </li>
             </ul>
 
-        <div class="block">Below we're prepared some lessons with all the relevant background knowledge. 
-            You can check them out now. Or, if you feel brave enough, head straight to the tasks in the Identification Phase. Happy investigating!
+        <div class="block">Below we've prepared some 
+            <span class="has-text-dark has-text-weight-bold">
+               lessons
+            </span> 
+            with all the relevant 
+            <span class="has-text-dark has-text-weight-bold">
+               background knowledge
+            </span> 
+            . 
+            You can 
+            <span class="has-text-dark has-text-weight-bold">
+               check them out now
+            </span> 
+            . Or, if you feel brave enough, head straight to the tasks in the Identification Phase. Happy investigating!
         </div>
       </div>
       <div class="buttons is-left mt-5">

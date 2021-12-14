@@ -13,7 +13,7 @@
 
         <!-- display post task completion: information for the user and buttons to proceed -->
         <div v-if="taskCompleted || completedBefore">
-          <div class="is-primary-darker subtitle is-json">
+          <div class="is-primary-darker subtitle is-uppercase is-json">
             Phase completed
           </div>
             
@@ -41,11 +41,6 @@
           
           
           <div class="columns is-hcentered mt-5">
-            <img
-              class="image is-hcentered rotate is-hidden"
-              style="width: 70px"
-              src="./../assets/rocket.svg"
-            />
             <span class="is-primary-darker has-text-left title is-5 is-json ml-4 is-hcentered">
               <span
                 v-if="this.triesLeft > 0 && !this.failedOneTask"
@@ -71,7 +66,7 @@
               </div>
             
             </span>
-   </div>
+           </div>
           </div>
 
           <!-- display buttons Continue and Show/Hide -->
@@ -97,11 +92,7 @@
               v-if="!showContent"
               @click="show()"
             >
-              Show
-            </button>
-            <button class="button is-rounded is-light" 
-              v-else @click="hide()">
-              Hide
+              Show tasks
             </button>
           </div>
         </div>
@@ -115,7 +106,10 @@
           <div
             :class="{ 'directive-completed': taskCompleted || completedBefore }"
           >
-            <div class="block" v-html="this.phaseIntroduction"></div>
+            <div class="has-text-weight-medium is-size-5 block" 
+                 v-html="this.phaseIntroduction">
+            </div>
+              
             <div v-for="(blank, index) in this.blanks" :key="blank">
               <!-- use component Blank.vue with the data from blanks -->
               <blank

@@ -6,14 +6,14 @@ const Unit2RespTasks = {
     failMessage: "Don't beat yourself up. Maybe response just isn't your cup of tea.",
     rememberMessage: "",
     responsePhase: "identification",
-    phaseIntroduction: '<div class="block">This is going great. We established which host acts as the MitM and which hosts are the tragets.</div> <div class="block">Now it is time to stop the attack and recover the affected systems.</div> <div class="block">Follow the response steps below and make a name for yourself as first class incident responder.</div>',
+    phaseIntroduction: 'This is going great. We established which host acts as the MitM and which hosts are the tragets. Now it is time to stop the attack and recover the affected systems. Follow the response steps below and make a name for yourself as first class incident responder.',
     blanks: [
         {
             level: 4,
             responseActionID: "Step 1",
             responseActionInstruction: 'Isolate the attacking host by turning off its network interface.',
 
-            flagInstruction: "Submit the keyword that indicates the success of the action:",
+            flagInstruction: "Submit the flag you see once you performed the correct actions:",
             flag: "eating-eskimo",
             placeholder: "enter flag here ..",
             hint: 'First you need to find the name of the network interface for ethernet connections. You may want to check out the lesson on <span class="has-text-weight-bold">bash</span> again.',
@@ -67,9 +67,9 @@ Waiting for response ...
             responseActionInstruction: 'Recover the ARP cache on PLC1: Replace the spoofed ARP entry with the correct one in mode <span class="is-family-monospace">static</span>',
 
 
-            flagInstruction: "Submit the key term that indicates the ARP entry is static:",
+            flagInstruction: "Submit the flag you see once you performed the correct actions:",
             flag: "polar-bear",
-            placeholder: "",
+            placeholder: "enter flag here ..",
             hint: 'The answer lies in the ARP cache, more precicely, in the column <span class="is-family-monospace has-background-light">Flags Mask</span>',
 
             isTerminalTask: true,
@@ -123,9 +123,9 @@ Waiting for response ...
             responseActionInstruction: 'Recover the ARP cache on PLC3: Replace the spoofed ARP entry with the correct one in mode <span class="is-family-monospace has-background-light">static</span>',
 
 
-            flagInstruction: "Submit the key term that indicates the ARP entry is static:",
+            flagInstruction: "Submit the flag you see once you performed the correct actions:",
             flag: "snow-flake",
-            placeholder: "",
+            placeholder: "enter flag here ..",
             hint: 'The answer lies in the ARP cache, more precicely, in the column <span class="is-family-monospace has-background-light">Flags Mask</span>',
 
             isTerminalTask: true,
@@ -177,9 +177,9 @@ Waiting for response ...
             level: 7,
             responseActionID: "Step 4",
             responseActionInstruction: 'Verify that the malicous activity has stopped. Monitor the SIEM events and verify the normal functioning of the filling plant. From the event that indicates resumed normal operation, submit the plugin_sid, the system’s host name (sensor), and the timestamp.',
-            flagInstruction: "Submit the three values, seperated by a comma:",
+            flagInstruction: "Submit the plugin_sid and the name, seperated by a dash:",
             flag: "400, plc1",
-            placeholder: "",
+            placeholder: "e.g., 700-name",
             hint: 'Remeber that one PLC produced warning logs. The <span class="has-text-weight-medium">same PLC</span> now produces <span class="has-text-weight-medium">info</span> logs indicating <span class="has-text-weight-medium">successful</span> operation.',
 
             isTerminalTask: false,

@@ -4,64 +4,63 @@
       
       <div class="mr-2 blank-wrapper">
         <!-- display of task content prior to final submission -->
-       
         <div v-if="!this.blank.rightTry && triesLeft > 0 && !completedBefore">
-          <div class="message is-primary block ">
-
-            <div class="message-header title is-5" 
+          <div class="message is-primary block">
+            <div class="message-header title is-uppercase is-5" 
               v-html="this.blank.responseActionID">
             </div>
-            <div class="message-body">
-            <div
-              class="block"
-              v-html="this.blank.responseActionInstruction"
-            ></div>
-
-            <div class="block" 
-                 v-if="blank.isTerminalTask">
-              <terminal
-                :termData="blank"
-                :userPseudonym="this.userPseudonym"
-              >
-              </terminal>
-            </div>
-
-            <br />
-
-            <div class="block" v-html="this.blank.flagInstruction"></div>
-            <input
-              class="input blank-input is-short is-json is-size-8"
-              :class="{ 'input-wrong': this.blank.wrongTry }"
-              v-model="userInput"
-              :placeholder="this.blank.placeholder"
-            />
-            <div class="buttons is-left mt-5">
-              <button
-                class="button submit-button is-rounded"
-                type="submit"
-                value="Submit"
-              >
-                Submit <span> &#10140;</span>
-              </button>
-              <br />
-              <button
-                class="button is-rounded is-warning has-tooltip-arrow has-tooltip-multiline has-tooltip-top"
-                v-if="!hintActivated && this.blank.hint != null"
-                :data-tooltip="'Buy hint for -1 Point'"
-                @click="buyHint"
-              >
-                Need a hint?
-              </button>
-            </div>
+                <div class="message-body">
+                    <div class="has-text-dark has-text-weight-medium">
+                    <div
+                      class="block"
+                      v-html="this.blank.responseActionInstruction"
+                    ></div>
+                    <div class="block" 
+                         v-if="blank.isTerminalTask">
+                      <terminal
+                        :termData="blank"
+                        :userPseudonym="this.userPseudonym"
+                      >
+                      </terminal>
+                    </div>
+                    <div class="block"> 
+                         <span> &#10140; </span><span v-html="this.blank.flagInstruction"></span>
+                    </div>
+                </div>
+                <br>
+                <input
+                  class="input blank-input is-short is-json is-size-8"
+                  :class="{ 'input-wrong': this.blank.wrongTry }"
+                  v-model="userInput"
+                  :placeholder="this.blank.placeholder"
+                />
+                <div class="buttons is-left mt-5">
+                  <button
+                    class="button submit-button is-rounded"
+                    type="submit"
+                    value="Submit"
+                  >
+                    Submit <span> &#10140;</span>
+                  </button>
+                  <br />
+                  <button
+                    class="button is-rounded is-warning has-tooltip-arrow has-tooltip-multiline has-tooltip-top"
+                    v-if="!hintActivated && this.blank.hint != null"
+                    :data-tooltip="'Buy hint for -1 Point'"
+                    @click="buyHint"
+                  >
+                    Need a hint?
+                  </button>
+                </div>
             </div>
           </div>
         </div>
 
         <!-- display of task content after completion -->
-        <div class="message"
+        <div class="message is-size-5"
              v-else>
             <div class="message-body">
-              <div class="block"
+              <div class="block title is-uppercase is-5"
                    v-html="this.blank.responseActionID"
               >
               </div>
@@ -90,7 +89,7 @@
       <br />
       <!-- display messages regarding submitted user input -->
       <div>
-        <div class="message is-danger" v-if="emptyInput">
+        <div class="message is-danger " v-if="emptyInput">
             <div class="message-body">
             Input cannot be empty.
             </div>
@@ -223,6 +222,7 @@ export default {
         this.$emit("blank-completed", this.points); //the trainee gets as many points for the blank as he or she has tries left
         this.$emit("tries-count", this.triesLeft);
       }
+      this.userInput = ""; 
     },
   },
 

@@ -7,23 +7,98 @@
       <div class="content"
         v-if="showInfo">
          
-        <div class="block">This time the SIEM triggered a serious looking alarm:   
+        <div class="block">This time the SIEM triggered a serious looking 
+            <span class="has-text-dark has-text-weight-bold">
+              alarm
+            </span>
+            :
             <span class="is-family-monospace has-background-danger-light">MitM attack via ARP spoofing</span> 
         </div>
-        <div class="block">Based on the type of the alarm we know that there is an intruder in our network.</div>
-        <div class="block">One of the targets seems to be PLC1. We know this because PLC1 produces WARING logs.</div>
-        <div class="block">The attack discrupts the filling process. The highest priority is to get the filling process back up running.</div>
-        <div class="block">Your job is now to</div>    
+        <div class="block">
+            Based on the type of the alarm we 
+            <span class="has-text-dark has-text-weight-bold">
+              know
+            </span>
+             that there is an 
+            <span class="has-text-dark has-text-weight-bold">
+              intruder in our network
+            </span>
+            .
+        </div>
+        <div class="block">
+            <span class="has-text-dark has-text-weight-bold">
+              One
+            </span>
+             of the 
+            <span class="has-text-dark has-text-weight-bold">
+              targets
+            </span>
+              is 
+            <span class="has-text-dark has-text-weight-bold">
+             PLC1
+            </span>
+            . We know this because PLC1 produces 
+            <span class="has-text-dark has-text-weight-bold">
+              WARING logs.
+            </span>
+            
+        </div>
+        <div class="block">
+            The attack 
+            <span class="has-text-dark has-text-weight-bold">
+              discrupts
+            </span>
+             the 
+            <span class="has-text-dark has-text-weight-bold">
+              filling process.
+            </span>
+             The highest 
+            <span class="has-text-dark has-text-weight-bold">
+              priority
+            </span>
+             is to get the filling process 
+            <span class="has-text-dark has-text-weight-bold">
+              back up running.
+            </span>
+            
+        </div>
+        <div class="block">Your job now is to</div>    
             <ul>
             <li>
-                identify both the other target of the attack and the host acting as the MitM
+                <span class="has-text-dark has-text-weight-bold">
+                  identify
+                </span>
+                 the
+                <span class="has-text-dark has-text-weight-bold">
+                  other target
+                </span>                
+                 of the attack as well as 
+                <span class="has-text-dark has-text-weight-bold">
+                  the host acting as the MitM
+                </span>
             </li>
             <li>
-                stop the attack by isolating the attacker and cleaning up their malicous activity
+                <span class="has-text-dark has-text-weight-bold">
+                  stop
+                </span>
+                 the attack by 
+                <span class="has-text-dark has-text-weight-bold">
+                  isolating
+                </span>
+                 the attacker and 
+                <span class="has-text-dark has-text-weight-bold">
+                  identify cleaning up
+                </span>                
+                their malicous activity
             </li>
             </ul>
 
-        <div class="block">Below you'll find further lessons. Best of luck to you and happy responding!
+        <div class="block">
+            Below you'll find 
+            <span class="has-text-dark has-text-weight-bold">
+               further lessons
+            </span>
+            . Best of luck to you and happy responding!
         </div>
       </div>
       <div class="buttons is-left mt-5">
