@@ -24,14 +24,14 @@
         <div class="buttons is-left mt-5">   
           <button class="button is-rounded is-info"
             v-if="!showContent"
-            @click="this.showContent == true"
+            @click="this.showContent = true"
             title="Show hidden content"          
           >
             Show lesson
           </button>
           <button class="button is-rounded is-info is-light"
             v-else
-            @click="this.showContent == false"
+            @click="this.showContent = false"
             title="Hide content below"          
           >
             Hide lesson

@@ -54,20 +54,25 @@
       <!-- layout post exercise: informs user about completion exercise -->
       <div v-if="gameCompleted" class="is-vhcentered has-text-centered">
         <h1 class="is-json title mt-5">
-          Congrats {{ String(this.userPseudonym) }} you've completed the exercise. 🎊
+          Congrats {{ String(this.userPseudonym) }}, you've completed the exercise. 🎊
         </h1>
+        <br>
         <h2 class="is-json subtitle mb-2">
           Thanks to your efforts the impact of the attacks on the filling plant were minimal.
         </h2>
+        <br>
         <h2 class="is-json subtitle mb-2">
             You achieved <strong>{{ this.points }} points 💪 </strong>
         </h2>
-        <h2 class="is-json mb-6">
+        <br>
+        <h2 class="is-json subtitle mb-2">
           Please let one of the trainers know you've finished the exercise.
         </h2>
-        <h2 class="is-json mb-6">
+       <br>
+        <h2 class="is-json subtitle mb-2">
           Now there's only a quick final quiz left to complete 🙏
-        </h2>      
+        </h2>
+                 <br>
         <img
           src="./assets/iceberg.png"
           class="image is-hcentered"
@@ -286,7 +291,7 @@
 
                         <div id="respOne">
                           <div class="is-info content" 
-                                v-if="this.startRespOne || this.level > 0">
+                                v-if="this.startRespOne || this.level > 1">
                               <div class="has-text-link-dark has-text-left title is-4 is-json" >
                                   Response Phase
                               </div>
@@ -300,10 +305,10 @@
                                     - continue to the next lesson/task/unit while hiding the content below the title and subtile, or to
                                     - show/hide the content below the title and subtitle -->
                               <div class="buttons is-left mt-5">
-                                <button class="button is-rounded is-success"
+                                <button class="button is-rounded submit-button"
                                   @click="this.startPlaybookTwo = true; this.scrollToPlaybookTwo()"                                  
                                   >
-                                  <span>&#9655;</span> Continue with Playbook 2
+                                  <span>&#9655;</span> Start with Playbook 2
                                 </button>
                               </div>                        
                           </div>
@@ -316,7 +321,7 @@
               <!-- Unit 2 / Playbook 2 --->
               <div id="PlaybookTwo">
                 <div class="is-info content"
-                    v-if="startPlaybookTwo || this.level > 1">
+                    v-if="startPlaybookTwo || this.level > 2">
                         <div class="has-text-link-dark has-text-left title is-3 is-json">
                             Playbook 2 
                         </div>
@@ -367,7 +372,7 @@
 
                         <div id="respTwo>">
                           <div class="is-info content" 
-                              v-if="this.startRespTwo || this.level > 1">
+                              v-if="this.startRespTwo || this.level > 3">
                               <div class="has-text-link-dark has-text-left title is-4 is-json">
                                   Response Phase
                               </div>

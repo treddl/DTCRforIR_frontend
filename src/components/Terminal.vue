@@ -35,6 +35,7 @@ export default {
         },
         sign: this.getTerminalSign(),
       },
+     hostName: this.getHostName(),
     };
   },
   
@@ -64,6 +65,7 @@ export default {
         return String(this.termData.terminalData.host);
     },
     changeHostName() {
+        this.hostName = String(this.userPseudonym);
         this.banner.sign = String(this.userPseudonym) + "@INCIDENT-RESPONSE~#"; 
     },
     getTerminalSign() {
@@ -71,8 +73,12 @@ export default {
       //  return "not";
     },
     prompt(value) {
-      const hostName = this.getHostName();
-      switch (value.trim()) {
+      const hostName = this.hostName;
+      if (hostName == String(this.userPseudonym)) {
+        this.send_to_terminal = `You've completed the task. 
+Submit the Flag: eating-eskimo`;
+      } else {
+switch (value.trim()) {
         case "ip":
             this.send_to_terminal = `Command '${value}' not complete: missing arguments.`;
             break;
@@ -104,7 +110,6 @@ export default {
                 `Command '${value}' not valid: arguments don't match device.`
             }
           break;
-        
         case "arp":
           if (!this.arpIsRecovered) {
               this.send_to_terminal = this.terminalData.inputOutput.arpCache[1];
@@ -142,6 +147,8 @@ use command 'arp' to show updated ARP cache`;
         default:
           this.send_to_terminal = `Command '${value}' not valid. Enter 'help' for a list of valid commands.`;
       }
+      }
+      
     },
   },
 };

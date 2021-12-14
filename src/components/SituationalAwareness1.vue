@@ -26,7 +26,7 @@
             </ul>
 
         <div class="block">Below we're prepared some lessons with all the relevant background knowledge. 
-            You can check them out now. Or, if you feel brave enough, head straight to the tasks in the Identification Phase. Happy investigating! 🧑‍💻
+            You can check them out now. Or, if you feel brave enough, head straight to the tasks in the Identification Phase. Happy investigating!
         </div>
       </div>
       <div class="buttons is-left mt-5">

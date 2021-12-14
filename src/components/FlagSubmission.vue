@@ -1,7 +1,7 @@
 <template>
-    <div class="is-task" :id="this.taskData.tileNo">
+    <div :id="this.taskData.tileNo">
       <div class="buttons is-left mt-5" >
-          <button class="button is-rounded is-success" 
+          <button class="button is-rounded submit-button" 
             @click="this.beginPhase = true; this.trackBegin; this.scrollToElement(this.taskData.tileNo);"
             v-if="!this.beginPhase && !completedBefore"
           >
@@ -10,14 +10,11 @@
       </div>
       <div class="is-directive"
         v-if="beginPhase">
-
         <!-- display post task completion: information for the user and buttons to proceed -->
         <div v-if="taskCompleted || completedBefore">
           <div class="is-primary-darker subtitle is-json">
             Phase completed
           </div>
-            
-
           <div class="message is-success" v-if="taskCompleted">
             <div class="message-body">
                 <span class="is-primary-darker is-size-5"
@@ -36,12 +33,8 @@
             </div>
           </div>
 
+          <!-- display different message in case the traine went out of tries -->
           <div class="columns is-hcentered mt-5">
-            <img
-              class="image is-hcentered rotate is-hidden"
-              style="width: 70px"
-              src="./../assets/rocket.svg"
-            />
             <span class="is-primary-darker has-text-left title is-5 is-json ml-4 is-hcentered">
               <span
                 v-if="this.triesLeft > 0 && !this.failedOneTask"
@@ -53,7 +46,7 @@
                 v-html="this.taskData.partSuccessMessage"
               >
               </span>
-              <!-- display different message in case the traine went out of tries -->
+
               <span
                 v-if="this.triesLeft == 0"
                 v-html="this.taskData.failMessage"
@@ -65,13 +58,11 @@
                 v-html="this.taskData.rememberMessage"
               >
               </div>
-            
             </span>
           </div>
 
           <!-- display buttons Continue and Show/Hide -->
           <div class="buttons is-left mt-5">
-            <!-- TODO update task6 to your final key to show button "Finish Game" -->
             <button
               class="button is-rounded submit-button"
               v-if="this.taskData.tileNo != 'unit2Resp'"
@@ -92,11 +83,7 @@
               v-if="!showContent"
               @click="show()"
             >
-              Show
-            </button>
-            <button class="button is-rounded is-light" 
-              v-else @click="hide()">
-              Hide
+              Show tasks
             </button>
           </div>
         </div>
@@ -105,7 +92,6 @@
 
         <!-- diplay prior task completion: actual task  -->
         <div v-if="showContent">
-      
           <!-- bind the display style of this element to the truthiness of 'taskCompleted' or 'completedBefore' -->
           <div
             :class="{ 'directive-completed': taskCompleted || completedBefore }"

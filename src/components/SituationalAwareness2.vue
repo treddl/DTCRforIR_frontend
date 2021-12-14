@@ -23,7 +23,7 @@
             </li>
             </ul>
 
-        <div class="block">Below you'll find further lessons. Best of luck to you and happy responding 🧑‍💻
+        <div class="block">Below you'll find further lessons. Best of luck to you and happy responding!
         </div>
       </div>
       <div class="buttons is-left mt-5">

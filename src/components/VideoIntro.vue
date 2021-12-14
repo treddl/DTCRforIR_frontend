@@ -32,6 +32,12 @@
               >
                 <span>&#9655;</span> Start with Playbook 1
           </button>
+          <button class="button is-rounded is-light is-red-br" 
+                @click="this.showContent = true"
+                v-if="!this.showContent"
+              >
+                Show intro video
+          </button>
         </div>
       </div>
     </div>
