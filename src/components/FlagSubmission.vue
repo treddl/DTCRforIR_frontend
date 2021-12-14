@@ -5,7 +5,7 @@
             @click="this.beginPhase = true; this.trackBegin; this.scrollToElement(this.taskData.tileNo);"
             v-if="!this.beginPhase && !completedBefore"
           >
-            Begin
+           <span>&#9655;</span> Begin
           </button>
       </div>
       <div class="is-directive"

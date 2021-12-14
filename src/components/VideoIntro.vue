@@ -30,7 +30,7 @@
           <button class="button is-rounded submit-button" 
                 @click="proceed()"
               >
-                Start with Playbook 1
+                <span>&#9655;</span> Start with Playbook 1
           </button>
         </div>
       </div>
