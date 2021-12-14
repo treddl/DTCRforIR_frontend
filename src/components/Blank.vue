@@ -1,6 +1,7 @@
 <template>
   <div>
     <form @submit.prevent="validateInput">
+      
       <div class="mr-2 blank-wrapper">
         <!-- display of task content prior to final submission -->
        
@@ -162,17 +163,17 @@ export default {
 
   methods: {
     getTriesLeft() {
-      /*if (localStorage.getItem("storedData") != null) {
-        return JSON.parse(localStorage.getItem("storedData"))[this.tileNo][
-          this.index
-        ];
-      } else {
-        return 3;
-      }*/
-      if (this.userLevel > this.blankData.level)
+      if (localStorage.getItem("storedTries") != null) {
+
+        
+        return JSON.parse(localStorage.getItem("storedTries"))[this.blankData.level];
+      } else if (this.userLevel > this.blankData.level) {
           return 0;
-          else {
-      return 3 }
+          }
+          else{
+        return 3;
+      }
+      
     },
     buyHint() {
       this.$emit("buy-hint");
@@ -191,10 +192,12 @@ export default {
         this.emptyInput = false;
         this.triesLeft -= 1;
         try {
-          var allTries = JSON.parse(localStorage.getItem("storedData"));
-          allTries[this.tileNo][this.index] =
-            allTries[this.tileNo][this.index] - 1;
-          localStorage.setItem("storedData", JSON.stringify(allTries));
+          var allTries = JSON.parse(localStorage.getItem("storedTries"));
+          console.log("all tries", allTries)
+          allTries[this.blankData.level] =
+            allTries[this.blankData.level] - 1;
+          localStorage.setItem("storedTries", JSON.stringify(allTries));
+          console.log("localStorage", localStorage)
         } catch (err) {
           console.log("localStorage empty");
         }
@@ -205,7 +208,7 @@ export default {
         this.blank.rightTry = true;
         this.blank.wrongTry = false;
         this.hintActivated = false;
-        try {
+        try { //evtl noch anpassen
           var allTries2 = JSON.parse(localStorage.getItem("storedData"));
           allTries2[this.tileNo][this.index] = 0;
           localStorage.setItem("storedData", JSON.stringify(allTries2));

@@ -9,7 +9,7 @@
           </button>
       </div>
       <div class="is-directive"
-        v-if="beginPhase">
+        v-if="beginPhase || (this.userLevel < this.level)">
         <!-- display post task completion: information for the user and buttons to proceed -->
         <div v-if="taskCompleted || completedBefore">
           <div class="is-primary-darker subtitle is-json">
@@ -32,6 +32,7 @@
                 </span>
             </div>
           </div>
+          
 
           <!-- display different message in case the traine went out of tries -->
           <div class="columns is-hcentered mt-5">
@@ -59,6 +60,7 @@
               >
               </div>
             </span>
+  
           </div>
 
           <!-- display buttons Continue and Show/Hide -->
@@ -89,9 +91,9 @@
         </div>
 
         <br />
-
+       
         <!-- diplay prior task completion: actual task  -->
-        <div v-if="showContent">
+        <div v-if="showContent ">
           <!-- bind the display style of this element to the truthiness of 'taskCompleted' or 'completedBefore' -->
           <div
             :class="{ 'directive-completed': taskCompleted || completedBefore }"
@@ -167,7 +169,7 @@ export default {
   computed: {
     completedBefore() {
       if (this.level <= this.userLevel) {
-this.showPhaseHeader()
+      this.showPhaseHeader()
         return true;
       } else {
         return false;
@@ -179,7 +181,6 @@ this.showPhaseHeader()
 
     showPhaseHeader() {
         this.beginPhase = true;
-        //this.showContent = false;
     },
 
     trackBegin () {
