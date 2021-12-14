@@ -16,7 +16,8 @@
             Phase completed
           </div>
           <div class="message is-success" v-if="taskCompleted">
-            <div class="message-body">
+            <div class="message-body"
+                 v-if="this.pointsOverall > 0">
                 <span class="is-primary-darker is-size-5"
                 >
                   Awesome {{ String(this.userPseudonym) }}, you earned {{ this.pointsOverall }} points. 🥳
