@@ -195,6 +195,14 @@ export default {
 
       this.$emit("submit-points", points);
       this.pointsOverall += points;
+      
+      if (this.taskData.tileNo == "unit1Ident") {
+        this.$emit("ident-one-completed");
+      } else if (this.taskData.tileNo == "unit2Ident") {
+        this.$emit("ident-two-completed");
+      } else if (this.taskData.tileNo == "unit2Resp") {
+        this.$emit("resp-two-completed");
+      }
 
       if (this.blanks_completed == Object.keys(this.blanks).length) {
         this.taskCompleted = true;

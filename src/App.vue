@@ -53,21 +53,23 @@
 
       <!-- layout post exercise: informs user about completion exercise -->
       <div v-if="gameCompleted" class="is-vhcentered has-text-centered">
-        <h1 class="is-json title mt-5">You've completed the exercise. 🎊</h1>
-
+        <h1 class="is-json title mt-5">
+          Congrats {{ String(this.userPseudonym) }} you've completed the exercise. 🎊
+        </h1>
         <h2 class="is-json subtitle mb-2">
-          <strong>Congratulations.</strong> 🥳 Thanks to your efforts the impact
-          of the attacks on the filling plant were minimal. You achieved
-          <strong>{{ this.points }} points. 💪 </strong>
+          Thanks to your efforts the impact of the attacks on the filling plant were minimal.
+        </h2>
+        <h2 class="is-json subtitle mb-2">
+            You achieved <strong>{{ this.points }} points 💪 </strong>
         </h2>
         <h2 class="is-json mb-6">
-          Please let one of the trainers know you've finished the exercise 📞 &#128640;
+          Please let one of the trainers know you've finished the exercise.
         </h2>
         <h2 class="is-json mb-6">
-          Now there's only a quick final quiz left to complete ✅ &#128640;
+          Now there's only a quick final quiz left to complete 🙏
         </h2>      
         <img
-          src="./assets/attackerDefeated.png"
+          src="./assets/iceberg.png"
           class="image is-hcentered"
           style="width: 500px"
         />
@@ -203,17 +205,20 @@
               class="column right is-half" 
               v-if="!fullscreen">
 
-              <glossary :order="this.order"></glossary>
+             <!-- <glossary :order="this.order"></glossary> --->
               
               <!-- introductory video --->
-              <video-tile 
+              <video-intro 
                 :videoData="VideoData[0]" 
                 :order="this.order"
+                @start-playbooke-one="this.startPlaybookOne == true"
               >
-              </video-tile>
+              </video-intro>
 
               <!-- Unit 1 / Playbook 1 --->
-              <div class="is-info content" id="playbookOne">
+              <div class="is-info content" id="playbookOne"
+                v-if="this.starPlaybookOne || this.tasksCompleted > 0"
+              >
                       <div class="has-text-link-dark has-text-left title is-3 is-json">
                           Playbook 1 
                       </div>
@@ -229,25 +234,8 @@
                           <situational-awareness-1 
                             :order="this.order"
                           >                          
-                          </situational-awareness-1>
-                          <!-- 
-                          <div class="buttons is-left mt-5">
-                            <button class="button is-rounded is-red-br is-light"
-                              v-if="!this.showPlaybookOneLessons"
-                              @click="this.showPlaybookOneLessons=true"
-                            >
-                              Show lessons
-                            </button>
-
-                            <button class="button is-rounded is-light" 
-                              v-else
-                              @click="this.showPlaybookOneLessons=false" 
-                              >
-                                Hide lessons
-                            </button>
-                          </div>-->
-                          
-                          <div v-if="this.showPlaybookOneLessons">                            
+                          </situational-awareness-1>                          
+                          <div>                            
                               <video-tile
                                 :videoData="VideoData[1]"
                                 :order="this.order"
@@ -288,13 +276,14 @@
                               :userPseudonym="this.userPseudonym" 
                               @submit-points="submitPoints"
                               @task-completed="markAsCompleted"
-                                             
+                              @ident-one-completed="this.startRespOne == true"  
                             >
                             </flag-submission>
                           </div>
                       </div>
                   
-                      <div class="is-info content" id="respOne">
+                      <div class="is-info content" id="respOne"
+                            v-if="this.startRespOne || this.tasksCompleted > 0">
                           <div class="has-text-link-dark has-text-left title is-4 is-json" >
                               Response Phase
                           </div>
@@ -309,7 +298,7 @@
                                 - show/hide the content below the title and subtitle -->
                           <div class="buttons is-left mt-5">
                             <button class="button is-rounded is-success"
-                              @click="this.playbookTwoBegin = true; this.scrollToPlaybookTwo()"                                  
+                              @click="this.startPlaybookTwo == true; this.scrollToPlaybookTwo()"                                  
                               >
                                <font-awesome-icon :icon="['fa', 'open-book']" />
                               Conitinue with Playbook 2
@@ -321,7 +310,7 @@
 
               <!-- Unit 2 / Playbook 2 --->
               <div class="is-info content" id="playbookTwo"
-                  v-if="playbookTwoBegin">
+                  v-if="startPlaybookTwo || this.tasksCompleted > 1">
                       <div class="has-text-link-dark has-text-left title is-3 is-json">
                           Playbook 2 
                       </div>
@@ -350,24 +339,27 @@
                           </div>                        
                       </div>
 
-                      <div class="is-info content" id="identTwo"
-                          v-if="playbookTwoIdentStart">
+                      <div class="is-info content" id="identTwo">
                           <div class="has-text-link-dark has-text-left title is-4 is-json">
                               Identification Phase
                           </div>
-                          <flag-submission
-                            :taskData="Unit2IdentTasks"
-                            :order="this.order"
-                            :tasksCompleted="tasksCompleted"
-                            :userPseudonym="this.userPseudonym"
-                            @submit-points="submitPoints"
-                            @task-completed="markAsCompleted"
-                          >
-                          </flag-submission>
+
+                          <div>
+                            <flag-submission
+                              :taskData="Unit2IdentTasks"
+                              :order="this.order"
+                              :tasksCompleted="tasksCompleted"
+                              :userPseudonym="this.userPseudonym"
+                              @submit-points="submitPoints"
+                              @task-completed="markAsCompleted"
+                              @ident-two-completed="this.startRespTwo == true"
+                            >
+                            </flag-submission>
+                          </div>
                       </div>
                   
                       <div class="is-info content" id="respTwo" 
-                          v-if="playbookTwoIdentIsComplete">
+                          v-if="this.startRespTwo || this.tasksCompleted > 1">
                           <div class="has-text-link-dark has-text-left title is-4 is-json">
                               Response Phase
                           </div>
@@ -392,7 +384,8 @@
 
 
 <script>
-import Glossary from "./components/Glossary.vue";
+// import Glossary from "./components/Glossary.vue";
+import VideoIntro from "./components/VideoIntro.vue";
 import VideoTile from "./components/VideoTile.vue";
 import SituationalAwareness1 from "./components/SituationalAwareness1.vue";
 import SituationalAwareness2 from "./components/SituationalAwareness2.vue";
@@ -406,13 +399,14 @@ import Unit1IdentTasks from "./data/Unit1IdentTasks.js";
 import Unit2IdentTasks from "./data/Unit2IdentTasks.js";
 import Unit2RespTasks from "./data/Unit2RespTasks.js";
 
-import { userDashboard } from "@/firebase"; // TODO rename to userScoreboard
-import { VM_db } from "@/firebase"; // TODO rename to userScoreboard
+import { userDashboard } from "@/firebase"; 
+import { VM_db } from "@/firebase"; 
 export default {
   name: "App",
 
   components: {
-    Glossary,
+ //   Glossary,
+    VideoIntro,
     VideoTile,
     SituationalAwareness1,
     SituationalAwareness2,
@@ -448,10 +442,10 @@ export default {
         "unit2Resp",
       ],
 
-      playbookTwoBegin: false,
-      playbookTwoIdentStart: true,
-      playbookTwoIdentIsComplete: true,
-      showPlaybookOneLessons: true,
+      startPlaybookOne: false,
+      startRespOne: fals,
+      startPlaybookTwo: false,
+      startRespTwo: false, 
       gameCompleted: false,
       gameStarted: false,
       userID: null,
