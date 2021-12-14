@@ -285,7 +285,8 @@
                               :taskData="Unit1IdentTasks"
                               :order="this.order"
                               :tasksCompleted="tasksCompleted"
-                              :userID="this.userPseudonym" 
+                              :userID="this.userPseudonym"
+                              :userLevel="this.level"    
                               @submit-points="submitPoints"
                               @task-completed="markAsCompleted"
                                              
@@ -307,12 +308,12 @@
                           <!-- display buttons Continue and Show/Hide to 
                                 - continue to the next lesson/task/unit while hiding the content below the title and subtile, or to
                                 - show/hide the content below the title and subtitle -->
-                          <div class="buttons is-left mt-5">
+                          <div class="buttons is-left mt-5" v-if="!this.playbookTwoBegin">
                             <button class="button is-rounded is-success"
                               @click="this.playbookTwoBegin = true; this.scrollToPlaybookTwo()"                                  
                               >
                                <font-awesome-icon :icon="['fa', 'open-book']" />
-                              Conitinue with Playbook 2
+                              Continue with Playbook 2
                             </button>
                           </div>                        
                       </div>
@@ -360,6 +361,7 @@
                             :order="this.order"
                             :tasksCompleted="tasksCompleted"
                             :userID="this.userPseudonym"
+                            :userLevel="this.level" 
                             @submit-points="submitPoints"
                             @task-completed="markAsCompleted"
                           >
@@ -376,6 +378,7 @@
                             :order="this.order"
                             :tasksCompleted="tasksCompleted"
                             :userPseudonym="this.userPseudonym"
+                            :userLevel="this.level" 
                             @submit-points="submitPoints"
                             @task-completed="markAsCompleted"
                             @game-finished="this.finishGame"
@@ -460,6 +463,7 @@ export default {
       evaluationData: [],
       dashboard: null,
       points: null,
+      level: null,
       round: null,
       wrongUserID: false,
       tasksCompleted: 0,
@@ -548,6 +552,11 @@ export default {
               this.tasksCompleted = doc.data().level;
               this.startTime = doc.data().startTime;
               this.userPseudonym = doc.data().pseudonym;
+              this.level = doc.data().level;
+              if (this.level > 4) {
+                this.playbookTwoBegin = true;
+                
+              }
               if (doc.data().taskTimes != null) {
                 this.taskTimes = JSON.parse(doc.data().taskTimes);
               }
@@ -607,7 +616,7 @@ export default {
     async uploadPoints() {
       await userDashboard.doc(this.userID).update({
         points: this.points,
-        level: this.tasksCompleted,
+        level: this.level,
         startTime: this.startTime,
       });
       this.getMarker();
@@ -620,13 +629,13 @@ export default {
       });
     },
 
-    checkIfNewLevel(newLevel) {
+    /*checkIfNewLevel(newLevel) {
       if (newLevel != this.level_old && newLevel > 1) {
         this.level_old = newLevel;
         return newLevel;
       }
       return this.level_old;
-    },
+    },*/
 
     markAsCompleted(taskTimes) {
       //save timer information here
@@ -689,13 +698,14 @@ export default {
 
     submitPoints(points2) {
       this.points += points2;
+      this.level += 1;
       this.uploadPoints();
     },
     scrollToPlaybookTwo() {
       const el = document.getElementById('prePlaybookTwo');
       setTimeout(() => {
         el.scrollIntoView({ behavior: "smooth", alignToTop: true });
-      }, 1000);
+      });
     },
  
   },

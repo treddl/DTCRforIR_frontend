@@ -3,6 +3,7 @@
     <form @submit.prevent="validateInput">
       <div class="mr-2 blank-wrapper">
         <!-- display of task content prior to final submission -->
+       
         <div v-if="!this.blank.rightTry && triesLeft > 0 && !completedBefore">
           <div class="content table-wrapper">
 
@@ -145,6 +146,7 @@ export default {
     tileNo: {},
     userPseudonym: {},
     completedBefore: {},
+    userLevel: null,
   },
 
   data() {
@@ -167,7 +169,10 @@ export default {
       } else {
         return 3;
       }*/
-      return 3;
+      if (this.userLevel > this.blankData.level)
+          return 0;
+          else {
+      return 3 }
     },
     buyHint() {
       this.$emit("buy-hint");

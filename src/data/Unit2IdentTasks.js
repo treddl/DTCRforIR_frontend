@@ -1,6 +1,6 @@
 const Unit2IdentTasks = {
     tileNo: "unit2Ident",
-    level: 1,
+    level: 4, //level when task is completed
     responsePhase: "identification",
     phaseIntroduction: 'This time it is critical to get all the information right. Otherwise we risk isolating the wrong systems, causing even more disruptions!',
     blanks: [

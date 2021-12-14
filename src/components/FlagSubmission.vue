@@ -1,9 +1,9 @@
 <template>
     <div class="is-task" :id="this.taskData.tileNo">
-      <div class="buttons is-left mt-5">
+      <div class="buttons is-left mt-5" >
           <button class="button is-rounded is-success" 
-            @click="this.beginPhase = true; this.trackBegin"
-            v-if="!this.beginPhase"
+            @click="this.beginPhase = true; this.trackBegin; this.scrollToElement(this.taskData.tileNo);"
+            v-if="!this.beginPhase && !completedBefore"
           >
             Begin
           </button>
@@ -12,12 +12,12 @@
         v-if="beginPhase">
 
         <!-- display post task completion: information for the user and buttons to proceed -->
-        <div v-if="taskCompleted">
+        <div v-if="taskCompleted || completedBefore">
           <div class="is-primary-darker subtitle is-json">
             Phase completed
           </div>
 
-          <div class="message is-success">
+          <div class="message is-success" v-if="taskCompleted">
             <div class="message-body">
                 <span class="is-primary-darker is-size-5">
                   You earned {{ this.pointsOverall }} points.
@@ -27,7 +27,7 @@
 
           <div class="columns is-hcentered mt-5">
             <img
-              class="image is-hcentered rotate"
+              class="image is-hcentered"
               style="width: 70px"
               src="./../assets/magnifyingGlass.svg"
             />
@@ -85,6 +85,7 @@
 
         <!-- diplay prior task completion: actual task  -->
         <div v-if="showContent">
+      
           <!-- bind the display style of this element to the truthiness of 'taskCompleted' or 'completedBefore' -->
           <div
             :class="{ 'directive-completed': taskCompleted || completedBefore }"
@@ -99,6 +100,7 @@
                 :tileNo="this.taskData.tileNo"
                 :completedBefore="completedBefore"
                 :userPseudonym="this.userPseudonym"
+                :userLevel="this.userLevel"
                 @blank-completed="completeTask"
                 @buy-hint="this.$emit('submit-points', -1)"
                 @tries-count="storeTries"
@@ -130,6 +132,7 @@ export default {
     userPseudonym: {},
     order: {},
     tasksCompleted: {},
+    userLevel: {}
   },
 
   data() {
@@ -140,7 +143,6 @@ export default {
       phaseIntroduction: this.taskData.phaseIntroduction,
 
       blanks: this.taskData.blanks,
-
       blanks_completed: 0,
       taskCompleted: false,
       pointsOverall: 0,
@@ -157,7 +159,8 @@ export default {
 
   computed: {
     completedBefore() {
-      if (this.level < this.tasksCompleted) {
+      if (this.level <= this.userLevel) {
+this.showPhaseHeader()
         return true;
       } else {
         return false;
@@ -166,6 +169,12 @@ export default {
   },
 
   methods: {
+
+    showPhaseHeader() {
+        this.beginPhase = true;
+        this.showContent = false;
+    },
+
     trackBegin () {
      // TODO: create date object with current time & link with scroing system
     },
@@ -212,6 +221,7 @@ export default {
 
     show() {
       this.showContent = true;
+      this.scrollToElement(this.taskData.tileNo);
     },
 
     scrollToElement(id) {
