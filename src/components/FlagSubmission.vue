@@ -19,33 +19,48 @@
 
           <div class="message is-success">
             <div class="message-body">
-                <span class="is-primary-darker is-size-5">
-                  You earned {{ this.pointsOverall }} points.
+                <span class="is-primary-darker is-size-5"
+                      v-if="this.pointsOverall > 0">
+                  Awesome {{ String(this.userPseudonym) }}, you earned {{ this.pointsOverall }} points. 🥳
                 </span>
+                <span class="is-primary-darker is-size-5"
+                      v-if="this.pointsOverall == 0">
+                  Sorry {{ String(this.userPseudonym) }}, you earned {{ this.pointsOverall }} points. 
+                </span>
+                
             </div>
           </div>
 
           <div class="columns is-hcentered mt-5">
             <img
-              class="image is-hcentered rotate"
+              class="image is-hcentered rotate is-hidden"
               style="width: 70px"
-              src="./../assets/magnifyingGlass.svg"
+              src="./../assets/rocket.svg"
             />
-            <span class="ml-4 is-hcentered">
+            <span class="is-primary-darker has-text-left title is-4 is-json ml-4 is-hcentered">
               <span
-                class="title is-title-smaller is-primary-darker is-json"
-                v-if="this.triesLeft"
+                v-if="this.triesLeft > 0 && !this.failedOneTask"
+                v-html="this.taskData.successMessage"
               >
-                Congrats!
+              </span>
+              <span
+                v-if="this.triesLeft > 0 && this.failedOneTask"
+                v-html="this.taskData.partSuccessMessage"
+              >
               </span>
               <!-- display different message in case the traine went out of tries -->
               <span
-                class="title is-title-smaller is-primary-darker is-json"
-                v-else
+                v-if="this.triesLeft == 0"
+                v-html="this.taskData.failMessage"
               >
-                Don't worry, we've submitted the corret flag for you. You'll
-                have more luck next time!
               </span>
+              <div
+                class="subtitle is-primary-darker"   
+                v-if="(this.triesLeft == 0 || this.failedOneTask) && this.taskData.rememberMessage"
+                v-html="this.taskData.rememberMessage"
+              >
+              </div>
+            
             </span>
           </div>
 
@@ -151,7 +166,8 @@ export default {
 
       beginPhase: false,
       showContent: true,
-      triesLeft: false,
+      triesLeft: 0,
+      failedOneTask: false,
     };
   },
 
@@ -203,7 +219,10 @@ export default {
     },
 
     storeTries(tries) {
-      this.triesLeft = tries;
+      if (tries == 0) {
+          this.failedOneTask = true;
+      }
+      this.triesLeft += tries;
     },
 
     hide() {

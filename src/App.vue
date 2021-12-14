@@ -285,7 +285,7 @@
                               :taskData="Unit1IdentTasks"
                               :order="this.order"
                               :tasksCompleted="tasksCompleted"
-                              :userID="this.userPseudonym" 
+                              :userPseudonym="this.userPseudonym" 
                               @submit-points="submitPoints"
                               @task-completed="markAsCompleted"
                                              
@@ -359,7 +359,7 @@
                             :taskData="Unit2IdentTasks"
                             :order="this.order"
                             :tasksCompleted="tasksCompleted"
-                            :userID="this.userPseudonym"
+                            :userPseudonym="this.userPseudonym"
                             @submit-points="submitPoints"
                             @task-completed="markAsCompleted"
                           >
