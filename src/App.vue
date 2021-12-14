@@ -707,7 +707,9 @@ export default {
 
     submitPoints(points2) {
       this.points += points2;
-      this.level += 1;
+      if (points2 >= 0)
+      {
+      this.level += 1; }
       this.uploadPoints();
     },
     scrollToPlaybookTwo() {
