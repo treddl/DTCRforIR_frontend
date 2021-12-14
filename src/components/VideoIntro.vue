@@ -3,7 +3,8 @@
     <!-- maps the videos tileNo to this elememt's id -->
     <div class="is-info content" :id="this.tileNo">
       <div class="content">
-        <div class="has-text-link-dark has-text-left title is-5 is-json" v-html="this.title">
+        <div class="has-text-link-dark has-text-left title is-3 is-json" 
+             v-html="this.title">
         </div>
 
         <!-- display buttons Continue and Show/Hide
@@ -30,20 +31,6 @@
                 @click="proceed()"
               >
                 Start with Playbook 1
-          </button>
-          <button class="button is-rounded is-info"
-            v-if="!showContent"
-            @click="show()"
-            title="Show hidden content"          
-          >
-            Show lesson
-          </button>
-          <button class="button is-rounded is-info is-light"
-            v-else
-            @click="hide()"
-            title="Hide content below"          
-          >
-            Hide lesson
           </button>
         </div>
       </div>
@@ -80,7 +67,7 @@ export default {
   // methods to ues in the HTML template
   methods: {    
     proceed() {
-      this.$emit('start-playbooke-one');
+      this.$emit("start-playbook-one");
       this.hide();
       var nextSection = this.order.indexOf(this.tileNo) + 1;
       this.scrollToElement(this.order[nextSection]);
