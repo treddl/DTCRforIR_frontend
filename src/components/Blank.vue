@@ -6,17 +6,19 @@
         <!-- display of task content prior to final submission -->
        
         <div v-if="!this.blank.rightTry && triesLeft > 0 && !completedBefore">
-          <div class="content table-wrapper">
+          <div class="message is-primary block ">
 
-            <div class="block" 
+            <div class="message-header title is-5" 
               v-html="this.blank.responseActionID">
             </div>
+            <div class="message-body">
             <div
               class="block"
               v-html="this.blank.responseActionInstruction"
             ></div>
 
-            <div v-if="blank.isTerminalTask">
+            <div class="block" 
+                 v-if="blank.isTerminalTask">
               <terminal
                 :termData="blank"
                 :userPseudonym="this.userPseudonym"
@@ -50,6 +52,7 @@
               >
                 Need a hint?
               </button>
+            </div>
             </div>
           </div>
         </div>
