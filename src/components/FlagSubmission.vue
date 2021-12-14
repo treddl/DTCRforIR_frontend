@@ -16,28 +16,33 @@
           <div class="is-primary-darker subtitle is-json">
             Phase completed
           </div>
+            
 
           <div class="message is-success" v-if="taskCompleted">
             <div class="message-body">
                 <span class="is-primary-darker is-size-5"
-                      v-if="this.pointsOverall > 0">
+                >
                   Awesome {{ String(this.userPseudonym) }}, you earned {{ this.pointsOverall }} points. 🥳
                 </span>
+            </div>
+          </div>
+          <div class="message is-danger"
+               v-if="this.pointsOverall == 0">
+            <div class="message-body">
                 <span class="is-primary-darker is-size-5"
-                      v-if="this.pointsOverall == 0">
+                >
                   Sorry {{ String(this.userPseudonym) }}, you earned {{ this.pointsOverall }} points. 
                 </span>
-                
             </div>
           </div>
 
           <div class="columns is-hcentered mt-5">
-            <!--img
+            <img
               class="image is-hcentered rotate is-hidden"
               style="width: 70px"
               src="./../assets/rocket.svg"
-            /-->
-            <span class="is-primary-darker has-text-left title is-4 is-json ml-4 is-hcentered">
+            />
+            <span class="is-primary-darker has-text-left title is-5 is-json ml-4 is-hcentered">
               <span
                 v-if="this.triesLeft > 0 && !this.failedOneTask"
                 v-html="this.taskData.successMessage"
