@@ -211,7 +211,7 @@
               <video-intro 
                 :videoData="VideoData[0]" 
                 :order="this.order"
-                @start-playbook-one="this.startPlaybookOne == true"
+                @start-playbook-one="this.startPlaybookOne = true"
               >
               </video-intro>
 
@@ -278,7 +278,7 @@
                                 :userLevel="this.level"
                                 @submit-points="submitPoints"
                                 @task-completed="markAsCompleted"
-                                @ident-one-completed="this.startRespOne == true"  
+                                @ident-one-completed="this.startRespOne = true"  
                               >
                               </flag-submission>
                             </div>
@@ -301,10 +301,9 @@
                                     - show/hide the content below the title and subtitle -->
                               <div class="buttons is-left mt-5">
                                 <button class="button is-rounded is-success"
-                                  @click="this.startPlaybookTwo == true; this.scrollToPlaybookTwo()"                                  
+                                  @click="this.startPlaybookTwo = true; this.scrollToPlaybookTwo()"                                  
                                   >
-                                  <font-awesome-icon :icon="['fa', 'open-book']" />
-                                  Continue with Playbook 2
+                                  <span>&#9655;</span> Continue with Playbook 2
                                 </button>
                               </div>                        
                           </div>
@@ -360,7 +359,7 @@
                                 :userLevel="this.level"
                                 @submit-points="submitPoints"
                                 @task-completed="markAsCompleted"
-                                @ident-two-completed="this.startRespTwo == true"
+                                @ident-two-completed="this.startRespTwo = true"
                               >
                               </flag-submission>
                             </div>
@@ -453,10 +452,10 @@ export default {
         "unit2Resp",
       ],
 
-      startPlaybookOne: true,
-      startRespOne: true,
-      startPlaybookTwo: true,
-      startRespTwo: true, 
+      startPlaybookOne: false,
+      startRespOne: false,
+      startPlaybookTwo: false,
+      startRespTwo: false, 
       gameCompleted: false,
       gameStarted: false,
       userID: null,
