@@ -206,7 +206,7 @@ export default {
       }
       this.pointsOverall += points;
       this.blanks_completed += 1;
-      try {
+      try { //was passiert hier, TODO Lena
         var allBlanks = JSON.parse(localStorage.getItem("blanksCompleted"));
         allBlanks[this.tileNo] = allBlanks[this.tileNo] + 1;
         localStorage.setItem("blanksCompleted", JSON.stringify(allBlanks));

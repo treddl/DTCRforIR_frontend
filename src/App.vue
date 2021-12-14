@@ -564,6 +564,14 @@ export default {
         });
     },
 
+      makeAPICall(apiPath) {
+      this.$http
+        .get(window.location.href.replace("7080", "9090") + apiPath)
+        .then((response) => {
+          console.log(response.data);
+        });
+    },
+
     async getVM() {
       const snapshot = await VM_db.limit(1).get();
       console.log(snapshot.docs.map((doc) => doc.data()));
@@ -586,6 +594,7 @@ export default {
         startTime: this.startTime,
       });
       this.getMarker();
+      //add function here: stop/start api call () start_mitm, stop_mitm
     },
 
     async uploadEvaluationData() {
