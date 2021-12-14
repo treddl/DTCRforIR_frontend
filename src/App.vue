@@ -695,7 +695,7 @@ export default {
       const el = document.getElementById('prePlaybookTwo');
       setTimeout(() => {
         el.scrollIntoView({ behavior: "smooth", alignToTop: true });
-      }, 1000);
+      }, 100);
     },
  
   },
