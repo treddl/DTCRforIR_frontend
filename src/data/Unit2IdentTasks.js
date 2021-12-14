@@ -14,7 +14,6 @@ const Unit2IdentTasks = {
             hint: 'The answer lies in <span class="has-text-weight-bold">one</span> of the ARP-spoof-WARNINGs.',
 
             isTerminalTask: false,
-            apiPath: "",
 
             triesLeft: 3,
             wrongTry: false,
@@ -31,7 +30,6 @@ const Unit2IdentTasks = {
             hint: 'Remember that the <span class="has-text-weight-bold">attacker</span> replaces their MAC address with that of the target.',
 
             isTerminalTask: false,
-            apiPath: "",
 
             triesLeft: 3,
             wrongTry: false,

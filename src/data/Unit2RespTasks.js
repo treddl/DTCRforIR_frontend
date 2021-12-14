@@ -10,12 +10,11 @@ const Unit2RespTasks = {
             responseActionInstruction: 'Isolate the attacking host by turning off its network interface.',
 
             flagInstruction: "Submit the keyword that indicates the success of the action:",
-            flag: "angry-attacker",
+            flag: "eating-eskimo",
             placeholder: "enter flag here ..",
             hint: 'First you need to find the name of the network interface for ethernet connections. You may want to check out the lesson on <span class="has-text-weight-bold">bash</span> again.',
 
             isTerminalTask: true,
-            apiPath: "",
 
             triesLeft: 3,
             wrongTry: false,
@@ -33,11 +32,11 @@ const Unit2RespTasks = {
                     ],
                     ipLinkDown: [
                         `ip link set dev work-station-eth0 down`,
-                        `Trying to connect to 'work-station' ... 
+                        `Trying to connect to remote 'work-station' ... 
 Waiting for response ...
 Waiting for response ...
-Error: No host 'work-station' is not respondind.
-Error Code: NIC-DOWN`
+'work-station' is not reachable.
+🚩 FLAG: eating-eskimo`
                     ],
                     whoami: [
                         `whoami`,
@@ -70,7 +69,6 @@ Error Code: NIC-DOWN`
             hint: 'The answer lies in the ARP cache, more precicely, in the column <span class="is-family-monospace has-background-light">Flags Mask</span>',
 
             isTerminalTask: true,
-            apiPath: "stop_mitm",
 
             triesLeft: 3,
             wrongTry: false,
@@ -122,12 +120,11 @@ Error Code: NIC-DOWN`
 
 
             flagInstruction: "Submit the key term that indicates the ARP entry is static:",
-            flag: "sassy-seal",
+            flag: "snow-flake",
             placeholder: "",
             hint: 'The answer lies in the ARP cache, more precicely, in the column <span class="is-family-monospace has-background-light">Flags Mask</span>',
 
             isTerminalTask: true,
-            apiPath: "stop_mitm",
 
             triesLeft: 3,
             wrongTry: false,
@@ -161,7 +158,7 @@ Error Code: NIC-DOWN`
                         `Address                  HWtype  HWaddress           Flags Mask            Iface
 10.0.0.2                 ether   00:00:00:00:00:02   C                     plc3-eth1
 10.0.0.4                 ether   00:00:00:00:00:04   C                     plc3-eth1
-10.0.0.1                 ether   00:00:00:00:00:01   CM FLAG: sassy-seal   plc3-eth1
+10.0.0.1                 ether   00:00:00:00:00:01   CM FLAG: snow-flake   plc3-eth1
 10.0.0.5                 ether   00:00:00:00:00:05   C                     plc3-eth1`
                     ],
                     arpRecovery: [
@@ -182,7 +179,6 @@ Error Code: NIC-DOWN`
             hint: 'Remeber that one PLC produced warning logs. The <span class="has-text-weight-medium">same PLC</span> now produces <span class="has-text-weight-medium">info</span> logs indicating <span class="has-text-weight-medium">successful</span> operation.',
 
             isTerminalTask: false,
-            apiPath: "",
 
             triesLeft: 3,
             wrongTry: false,

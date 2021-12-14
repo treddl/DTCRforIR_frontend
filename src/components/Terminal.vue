@@ -16,7 +16,8 @@ export default {
 
   props: {
       termData: {
-      }
+      },
+      userPseudonym: {}
   },
 
   data() {
@@ -62,34 +63,13 @@ export default {
     getHostName() {
         return String(this.termData.terminalData.host);
     },
+    changeHostName() {
+        this.banner.sign = String(this.userPseudonym) + "@INCIDENT-RESPONSE~#"; 
+    },
     getTerminalSign() {
       return "root@" + this.getHostName() + "~#";
       //  return "not";
     },
-    pinging() {
-        var ping = 0;
-        var pingInterval = setInterval(pingOutput, 10);
-        function pingOutput() {
-            if (ping == 5) {
-                clearInterval(pingInterval);
-            } else {
-                ping++;
-                this.send_to_terminal = `pinging 10.0.0.5 ... `;
-            }
-        }
-    },
-    sleep(milliseconds) {
-      const date = Date.now();
-      let currentDate = null;
-      do {
-        currentDate = Date.now();
-      } while (currentDate - date < milliseconds);
-    },
-    emitIpLinkDown() {
-        this.sleep(5000);
-        setTimeout(this.$emit("ip-link-down"), 2000);
-        
-    },  
     prompt(value) {
       const hostName = this.getHostName();
       switch (value.trim()) {
@@ -105,15 +85,14 @@ export default {
         case "ip link set dev work-station-eth0 down":
             if (hostName == 'work-station') {
                 this.send_to_terminal = this.terminalData.inputOutput.ipLinkDown[1];
-                this.emitIpLinkDown();
+                this.changeHostName();
             } else {
-                `Command '${value}' not valid: arguments don't match device.`
+                `Nice try '$(this.userPseudonym)' `
             }
           break;
         case "ip link set dev plc1-eth0 down":
             if (hostName == 'plc1') {
                 this.send_to_terminal = "";
-                this.emitIpLinkDown();
             } else {
                 `Command '${value}' not valid: arguments don't match device.`
             }
@@ -121,7 +100,6 @@ export default {
         case "ip link set dev plc3-eth1 down":
             if (hostName == 'plc3') {
                 this.send_to_terminal = "";
-                this.emitIpLinkDown();
             } else {
                 `Command '${value}' not valid: arguments don't match device.`
             }
@@ -139,7 +117,8 @@ export default {
             break;
         case "arp -s 10.0.0.3 00:00:00:00:00:03":
           if (hostName == "plc1") {
-            this.send_to_terminal = " ";
+            this.send_to_terminal = `ARP cache updated
+use command 'arp' to show updated ARP cache`;
             this.arpIsRecovered = true;
           } else if (hostName == "plc3") {
             this.send_to_terminal = `Invalid command: ARP cache cannot be set for own interface.`;
@@ -149,7 +128,8 @@ export default {
           if (hostName == "plc1") {
             this.send_to_terminal = `Invalid command: ARP cache cannot be set for own interface.`;
           } else if (hostName == "plc3") {
-            this.send_to_terminal = " ";
+            this.send_to_terminal = `ARP cache updated
+use command 'arp' to show updated ARP cache`;
             this.arpIsRecovered = true;
           }
           break;
