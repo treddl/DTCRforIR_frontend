@@ -17,6 +17,7 @@
             Phase completed
           </div>
             
+          <div v-if="taskCompleted">
         
           <div class="message is-success" v-if="taskCompleted">
             
@@ -38,7 +39,7 @@
                 </span>
             </div>
           
-
+          
           <div class="columns is-hcentered mt-5">
             <img
               class="image is-hcentered rotate is-hidden"
@@ -70,7 +71,7 @@
               </div>
             
             </span>
-  
+   </div>
           </div>
 
           <!-- display buttons Continue and Show/Hide -->
@@ -175,7 +176,7 @@ export default {
       timestamp_after: null,
       timeToComplete: null,
 
-      beginPhase: false,
+      beginPhase: this.getPhase(),
       showContent: true,
       triesLeft: 0,
       failedOneTask: false,
@@ -195,9 +196,20 @@ export default {
 
   methods: {
 
+    getPhase(){
+      if ((this.userLevel > this.taskData.blanks[0].level) )
+      return true;
+      else {
+        return false;
+      }
+    },
+    
     getBlanksCompleted(){
 
       if (localStorage.getItem("blanksCompleted") != null) {
+        console.log("blanks_compl: ", JSON.parse(localStorage.getItem("blanksCompleted"))[
+          this.taskData.tileNo
+        ])
         return JSON.parse(localStorage.getItem("blanksCompleted"))[
           this.taskData.tileNo
         ];
@@ -223,6 +235,17 @@ export default {
 
       this.$emit("submit-points", points);
       this.pointsOverall += points;
+       try {
+                    var allBlanks = JSON.parse(localStorage.getItem("blanksCompleted"));
+                    console.log("Here")
+                    allBlanks[this.taskData.tileNo] = allBlanks[this.taskData.tileNo] + 1;
+                    console.log(allBlanks)
+                    localStorage.setItem("blanksCompleted", JSON.stringify(allBlanks));
+                }
+                catch (err) {
+                    console.log("localStorage empty")
+                }
+
       
       if (this.taskData.tileNo == "unit1Ident") {
         this.$emit("ident-one-completed");

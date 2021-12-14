@@ -370,7 +370,7 @@
                             </div>
                         </div>
 
-                        <div id="respTwo>">
+                        <div id="respTwo">
                           <div class="is-info content" 
                               v-if="this.startRespTwo || this.level >= 2">
                               <div class="has-text-link-dark has-text-left title is-4 is-json">
@@ -453,7 +453,7 @@ export default {
         "textlesson2",
         "identTwo",
         "unit2Ident",
-        "respTwo",
+        "respTwo", //TODO, was ist das?
         "unit2Resp",
       ],
 
@@ -571,12 +571,15 @@ export default {
               console.log(doc.data().startTime);
               this.level = 0;
               this.startTime = new Date();
+              this.userPseudonym = doc.data().pseudonym;
               userDashboard.doc(this.userID).update({
                 startTime: this.startTime,
               });
 
             var storedTries = [3,3,3,3,3,3,3,3];
+            var blanksCompleted = {unit1Ident: 0, unit2Ident: 0, unit2Resp: 0};
             localStorage.setItem("storedTries",JSON.stringify(storedTries))
+            localStorage.setItem("blanksCompleted",JSON.stringify(blanksCompleted))
             
             }
           } else {
