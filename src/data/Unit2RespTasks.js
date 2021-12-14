@@ -1,6 +1,10 @@
 const Unit2RespTasks = {
     tileNo: "unit2Resp",
-    level: 8, //level when task is completed
+    level: 8,
+    successMessage: "⛑ Fantastic work! You stopped the attacker before they could do any more harm.",
+    partSuccessMessage: "⛑ Fantastic work! Together we stopped the attacker before they could do anymore harm.",
+    failMessage: "Don't beat yourself up. Maybe response just isn't your cup of tea.",
+    rememberMessage: "",
     responsePhase: "identification",
     phaseIntroduction: '<div class="block">This is going great. We established which host acts as the MitM and which hosts are the tragets.</div> <div class="block">Now it is time to stop the attack and recover the affected systems.</div> <div class="block">Follow the response steps below and make a name for yourself as first class incident responder.</div>',
     blanks: [

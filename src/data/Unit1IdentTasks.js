@@ -1,6 +1,10 @@
 const Unit1IdentTasks = {
     tileNo: "unit1Ident",
-    level: 2, //level when task is completed
+    level: 2,
+    successMessage: "🕵️‍♀️ Congrats on your first investigation! You’re now ready to take on a real attack.",
+    partSuccessMessage: "🕵️‍♀️ Congrats on your first investigation! (We won't tell anyone you missed one task)",
+    failMessage: "Don't worry, next time you'll have more luck.",
+    rememberMessage: "Remember you can always revisit lessons.",
     responsePhase: "identification",
     phaseIntroduction: 'The purpose of the identification phase is to establish the scope of the security incident. It is paramount to know, e.g., which systems behave maliciously and which normally. Only then is an effective response possible.',
     blanks: [

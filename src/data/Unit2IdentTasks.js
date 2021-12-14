@@ -1,6 +1,10 @@
 const Unit2IdentTasks = {
     tileNo: "unit2Ident",
-    level: 4, //level when task is completed
+    level: 4,
+    successMessage: "🕵️‍♀️ Great work! But there’s no time to loose, let’s stop the attacker.",
+    partSuccessMessage: "🕵️‍♀️ Great work! Never mind that you missed one task.",
+    failMessage: "Don't panic, in the next phase the luck is on your side.",
+    rememberMessage: "Remember you can always revisit lessons.",
     responsePhase: "identification",
     phaseIntroduction: 'This time it is critical to get all the information right. Otherwise we risk isolating the wrong systems, causing even more disruptions!',
     blanks: [
