@@ -570,6 +570,9 @@ export default {
               userDashboard.doc(this.userID).update({
                 startTime: this.startTime,
               });
+
+            var storedTries = [3,3,3,3,3,3,3,3];
+            localStorage.setItem("storedTries",JSON.stringify(storedTries))
             
             }
           } else {
