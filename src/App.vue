@@ -372,7 +372,7 @@
 
                         <div id="respTwo>">
                           <div class="is-info content" 
-                              v-if="this.startRespTwo || this.level > 3">
+                              v-if="this.startRespTwo || this.level >= 2">
                               <div class="has-text-link-dark has-text-left title is-4 is-json">
                                   Response Phase
                               </div>
@@ -648,8 +648,8 @@ export default {
 
     markAsCompleted(taskTimes) {
       //save timer information here
-      this.level += 1; 
-      this.uploadPoints();
+      //this.level += 1; 
+      //this.uploadPoints();
       this.taskTimes.push(taskTimes);
       this.uploadEvaluationData();
     },
@@ -707,9 +707,11 @@ export default {
 
     submitPoints(points2) {
       this.points += points2;
+      console.log("points now: ", this.points)
       if (points2 >= 0)
       {
       this.level += 1; }
+
       this.uploadPoints();
     },
     scrollToPlaybookTwo() {

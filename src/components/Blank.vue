@@ -166,13 +166,12 @@ export default {
 
   methods: {
     getTriesLeft() {
-      if (localStorage.getItem("storedTries") != null) {
-
-        
-        return JSON.parse(localStorage.getItem("storedTries"))[this.blankData.level];
-      } else if (this.userLevel > this.blankData.level) {
+      if (this.userLevel > this.blankData.level) {
           return 0;
           }
+      else if (localStorage.getItem("storedTries") != null) {
+        return JSON.parse(localStorage.getItem("storedTries"))[this.blankData.level];
+      } 
           else{
         return 3;
       }

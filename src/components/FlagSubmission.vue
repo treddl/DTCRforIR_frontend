@@ -1,28 +1,25 @@
 <template>
-    <div :id="this.taskData.tileNo">
+    <div class="is-task" :id="this.taskData.tileNo">
       <div class="buttons is-left mt-5" >
-          <button class="button is-rounded submit-button" 
+          <button class="button is-rounded is-success" 
             @click="this.beginPhase = true; this.trackBegin; this.scrollToElement(this.taskData.tileNo);"
-            v-if="!this.beginPhase && !completedBefore"
+            v-if="!this.beginPhase "
           >
-           <span>&#9655;</span> Begin
+            Begin
           </button>
       </div>
       <div class="is-directive"
-        v-if="beginPhase || (this.userLevel < this.level)">
+        v-if="beginPhase ">
+
         <!-- display post task completion: information for the user and buttons to proceed -->
         <div v-if="taskCompleted || completedBefore">
           <div class="is-primary-darker subtitle is-json">
             Phase completed
           </div>
+            
+        
           <div class="message is-success" v-if="taskCompleted">
-            <div class="message-body"
-                 v-if="this.pointsOverall > 0">
-                <span class="is-primary-darker is-size-5"
-                >
-                  Awesome {{ String(this.userPseudonym) }}, you earned {{ this.pointsOverall }} points. 🥳
-                </span>
-            </div>
+            
           </div>
           <div class="message is-danger"
                v-if="this.pointsOverall == 0">
@@ -33,10 +30,21 @@
                 </span>
             </div>
           </div>
+
+          <div class="message-body" v-else>
+                <span class="is-primary-darker is-size-5"
+                >
+                  Awesome {{ String(this.userPseudonym) }}, you earned {{ this.pointsOverall }} points. 🥳
+                </span>
+            </div>
           
 
-          <!-- display different message in case the traine went out of tries -->
           <div class="columns is-hcentered mt-5">
+            <img
+              class="image is-hcentered rotate is-hidden"
+              style="width: 70px"
+              src="./../assets/rocket.svg"
+            />
             <span class="is-primary-darker has-text-left title is-5 is-json ml-4 is-hcentered">
               <span
                 v-if="this.triesLeft > 0 && !this.failedOneTask"
@@ -48,7 +56,7 @@
                 v-html="this.taskData.partSuccessMessage"
               >
               </span>
-
+              <!-- display different message in case the traine went out of tries -->
               <span
                 v-if="this.triesLeft == 0"
                 v-html="this.taskData.failMessage"
@@ -60,12 +68,14 @@
                 v-html="this.taskData.rememberMessage"
               >
               </div>
+            
             </span>
   
           </div>
 
           <!-- display buttons Continue and Show/Hide -->
           <div class="buttons is-left mt-5">
+            <!-- TODO update task6 to your final key to show button "Finish Game" -->
             <button
               class="button is-rounded submit-button"
               v-if="this.taskData.tileNo != 'unit2Resp'"
@@ -86,7 +96,11 @@
               v-if="!showContent"
               @click="show()"
             >
-              Show tasks
+              Show
+            </button>
+            <button class="button is-rounded is-light" 
+              v-else @click="hide()">
+              Hide
             </button>
           </div>
         </div>
@@ -95,6 +109,7 @@
        
         <!-- diplay prior task completion: actual task  -->
         <div v-if="showContent ">
+      
           <!-- bind the display style of this element to the truthiness of 'taskCompleted' or 'completedBefore' -->
           <div
             :class="{ 'directive-completed': taskCompleted || completedBefore }"
@@ -152,7 +167,7 @@ export default {
       phaseIntroduction: this.taskData.phaseIntroduction,
 
       blanks: this.taskData.blanks,
-      blanks_completed: 0,
+      blanks_completed: this.getBlanksCompleted(),
       taskCompleted: false,
       pointsOverall: 0,
 
@@ -180,8 +195,19 @@ export default {
 
   methods: {
 
+    getBlanksCompleted(){
+
+      if (localStorage.getItem("blanksCompleted") != null) {
+        return JSON.parse(localStorage.getItem("blanksCompleted"))[
+          this.taskData.tileNo
+        ];
+      } else {
+        return 0;
+      }
+
+    },
     showPhaseHeader() {
-        this.beginPhase = true;
+        //this.beginPhase = true;
     },
 
     trackBegin () {
