@@ -218,7 +218,7 @@
               <!-- Unit 1 / Playbook 1 --->
               <div id="playbookOne">
                 <div class="is-info content"
-                  v-if="this.startPlaybookOne || this.tasksCompleted > 0"
+                  v-if="this.startPlaybookOne || this.level > 0"
                 >
                         <div class="has-text-link-dark has-text-left title is-3 is-json">
                             Playbook 1 
@@ -275,6 +275,7 @@
                                 :order="this.order"
                                 :tasksCompleted="tasksCompleted"
                                 :userPseudonym="this.userPseudonym" 
+                                :userLevel="this.level"
                                 @submit-points="submitPoints"
                                 @task-completed="markAsCompleted"
                                 @ident-one-completed="this.startRespOne == true"  
@@ -285,7 +286,7 @@
 
                         <div id="respOne">
                           <div class="is-info content" 
-                                v-if="this.startRespOne || this.tasksCompleted > 0">
+                                v-if="this.startRespOne || this.level > 0">
                               <div class="has-text-link-dark has-text-left title is-4 is-json" >
                                   Response Phase
                               </div>
@@ -303,7 +304,7 @@
                                   @click="this.startPlaybookTwo == true; this.scrollToPlaybookTwo()"                                  
                                   >
                                   <font-awesome-icon :icon="['fa', 'open-book']" />
-                                  Conitinue with Playbook 2
+                                  Continue with Playbook 2
                                 </button>
                               </div>                        
                           </div>
@@ -316,7 +317,7 @@
               <!-- Unit 2 / Playbook 2 --->
               <div id="PlaybookTwo">
                 <div class="is-info content"
-                    v-if="startPlaybookTwo || this.tasksCompleted > 1">
+                    v-if="startPlaybookTwo || this.level > 1">
                         <div class="has-text-link-dark has-text-left title is-3 is-json">
                             Playbook 2 
                         </div>
@@ -367,7 +368,7 @@
 
                         <div id="respTwo>">
                           <div class="is-info content" 
-                              v-if="this.startRespTwo || this.tasksCompleted > 1">
+                              v-if="this.startRespTwo || this.level > 1">
                               <div class="has-text-link-dark has-text-left title is-4 is-json">
                                   Response Phase
                               </div>
@@ -550,7 +551,7 @@ export default {
             if (doc.data().startTime != null) {
               //get data from user who logged in before
               this.points = doc.data().points;
-              this.tasksCompleted = doc.data().level;
+              this.level = doc.data().level;
               this.startTime = doc.data().startTime;
               this.userPseudonym = doc.data().pseudonym;
               this.level = doc.data().level;
@@ -564,7 +565,7 @@ export default {
             } else {
               //registered player who didn't log in before
               console.log(doc.data().startTime);
-              this.tasksCompleted = 0;
+              this.level = 0;
               this.startTime = new Date();
               userDashboard.doc(this.userID).update({
                 startTime: this.startTime,
@@ -574,7 +575,7 @@ export default {
           } else {
             // if not only played with preset users
             this.points = 0;
-            this.tasksCompleted = 0;
+            this.level = 0;
             this.startTime = new Date();
             userDashboard.doc(this.userID).set({
               startTime: this.startTime,
@@ -640,7 +641,7 @@ export default {
 
     markAsCompleted(taskTimes) {
       //save timer information here
-      this.tasksCompleted += 1;
+      this.level += 1; 
       this.uploadPoints();
       this.taskTimes.push(taskTimes);
       this.uploadEvaluationData();
@@ -651,7 +652,7 @@ export default {
       this.evaluationData.push(
         "ID: " + this.userID,
         "Points: " + this.points,
-        "Level: " + this.tasksCompleted,
+        "Level: " + this.level,
         "Times: " + this.taskTimes
       );
       this.submitEvaluationData();

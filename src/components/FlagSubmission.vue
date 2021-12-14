@@ -193,7 +193,7 @@ this.showPhaseHeader()
 
     showPhaseHeader() {
         this.beginPhase = true;
-        this.showContent = false;
+        //this.showContent = false;
     },
 
     trackBegin () {
