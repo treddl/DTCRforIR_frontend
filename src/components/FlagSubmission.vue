@@ -17,17 +17,19 @@
             Phase completed
           </div>
 
-          <div class="notification notification-green is-light success-message">
-            <span class="is-primary-darker is-size-5 mb-5">
-              You earned {{ this.pointsOverall }} points.
-            </span>
+          <div class="message is-success">
+            <div class="message-body">
+                <span class="is-primary-darker is-size-5">
+                  You earned {{ this.pointsOverall }} points.
+                </span>
+            </div>
           </div>
 
           <div class="columns is-hcentered mt-5">
             <img
               class="image is-hcentered rotate"
               style="width: 70px"
-              src="./../assets/rocket.svg"
+              src="./../assets/magnifyingGlass.svg"
             />
             <span class="ml-4 is-hcentered">
               <span

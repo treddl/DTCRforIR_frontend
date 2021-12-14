@@ -5,7 +5,10 @@
         <!-- display of task content prior to final submission -->
         <div v-if="!this.blank.rightTry && triesLeft > 0 && !completedBefore">
           <div class="content table-wrapper">
-            <div class="block" v-html="this.blank.responseActionID"></div>
+
+            <div class="block" 
+              v-html="this.blank.responseActionID">
+            </div>
             <div
               class="block"
               v-html="this.blank.responseActionInstruction"
@@ -21,8 +24,6 @@
 
             <br />
 
-            <!-- from the Vue.js docs: 
-            You can use the v-model directive to create two-way data bindings on form input -->
             <div class="block" v-html="this.blank.flagInstruction"></div>
             <input
               class="input blank-input is-short is-json is-size-8"
@@ -40,11 +41,7 @@
               </button>
               <br />
               <button
-                class="
-                  button
-                  is-rounded
-                  has-tooltip-arrow has-tooltip-multiline has-tooltip-top
-                "
+                class="button is-rounded is-warning has-tooltip-arrow has-tooltip-multiline has-tooltip-top"
                 v-if="!hintActivated && this.blank.hint != null"
                 :data-tooltip="'Buy hint for -1 Point'"
                 @click="buyHint"
@@ -55,34 +52,37 @@
           </div>
         </div>
 
-        <!-- display of task content on final submission -->
-        <div class="directive-completed has-background-white-ter p-3"
+        <!-- display of task content after completion -->
+        <div class="message"
              v-else>
-          <div class="block"
-               v-html="this.blank.responseActionID">
-          </div>
-          <div
-            class="block"
-            v-html="this.blank.responseActionInstruction"
-          ></div>
-          <div class="block" v-html="this.blank.flagInstruction"></div>
-          <div class="block">The correct flag is:</div>
-          <input
-            class="input blank-input is-short"
-            :value="this.blank.flag"
-            readonly
-          />
+            <div class="message-body">
+              <div class="block"
+                   v-html="this.blank.responseActionID"
+              >
+              </div>
+              <div class="block"
+                v-html="this.blank.responseActionInstruction"
+              >
+              </div>
+              <div class="block" 
+                v-html="this.blank.flagInstruction"
+              >
+              </div>
+              <div class="block"
+              >
+                The correct flag is:
+              </div>
+              <input
+                class="input blank-input is-short"
+                :value="this.blank.flag"
+                readonly
+              />
+            </div>
         </div>
       </div>
 
-      <!-- display hint -->
+      
       <br />
-      <div class="message is-primary" v-if="hintActivated">
-        <div class="message-body">
-        Hint: <span v-html="this.blank.hint"></span> (-1 point)
-        </div>
-      </div>
-
       <!-- display messages regarding submitted user input -->
       <div>
         <div class="message is-danger" v-if="emptyInput">
@@ -114,6 +114,15 @@
             </div>
         </div>
       </div>
+      <br />
+      <!-- display hint -->
+      <div class="message is-warning" v-if="hintActivated">
+        <div class="message-body">
+        Hint: <span v-html="this.blank.hint"></span> (-1 point)
+        </div>
+      </div>
+
+
     </form>
   </div>
 </template>
@@ -176,9 +185,6 @@ export default {
       } else if (this.userInput.trim() != this.blank.flag) {
         this.emptyInput = false;
         this.triesLeft -= 1;
-        if (this.triesLeft == 1) {
-          alert("Sorry, that was not correct.\nYou've only got one try left!");
-        }
         try {
           var allTries = JSON.parse(localStorage.getItem("storedData"));
           allTries[this.tileNo][this.index] =
