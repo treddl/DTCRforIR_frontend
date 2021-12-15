@@ -165,7 +165,7 @@ export default {
       blanks_completed: this.getBlanksCompleted(),
       taskCompleted: false,
       pointsOverall: 0,
-      timestamps: null,
+      timestamps: [],
       beginPhase: this.getPhase(),
       showContent: true,
       triesLeft: 0,

@@ -232,7 +232,7 @@
                   v-if="this.startPlaybookOne || this.level > 0"
                 >
                         <div class="has-text-link-dark has-text-left title is-3 is-json">
-                            Playbook 1 {{mitmRunning}}
+                            Playbook 1 
                         </div>
                         <div class="subtitle nice-subtitle">
                             Introduction to Incident Response
@@ -513,6 +513,7 @@ export default {
           this.makeAPICall("stop_mitm"); 
         return false;
       }
+      return false;
     },
   },
 
