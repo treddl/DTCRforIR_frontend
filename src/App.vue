@@ -609,12 +609,20 @@ export default {
     },
 
       makeAPICall(apiPath) {
-      this.$http
+      /*this.$http
         .get(window.location.href.replace("7080", "9090") + apiPath)
         .then((response) => {
           console.log(response.data);
-        });
-        console.log("url: ", window.location.href.replace("7080", "9090") + apiPath)
+        });*/
+
+        const userAction = async () => {
+  const response = await fetch(window.location.href.replace("7080", "9090") + apiPath);
+  const myJson = await response.json(); //extract JSON from the http response
+ console.log(myJson)
+}
+
+ console.log(userAction)
+       
     },
 
     async getVM() {
