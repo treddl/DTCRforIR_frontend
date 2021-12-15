@@ -34,7 +34,10 @@
 .table-warpper{
 display: table !important; }
 
-
+.cmdline{
+  width: 30em !important;
+  overflow: scroll
+}
 
 
 .delete, .modal-close, .button, .file, .breadcrumb, .pagination-previous,
