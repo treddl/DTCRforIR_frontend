@@ -614,7 +614,7 @@ export default {
         .then((response) => {
           console.log(response.data);
         });*/
-
+console.log("api here")
       var api_call=String(window.location.href.replace("7080", "9090") + apiPath)
         fetch(api_call)
   .then(response => response.json())
