@@ -11,7 +11,6 @@
         
         <div v-if="!VMAssigned" class="is-json title mt-6 pt-6">
           Welcome to ICEBERG! 
-          Welcome to ICEBERG! 
           <div class="subtitle mb-6 pb-6"> A Cyber Range for Incident Response Training. </div> </div>
 
 
