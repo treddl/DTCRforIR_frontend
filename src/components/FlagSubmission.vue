@@ -166,6 +166,7 @@ export default {
       taskCompleted: false,
       pointsOverall: 0,
       timestamps: [],
+      tries: [],
       beginPhase: this.getPhase(),
       showContent: true,
       triesLeft: 0,
@@ -224,6 +225,8 @@ export default {
 
       this.$emit("submit-points", points);
       this.timestamps.push(new Date ())
+      this.tries.push(this.points)
+      console.log("new Timestamp: ", new Date ())
    
       this.pointsOverall += points;
        try {
@@ -254,7 +257,7 @@ export default {
           1000; */
 
         this.$emit("task-completed", 
-          this.timestamps
+          this.timestamps, this.tries
         );
         this.scrollToElement(this.taskData.tileNo);
       }

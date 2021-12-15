@@ -37,7 +37,7 @@
               User ID cannot be empty.
             </div>
             <div class="has-text-danger" v-if="wrongUserID">
-              User ID is not registered. Please use the registration page before entering the cyber range.
+              User ID is not registered. 
             </div>
 
             <div class="buttons is-centered mt-5">
@@ -473,6 +473,7 @@ export default {
       gameStarted: false,
       userID: null,
       taskTimes: [],
+      tries: [],
       startTime: null,
       evaluationData: [],
       dashboard: null,
@@ -690,6 +691,7 @@ export default {
     async uploadEvaluationData() {
       await userDashboard.doc(this.userID).update({
         taskTimes: JSON.stringify(this.taskTimes),
+        tries: JSON.stringify(this.tries),
       });
     },
 
@@ -701,11 +703,12 @@ export default {
       return this.level_old;
     },*/
 
-    markAsCompleted(taskTimes) {
+    markAsCompleted(taskTimes, tries) {
       //save timer information here
       //this.level += 1; 
       //this.uploadPoints();
       this.taskTimes.push(taskTimes);
+      this.tries.push(tries)
       this.uploadEvaluationData();
     },
 
