@@ -6,16 +6,16 @@ const Unit2IdentTasks = {
     failMessage: "Don't panic, in the next phase the luck is on your side.",
     rememberMessage: "Remember you can always revisit lessons.",
     responsePhase: "identification",
-    phaseIntroduction: 'This time it is critical to get all the information right. Otherwise we risk isolating the wrong systems, causing even more disruptions! To esbalish the scope of the incident, perform the following two steps.',
+    phaseIntroduction: `<div>This time it is critical to get all the information right. Otherwise we risk taking down the wrong systems, causing even more disruptions!</div> <br> <div>To esbalish the scope of the incident, perform the following two steps.</div>`,
     blanks: [
         {
             level: 2,
             responseActionID: "Step 1",
-            responseActionInstruction: 'Identify the other host that is the target of the attack. For this, search and review the relevant warnings.',
-            flagInstruction: "Submit the host's IP address:",
+            responseActionInstruction: `<span>&#62;</span><span>&#62;</span> Identify the other target of the attack.`,
+            flagInstruction: "Submit this host's IP address:",
             flag: "10.0.0.3",
             placeholder: "e.g., 10.0.0.10",
-            hint: 'The answer lies in <span class="has-text-weight-bold">one</span> of the ARP-spoof-WARNINGs.',
+            hint: `Check out the new 'ARP-spoof-WARNING' logs <span class="has-text-weight-bold">or</span> some of the alarms themselves. Remember, there are two targets and one of them is plc1 with IP address 10.0.0.1`,
 
             isTerminalTask: false,
 
@@ -27,11 +27,17 @@ const Unit2IdentTasks = {
         {
             level: 3,
             responseActionID: "Step 2",
-            responseActionInstruction: 'Identify the host acting as the MitM.',
-            flagInstruction: 'Submit the <span class="has-text-weight-bold">host name</span>:',
+            responseActionInstruction: `<span>&#62;</span><span>&#62;</span> Identify the host acting as the MitM.`,
+            flagInstruction: `Submit this
+<span class="has-tooltip-arrow has-tooltip-multiline has-tooltip-top" 
+data-tooltip="A host can be identified by its IP address or its name.">
+    <span class="has-text-link-dark has-text-weight-bold">
+        host's name:
+    </span>
+</span>`,
             flag: "work-station",
-            placeholder: "host NAME",
-            hint: 'Remember that the <span class="has-text-weight-bold">attacker</span> replaces their MAC address with that of the target.',
+            placeholder: "enter host name here ..",
+            hint: `Remember, the attacker <span class="has-text-weight-bold">replaces their MAC address</span> with that of the target.`,
 
             isTerminalTask: false,
 

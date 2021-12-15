@@ -2,7 +2,7 @@
   <div class="is-info content" :id="this.tileNo">
     <div>
       <div class="has-text-link-dark has-text-left title is-5 is-json" >
-          Lesson 5: Terminal to Rescue (text)
+          Lesson 5: Let it shell<span>&#35;</span>, let it shell<span>&#35;</span>, let it shell<span>&#35;</span> (text)
       </div>
       <div class="buttons is-left mt-5">
         <button

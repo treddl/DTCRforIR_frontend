@@ -6,17 +6,68 @@ const Unit2RespTasks = {
     failMessage: "Don't beat yourself up. Maybe response just isn't your cup of tea.",
     rememberMessage: "",
     responsePhase: "identification",
-    phaseIntroduction: 'This is going great. We established which host acts as the MitM and which hosts are the tragets. Now it is time to stop the attack and recover the affected systems. Follow the response steps below and make a name for yourself as first class incident responder.',
+    phaseIntroduction: `<div>This is going great. We established which host acts as the 
+                        <span class="has-tooltip-arrow has-tooltip-multiline has-tooltip-top" 
+                        data-tooltip="the intruder is using our 'work-station' as the MitM">
+                            <span class="has-text-link-dark has-text-weight-bold">
+                                MitM
+                            </span>
+                        </span>
+                        and which hosts are the 
+                        <span class="has-tooltip-arrow has-tooltip-multiline has-tooltip-top" 
+                        data-tooltip="the intruder placed the 'work-station' inbetween plc1 and plc3">
+                            <span class="has-text-link-dark has-text-weight-bold">
+                                tragets.
+                            </span>
+                        </span>
+                        Now it is time to stop the attack and
+                        <span class="has-tooltip-arrow has-tooltip-multiline has-tooltip-top" 
+                        data-tooltip="cleaning up the poisned ARP caches of plc1 and plc3">
+                            <span class="has-text-link-dark has-text-weight-bold">
+                                recover
+                            </span>
+                        </span>
+                        the affected systems.</div> <br> 
+                        <div>With the shells you have
+                        <span class="has-tooltip-arrow has-tooltip-multiline has-tooltip-top" 
+                        data-tooltip="meaning you can run commands as if you were sitting in front of that system">
+                            <span class="has-text-link-dark has-text-weight-bold">
+                                remote access
+                            </span>
+                        </span>
+                        to the hosts you need to perform the steps on.</div>
+                        <br>
+                        <div><div><span>&#x2139;</span> In the shells you can run as many commands as you need to accomplis the task. In other words, the commands don't count toward your points. Only the flag submission does.</div>
+                        <br>
+                        <div>Follow the response instructions below and make a name for yourself as first class incident responder.</div>`,
     blanks: [
         {
             level: 4,
             responseActionID: "Step 1",
-            responseActionInstruction: 'Isolate the attacking host by turning off its network interface.',
+            responseActionInstruction: `<div><span>&#62;</span><span>&#62;</span> Isolate the attacking host by turning off its network interface.</div> <br> <div><span>&#x2139;</span> With the shell you have remote access to the work-station.</div>`,
 
-            flagInstruction: "Submit the flag. You recognize it when you see it:",
+            flagInstruction: `Submit the 
+                            <span class="has-tooltip-arrow has-tooltip-multiline has-tooltip-top" 
+                            data-tooltip="Don't worry, you recognize it when you see it ;)">
+                                <span class="has-text-link-dark has-text-weight-bold">
+                                    flag:
+                                </span>
+                            </span>`,
             flag: "eating-eskimo",
             placeholder: "enter flag here ..",
-            hint: 'First you need to find the name of the network interface for ethernet connections. You may want to check out the lesson on <span class="has-text-weight-bold">bash</span> again.',
+            hint: `First find the 
+                    <span class="has-text-weight-bold">
+                        name
+                    </span> 
+                    of the network interface for ethernet connections. Then adapt the command
+                    <span class="is-family-monospace has-background-light">
+                        ip link set dev NAME down
+                    </span> 
+                    accordingly. You may want to check out the lesson on 
+                    <span class="has-text-weight-bold">
+                        shell</span><span>&#35;
+                    </span> 
+                    again.`,
 
             isTerminalTask: true,
 
@@ -64,13 +115,24 @@ Waiting for response ...
         {
             level: 5,
             responseActionID: "Step 2",
-            responseActionInstruction: 'Recover the ARP cache on PLC1: Replace the spoofed ARP entry with the correct one in mode <span class="is-family-monospace">static</span>',
+            responseActionInstruction: `<div><span>&#62;</span><span>&#62;</span> Recover the ARP cache on PLC1: Replace the spoofed ARP entry with the correct one in mode <span class="is-family-monospace">static</span>. </div> <br> <div><span>&#x2139;</span> With the shell you have remote access to plc1.</div>`,
 
 
-            flagInstruction: "Submit the flag. You recognize it when you see it:",
+            flagInstruction: `Submit the 
+<span class="has-tooltip-arrow has-tooltip-multiline has-tooltip-top" 
+data-tooltip="Don't worry, you recognize it when you see it ;)">
+    <span class="has-text-link-dark has-text-weight-bold">
+        flag:
+    </span>
+</span>`,
             flag: "polar-bear",
             placeholder: "enter flag here ..",
-            hint: 'The answer lies in the ARP cache, more precicely, in the column <span class="is-family-monospace has-background-light">Flags Mask</span>',
+            hint: `With the command 
+<span class="is-family-monospace has-background-light">arp</span> 
+you can see that the ARP cache entry for 10.0.0.3 is poisend. 
+Recover the ARP entry by using the correct version of the command
+<span class="is-family-monospace has-background-light">arp -s IP_ADDR MAC_ADDRR</span>
+`,
 
             isTerminalTask: true,
 
@@ -120,13 +182,22 @@ Waiting for response ...
         {
             level: 6,
             responseActionID: "Step 3",
-            responseActionInstruction: 'Recover the ARP cache on PLC3: Replace the spoofed ARP entry with the correct one in mode <span class="is-family-monospace has-background-light">static</span>',
-
-
-            flagInstruction: "Submit the flag. You recognize it when you see it:",
+            responseActionInstruction: `<div><span>&#62;</span><span>&#62;</span> Recover the ARP cache on PLC3: Replace the spoofed ARP entry with the correct one in mode <span class="is-family-monospace has-background-light">static</span>. </div> <br> <div><span>&#x2139;</span> With the shell you have remote access to plc3.</div>`,
+            flagInstruction: `Submit the 
+<span class="has-tooltip-arrow has-tooltip-multiline has-tooltip-top" 
+data-tooltip="Don't worry, you recognize it when you see it ;)">
+    <span class="has-text-link-dark has-text-weight-bold">
+        flag:
+    </span>
+</span>`,
             flag: "snow-flake",
             placeholder: "enter flag here ..",
-            hint: 'The answer lies in the ARP cache, more precicely, in the column <span class="is-family-monospace has-background-light">Flags Mask</span>',
+            hint: `Do the same as in the previous task. This time you're on plc3 though! With the command 
+<span class="is-family-monospace has-background-light">arp</span> 
+you can see that the ARP cache entry for 10.0.0.1 is poisend. 
+Recover the ARP entry by using the correct version of the command
+<span class="is-family-monospace has-background-light">arp -s IP_ADDR MAC_ADDRR</span>
+`,
 
             isTerminalTask: true,
 
@@ -176,11 +247,11 @@ Waiting for response ...
         {
             level: 7,
             responseActionID: "Step 4",
-            responseActionInstruction: 'Verify that the malicous activity has stopped. Monitor the SIEM events and verify the normal functioning of the filling plant. From the event that indicates resumed normal operation, submit the plugin_sid, the system’s host name (sensor), and the timestamp.',
-            flagInstruction: "Submit the plugin_sid and the name, seperated by a dash:",
+            responseActionInstruction: `Verify that the malicous activity has stopped. Monitor the SIEM events and verify the normal functioning of the filling plant.`,
+            flagInstruction: `Submit the plugin_sid and the name, seperated by a dash '-':`,
             flag: "400-plc1",
             placeholder: "e.g., 700-name",
-            hint: 'Remeber that one PLC produced warning logs. The <span class="has-text-weight-medium">same PLC</span> now produces <span class="has-text-weight-medium">info</span> logs indicating <span class="has-text-weight-medium">successful</span> operation.',
+            hint: `Remember that one PLC produced warning logs. The <span class="has-text-weight-medium">same PLC</span> now produces <span class="has-text-weight-medium">INFO</span> logs indicating <span class="has-text-weight-medium">successful</span> operation.`,
 
             isTerminalTask: false,
 
