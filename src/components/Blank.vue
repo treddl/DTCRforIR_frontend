@@ -185,6 +185,7 @@ export default {
       return true;
     },
     validateInput() {
+        
       if (this.userInput == "") {
         this.emptyInput = true;
       } else if (this.userInput.trim() != this.blank.flag) {

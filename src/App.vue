@@ -37,7 +37,7 @@
               User ID cannot be empty.
             </div>
             <div class="has-text-danger" v-if="wrongUserID">
-              User ID is not valid.
+              User ID is not registered. Please use the registration page before entering the cyber range.
             </div>
 
             <div class="buttons is-centered mt-5">
@@ -168,7 +168,7 @@
                       </button>
 
                       <button class="button is-primary is-small is-static">
-                        <strong>Level: {{ this.tasksCompleted }}</strong>
+                        <strong>Level: {{ this.level }}</strong>
                       </button>
 
                       <button class="button show-button is-small has-tooltip-arrow has-tooltip-multiline has-tooltip-top"
@@ -436,6 +436,8 @@ export default {
     TextLesson2,
     FlagSubmission,
   },
+    
+  
 
   data() {
     return {
@@ -501,9 +503,23 @@ export default {
       console.log("url is empty");
     }
   },
+    
+    computed: {
+    mitmRunning() {
+      if (this.level == 2) {
+      this.makeAPICall("start_mitm"); 
+        return true;
+      } else if (this.level == 7){
+          this.makeAPICall("stop_mitm"); 
+        return false;
+      }
+      return false;
+    },
+  },
 
   methods: {
     validateId() {
+      //this.makeAPICall("start_mitm"); //hier funktionierts
 
       if (this.userID == null) {
         this.emptyInput = true;
@@ -517,8 +533,10 @@ export default {
         this.emptyInput = false;
         this.gameStarted = true;
         
-        this.restartDigitalTwinContainer(); 
+       
+       
         this.getUserPoints();
+        //this.restartDigitalTwinContainer();   // restarts the digital twin docker container via the Flask 
               }
 
              else {
@@ -526,7 +544,11 @@ export default {
                 
       }})}},
 
-    // restarts the digital twin docker container via the Flask API
+  
+      
+      
+      
+      
     restartDigitalTwinContainer() {
       this.$http
         .get(
@@ -535,6 +557,7 @@ export default {
         .then((response) => {
           console.log(response.data);
         });
+
     },
 
     getUnits: function () {
@@ -552,11 +575,12 @@ export default {
 
     getUserPoints() {
       var docRef = userDashboard.doc(String(this.userID));
+      
       docRef
         .get()
         .then((doc) => {
           if (doc.exists) {
-
+            console.log(this.mitmRunning)
             this.round = doc.data().round; //in order to only show the trainees from the same round on the dashboard
             if (doc.data().startTime != null) {
               //get data from user who logged in before
@@ -608,13 +632,7 @@ export default {
         });
     },
 
-      makeAPICall(apiPath) {
-      this.$http
-        .get(window.location.href.replace("7080", "9090") + apiPath)
-        .then((response) => {
-          console.log(response.data);
-        });
-    },
+      
 
     async getVM() {
       const snapshot = await VM_db.limit(1).get();
@@ -638,8 +656,10 @@ export default {
         startTime: this.startTime,
       });
       this.getMarker();
-      //add function here: stop/start api call () start_mitm, stop_mitm
-    },
+    }
+      
+      
+      ,
 
     async uploadEvaluationData() {
       await userDashboard.doc(this.userID).update({
@@ -697,15 +717,34 @@ export default {
     rememberScrollPos() {
       this.scrollPos = window.scrollY;
     },
+      
+     makeAPICall(apiPath) {
+    
+         this.$http
+        .get(
+          window.location.href.replace("7080", "9090") + apiPath
+        )
+        .then((response) => {
+          console.log(response.data);
+          
+        });
+         
+
+    
+       
+    },
 
 
     submitPoints(points2) {
+
       this.points += points2;
       console.log("points now: ", this.points)
       if (points2 >= 0)
       {
-      this.level += 1; }
-
+      this.level += 1; 
+      console.log(this.mitmRunning)}
+        
+        
       this.uploadPoints();
     },
     scrollToPlaybookTwo() {

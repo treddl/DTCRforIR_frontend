@@ -165,7 +165,7 @@ export default {
       blanks_completed: this.getBlanksCompleted(),
       taskCompleted: false,
       pointsOverall: 0,
-      timestamps: null,
+      timestamps: [],
       beginPhase: this.getPhase(),
       showContent: true,
       triesLeft: 0,
@@ -224,13 +224,13 @@ export default {
 
       this.$emit("submit-points", points);
       this.timestamps.push(new Date ())
-      console.log("push:", new Date ())
+   
       this.pointsOverall += points;
        try {
                     var allBlanks = JSON.parse(localStorage.getItem("blanksCompleted"));
-                    console.log("Here")
+                 
                     allBlanks[this.taskData.tileNo] = allBlanks[this.taskData.tileNo] + 1;
-                    console.log(allBlanks)
+
                     localStorage.setItem("blanksCompleted", JSON.stringify(allBlanks));
                 }
                 catch (err) {
