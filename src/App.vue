@@ -646,14 +646,13 @@ console.log("api here")
       });
       this.getMarker();
       if(this.level==2){
+        console.log("make api call")
         this.makeAPICall("start_mitm")
          }
          else if(this.level==7) {
            this.makeAPICall("stop_mitm")
          }
 
-
-      //add function here: stop/start api call () start_mitm, stop_mitm
     },
 
     async uploadEvaluationData() {
