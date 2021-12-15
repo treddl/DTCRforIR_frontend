@@ -37,7 +37,7 @@
               User ID cannot be empty.
             </div>
             <div class="has-text-danger" v-if="wrongUserID">
-              User ID is not valid.
+              User ID is not registered. Please use the registration page before entering the cyber range.
             </div>
 
             <div class="buttons is-centered mt-5">
@@ -575,11 +575,12 @@ export default {
 
     getUserPoints() {
       var docRef = userDashboard.doc(String(this.userID));
+      
       docRef
         .get()
         .then((doc) => {
           if (doc.exists) {
-
+            console.log(this.mitmRunning)
             this.round = doc.data().round; //in order to only show the trainees from the same round on the dashboard
             if (doc.data().startTime != null) {
               //get data from user who logged in before
@@ -740,7 +741,8 @@ export default {
       console.log("points now: ", this.points)
       if (points2 >= 0)
       {
-      this.level += 1; }
+      this.level += 1; 
+      console.log(this.mitmRunning)}
         
         
       this.uploadPoints();
