@@ -638,6 +638,13 @@ export default {
         startTime: this.startTime,
       });
       this.getMarker();
+      if(this.level==2){
+        this.makeAPICall("start_mitm") }
+         else if(this.level==7) {
+           this.makeAPICall("stop_mitm")
+         }
+
+
       //add function here: stop/start api call () start_mitm, stop_mitm
     },
 
