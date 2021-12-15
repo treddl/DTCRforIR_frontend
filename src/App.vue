@@ -615,7 +615,8 @@ export default {
           console.log(response.data);
         });*/
 
-        fetch(window.location.href.replace("7080", "9090") + apiPath)
+      var api_call=String(window.location.href.replace("7080", "9090") + apiPath)
+        fetch(api_call)
   .then(response => response.json())
   .then(data => console.log(data));
 
