@@ -31,7 +31,7 @@
                 <input
                   class="input blank-input is-short is-json is-size-8"
                   :class="{ 'input-wrong': this.blank.wrongTry }"
-                  v-model="userInput"
+                  v-model.trim="userInput"
                   :placeholder="this.blank.placeholder"
                 />
                 <div class="buttons is-left mt-5">
