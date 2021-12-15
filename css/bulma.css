@@ -29,6 +29,8 @@
 
 .b-black {
   background-color: black !important;
+  width: 80%;
+  overflow: auto;
 }
 
 .table-warpper{

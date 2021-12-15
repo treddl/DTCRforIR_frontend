@@ -4,7 +4,7 @@
       :banner="banner"
       :shell_input="send_to_terminal"
       :commands="commands"
-      :style="{height:'30em', overflow: 'scroll', display: 'flex', 'flex-direction': 'column-reverse'}" 
+      :style="{height:'30em', 'overflow': 'scroll', display: 'flex', 'flex-direction': 'column-reverse', width: '100%'}" 
       @shell_output="prompt"
       id="container"
     ></v-shell>
