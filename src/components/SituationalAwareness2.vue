@@ -14,39 +14,59 @@
             :
             <span class="is-family-monospace has-background-danger-light">MitM attack via ARP spoofing</span> 
         </div>
+          
         <div class="block">
             Based on the type of the alarm we 
             <span class="has-text-dark has-text-weight-bold">
               know
             </span>
-             that there is an 
-            <span class="has-text-dark has-text-weight-bold">
-              intruder in our network
-            </span>
-            .
+             that
+            <ul>
+            <li>
+                there are
+                <span class="has-tooltip-arrow has-tooltip-multiline has-tooltip-top"
+                    :data-tooltip="'faking Address Resolution Protocol messages'">
+                    <span class="has-text-link-dark has-text-weight-bold">
+                         ARP spoof 
+                    </span>
+                </span> 
+                <span class="has-text-dark has-text-weight-bold">
+                  warnings raised
+                </span>
+                by the
+                <span class="has-tooltip-arrow has-tooltip-multiline has-tooltip-top"
+                    :data-tooltip="'Intrusion Detection Systems'">
+                    <span class="has-text-link-dark has-text-weight-bold">
+                         IDSs
+                    </span>
+                </span> 
+            </li>
+            <li>
+                therefore there is an
+                <span class="has-text-dark has-text-weight-bold">
+                  intruder in our network
+                </span>
+            </li>
+            <li>
+                <span class="has-text-dark has-text-weight-bold">
+                  one
+                </span>
+                 of the 
+                <span class="has-text-dark has-text-weight-bold">
+                  targets
+                </span>
+                  is 
+                <span class="has-text-dark has-text-weight-bold">
+                  PLC1
+                </span>
+            </li>
+            </ul>
         </div>
-        <div class="block">
-            <span class="has-text-dark has-text-weight-bold">
-              One
-            </span>
-             of the 
-            <span class="has-text-dark has-text-weight-bold">
-              targets
-            </span>
-              is 
-            <span class="has-text-dark has-text-weight-bold">
-             PLC1
-            </span>
-            . We know this because PLC1 produces 
-            <span class="has-text-dark has-text-weight-bold">
-              WARING logs.
-            </span>
-            
-        </div>
+
         <div class="block">
             The attack 
             <span class="has-text-dark has-text-weight-bold">
-              discrupts
+              disrupts
             </span>
              the 
             <span class="has-text-dark has-text-weight-bold">
@@ -56,7 +76,7 @@
             <span class="has-text-dark has-text-weight-bold">
               priority
             </span>
-             is to get the filling process 
+             is to get the filling machine 
             <span class="has-text-dark has-text-weight-bold">
               back up running.
             </span>
@@ -74,8 +94,15 @@
                 </span>                
                  of the attack as well as 
                 <span class="has-text-dark has-text-weight-bold">
-                  the host acting as the MitM
+                  the host acting as the 
                 </span>
+                <span class="has-tooltip-arrow has-tooltip-multiline has-tooltip-top"
+                    :data-tooltip="'Man in the Middle'"
+                 >
+                    <span class="has-text-link-dark has-text-weight-bold">
+                         MitM
+                    </span>
+                </span> 
             </li>
             <li>
                 <span class="has-text-dark has-text-weight-bold">
@@ -87,7 +114,7 @@
                 </span>
                  the attacker and 
                 <span class="has-text-dark has-text-weight-bold">
-                  identify cleaning up
+                 cleaning up
                 </span>                
                 their malicous activity
             </li>

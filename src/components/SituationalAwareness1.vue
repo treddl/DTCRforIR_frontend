@@ -27,7 +27,7 @@
             <span class="has-tooltip-arrow has-tooltip-multiline has-tooltip-top"
                 :data-tooltip="'e.g., the SIEM successfuly correlates warning logs'"
              >
-                <span class="has-text-primary-dark has-text-weight-bold is-italic">
+                <span class="has-text-link-dark has-text-weight-bold">
                      security measures
                 </span>
             </span> 
