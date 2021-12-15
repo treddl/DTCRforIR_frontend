@@ -614,6 +614,7 @@ export default {
         .then((response) => {
           console.log(response.data);
         });
+        console.log("url: ", window.location.href.replace("7080", "9090") + apiPath)
     },
 
     async getVM() {
@@ -639,7 +640,8 @@ export default {
       });
       this.getMarker();
       if(this.level==2){
-        this.makeAPICall("start_mitm") }
+        this.makeAPICall("start_mitm")
+         }
          else if(this.level==7) {
            this.makeAPICall("stop_mitm")
          }
