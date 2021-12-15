@@ -168,7 +168,7 @@
                       </button>
 
                       <button class="button is-primary is-small is-static">
-                        <strong>Level: {{ this.tasksCompleted }}</strong>
+                        <strong>Level: {{ this.level }}</strong>
                       </button>
 
                       <button class="button show-button is-small has-tooltip-arrow has-tooltip-multiline has-tooltip-top"
@@ -232,7 +232,7 @@
                   v-if="this.startPlaybookOne || this.level > 0"
                 >
                         <div class="has-text-link-dark has-text-left title is-3 is-json">
-                            Playbook 1 
+                            Playbook 1 {{mitmRunning}}
                         </div>
                         <div class="subtitle nice-subtitle">
                             Introduction to Incident Response
@@ -436,6 +436,8 @@ export default {
     TextLesson2,
     FlagSubmission,
   },
+    
+  
 
   data() {
     return {
@@ -501,9 +503,22 @@ export default {
       console.log("url is empty");
     }
   },
+    
+    computed: {
+    mitmRunning() {
+      if (this.level == 2) {
+      this.makeAPICall("start_mitm"); 
+        return true;
+      } else if (this.level == 7){
+          this.makeAPICall("stop_mitm"); 
+        return false;
+      }
+    },
+  },
 
   methods: {
     validateId() {
+      //this.makeAPICall("start_mitm"); //hier funktionierts
 
       if (this.userID == null) {
         this.emptyInput = true;
@@ -517,8 +532,10 @@ export default {
         this.emptyInput = false;
         this.gameStarted = true;
         
-        this.restartDigitalTwinContainer(); 
+       
+       
         this.getUserPoints();
+        //this.restartDigitalTwinContainer();   // restarts the digital twin docker container via the Flask 
               }
 
              else {
@@ -526,7 +543,11 @@ export default {
                 
       }})}},
 
-    // restarts the digital twin docker container via the Flask API
+  
+      
+      
+      
+      
     restartDigitalTwinContainer() {
       this.$http
         .get(
@@ -535,6 +556,7 @@ export default {
         .then((response) => {
           console.log(response.data);
         });
+
     },
 
     getUnits: function () {
@@ -608,20 +630,7 @@ export default {
         });
     },
 
-      makeAPICall(apiPath) {
-      /*this.$http
-        .get(window.location.href.replace("7080", "9090") + apiPath)
-        .then((response) => {
-          console.log(response.data);
-        });*/
-console.log("api here")
-      var api_call=String(window.location.href.replace("7080", "9090") + apiPath)
-        fetch(api_call)
-  .then(response => response.json())
-  .then(data => console.log(data));
-
-       
-    },
+      
 
     async getVM() {
       const snapshot = await VM_db.limit(1).get();
@@ -645,15 +654,10 @@ console.log("api here")
         startTime: this.startTime,
       });
       this.getMarker();
-      if(this.level==2){
-        console.log("make api call")
-        this.makeAPICall("start_mitm")
-         }
-         else if(this.level==7) {
-           this.makeAPICall("stop_mitm")
-         }
-
-    },
+    }
+      
+      
+      ,
 
     async uploadEvaluationData() {
       await userDashboard.doc(this.userID).update({
@@ -711,15 +715,33 @@ console.log("api here")
     rememberScrollPos() {
       this.scrollPos = window.scrollY;
     },
+      
+     makeAPICall(apiPath) {
+    
+         this.$http
+        .get(
+          window.location.href.replace("7080", "9090") + apiPath
+        )
+        .then((response) => {
+          console.log(response.data);
+          
+        });
+         
+
+    
+       
+    },
 
 
     submitPoints(points2) {
+
       this.points += points2;
       console.log("points now: ", this.points)
       if (points2 >= 0)
       {
       this.level += 1; }
-
+        
+        
       this.uploadPoints();
     },
     scrollToPlaybookTwo() {
