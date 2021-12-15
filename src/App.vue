@@ -14,19 +14,25 @@
           <div class="subtitle mb-6 pb-6"> A Cyber Range for Incident Response Training. </div> </div>
 
 
-        <div class="margin-big">
+        <div class="margin-big has-text-centered">
           <form @submit.prevent="validateId()">
+            
+            <div class="field">
+               <span>
             <input
               class="input input-label-short is-size-6"
-              :value="'Your user ID: '"
+              :value="'Your NDS account: '"
             />
+              </span>
             <span>
               <input
-                class="input input-short is-long is-size-6 blank-input"
-                v-model="userID"
-                :placeholder="'ID (e.g., 1234)'"
+                class="input input-short is-size-6 blank-input"
+                v-model.trim="userID"
+                :placeholder="'ID (e.g., glr02834)'"
               />
-            </span>
+              </span>
+              </div>
+           
             <div class="has-text-danger" v-if="emptyInput">
               User ID cannot be empty.
             </div>
@@ -372,7 +378,7 @@
 
                         <div id="respTwo">
                           <div class="is-info content" 
-                              v-if="this.startRespTwo || this.level >= 2">
+                              v-if="this.level >= 4">
                               <div class="has-text-link-dark has-text-left title is-4 is-json">
                                   Response Phase
                               </div>
@@ -670,15 +676,6 @@ export default {
       console.log("uploaded");
     },
 
-    textToClipboard(text) {
-      console.log("try to copy");
-      var dummy = document.createElement("textarea");
-      document.body.appendChild(dummy);
-      dummy.value = text;
-      dummy.select();
-      document.execCommand("copy");
-      document.body.removeChild(dummy);
-    },
 
     submitEvaluationData() {
       this.$http
@@ -701,12 +698,6 @@ export default {
       this.scrollPos = window.scrollY;
     },
 
-    prepareEmail() {
-      window.open(
-        "mailto:richard.schuster@stud.uni-regensburg.de?subject=TraineeData&body=" +
-          this.evaluationData
-      );
-    },
 
     submitPoints(points2) {
       this.points += points2;

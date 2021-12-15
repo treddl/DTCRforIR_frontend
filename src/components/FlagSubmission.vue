@@ -2,7 +2,7 @@
     <div class="is-task" :id="this.taskData.tileNo">
       <div class="buttons is-left mt-5" >
           <button class="button is-rounded is-success" 
-            @click="this.beginPhase = true; this.trackBegin; this.scrollToElement(this.taskData.tileNo);"
+            @click="this.beginPhase = true; this.trackBegin(); this.scrollToElement(this.taskData.tileNo);"
             v-if="!this.beginPhase "
           >
             Begin
@@ -165,11 +165,7 @@ export default {
       blanks_completed: this.getBlanksCompleted(),
       taskCompleted: false,
       pointsOverall: 0,
-
-      timestamp_before: null,
-      timestamp_after: null,
-      timeToComplete: null,
-
+      timestamps: null,
       beginPhase: this.getPhase(),
       showContent: true,
       triesLeft: 0,
@@ -217,17 +213,18 @@ export default {
     },
 
     trackBegin () {
-     // TODO: create date object with current time & link with scroing system
+
+        this.timestamps = [this.taskData.tileNo, new Date()];
+        console.log("begin:", this.timestamps)
     },
       
     completeTask(points) {
       this.blanks_completed += 1;
-      if (this.timestamp_before == null) {
-        //set start time of task with first submit
-        this.timestamp_before = new Date();
-      }
+      
 
       this.$emit("submit-points", points);
+      this.timestamps.push(new Date ())
+      console.log("push:", new Date ())
       this.pointsOverall += points;
        try {
                     var allBlanks = JSON.parse(localStorage.getItem("blanksCompleted"));
@@ -251,16 +248,14 @@ export default {
 
       if (this.blanks_completed == Object.keys(this.blanks).length) {
         this.taskCompleted = true;
-        this.timestamp_after = new Date();
+        /*this.timestamp_after = new Date();
         this.timeToComplete =
           (this.timestamp_after.getTime() - this.timestamp_before.getTime()) /
-          1000;
+          1000; */
 
-        this.$emit("task-completed", [
-          this.timestamp_before,
-          this.timestamp_after,
-          this.timeToComplete,
-        ]);
+        this.$emit("task-completed", 
+          this.timestamps
+        );
         this.scrollToElement(this.taskData.tileNo);
       }
     },

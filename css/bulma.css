@@ -18,6 +18,14 @@
 }
 
 
+.field {
+  width:450px;
+  display: table;
+}
+.field > * {
+  display: table-cell;
+
+}
 
 .b-black {
   background-color: black !important;
@@ -446,8 +454,8 @@ margin-right: 2rem !important;
 
   .margin-big{
     margin-top: 5rem;
-    margin-left: 10rem;
-    margin-right: 10rem;
+    margin-left: 5rem;
+    margin-right: 5rem;
     margin-bottom: 10rem;
   }
 
@@ -477,7 +485,7 @@ margin-right: 2rem !important;
     outline: 0 !important;
     border-width: 0 0 2px !important;
     box-shadow: none !important;
-    width: 25% !important;
+    
     display: table-cell !important;
     margin-top: 0 !important;
     padding-left: 0 !important;
