@@ -77,7 +77,7 @@
                 The correct flag is:
               </div>
               <input
-                class="input blank-input is-short"
+                class="input blank-input is-short is-json is-size-8"
                 :value="this.blank.flag"
                 readonly
               />
@@ -105,7 +105,7 @@
           class="message is-success"
           v-else-if="this.blank.rightTry"
         >
-            <div class="message-body">
+            <div class="message-body is-size-5">
               Good on you! You earned {{ triesLeft }} point(s). 🎉
             </div>
         </div>
