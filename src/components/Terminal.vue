@@ -67,7 +67,7 @@ export default {
     },
     changeHostName() {
         this.hostName = String(this.userPseudonym);
-        this.banner.sign = String(this.userPseudonym) + "@INCIDENT-RESPONSE~#"; 
+        this.banner.sign = String(this.userPseudonym) + "@INCIDENT-RESPONSE~$"; 
     },
     getTerminalSign() {
       return "root@" + this.getHostName() + "~#";

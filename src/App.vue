@@ -325,7 +325,7 @@
 
 
               <!-- Unit 2 / Playbook 2 --->
-              <div id="PlaybookTwo">
+              <div id="playbookTwo">
                 <div class="is-info content"
                     v-if="startPlaybookTwo || this.level > 2">
                         <div class="has-text-link-dark has-text-left title is-3 is-json">
@@ -709,7 +709,7 @@ export default {
       this.uploadPoints();
     },
     scrollToPlaybookTwo() {
-      const el = document.getElementById('PlaybookTwo');
+      const el = document.getElementById('playbookTwo');
       setTimeout(() => {
         el.scrollIntoView({ behavior: "smooth", alignToTop: true });
       });

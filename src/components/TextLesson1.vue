@@ -2,7 +2,15 @@
   <div class="is-info content" :id="this.tileNo">
     <div>
       <div class="has-text-link-dark has-text-left title is-5 is-json" >
-          Lesson 3: Deep dive into SIEM alarms & events (text)
+          Lesson 3: 
+           <span class="has-tooltip-arrow has-tooltip-multiline has-tooltip-top"
+                :data-tooltip="`too long to read`"
+             >
+                <span class="has-text-dark has-text-weight-bold">
+                    TL;TR:
+                </span>
+            </span> 
+          SIEM alarms & events (text)
       </div>
       <div class="buttons is-left mt-5">
         <button
@@ -58,8 +66,7 @@
 
                 <li>
                 <strong>plugin_id:</strong>
-                a ID that it used by the SIEM to identify SIEM Events in the
-                system
+                a unique ID that it used by the SIEM to identify different log types, e.g., a log of a network packet or a log of a sensor update
                 </li>
             </ul>
             </div>

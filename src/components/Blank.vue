@@ -11,10 +11,9 @@
             </div>
                 <div class="message-body">
                     <div class="has-text-dark has-text-weight-medium">
-                    <div
-                      class="block"
-                      v-html="this.blank.responseActionInstruction"
-                    ></div>
+                      <div class="block">
+                        <span v-html="this.blank.responseActionInstruction"></span>
+                      </div>
                     <div class="block" 
                          v-if="blank.isTerminalTask">
                       <terminal
@@ -64,17 +63,16 @@
                    v-html="this.blank.responseActionID"
               >
               </div>
-              <div class="block"
-                v-html="this.blank.responseActionInstruction"
-              >
+              <div class="block">
+                <span>&#62;</span><span>&#62;</span> <span v-html="this.blank.responseActionInstruction"></span>
               </div>
-              <div class="block" 
-                v-html="this.blank.flagInstruction"
-              >
+            
+              <div class="block"> 
+                  <span> &#10140; </span><span v-html="this.blank.flagInstruction"></span>
               </div>
               <div class="block"
               >
-                The correct flag is:
+                 <span> &#x2139; </span> The correct flag is:
               </div>
               <input
                 class="input blank-input is-short is-json is-size-8"

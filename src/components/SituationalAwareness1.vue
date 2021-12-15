@@ -23,7 +23,7 @@
             </span>
             .</div>
 
-        <div class="block">As the name suggests, this is not a real security indicent. The alarm does however show us that all 
+        <div class="block">As the name suggests, this is not a real security incident. The alarm does however show us that all 
             <span class="has-tooltip-arrow has-tooltip-multiline has-tooltip-top"
                 :data-tooltip="'e.g., the SIEM successfuly correlates warning logs'"
              >
