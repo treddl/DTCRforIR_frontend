@@ -6,20 +6,9 @@ const Unit2RespTasks = {
     failMessage: "Don't beat yourself up. Maybe response just isn't your cup of tea.",
     rememberMessage: "",
     responsePhase: "identification",
-    phaseIntroduction: `<div>This is going great. We established which host acts as the 
-                        <span class="has-tooltip-arrow has-tooltip-multiline has-tooltip-top" 
-                        data-tooltip="the intruder is using our 'work-station' as the MitM">
-                            <span class="has-text-link-dark has-text-weight-bold">
-                                MitM
-                            </span>
-                        </span>
-                        and which hosts are the 
-                        <span class="has-tooltip-arrow has-tooltip-multiline has-tooltip-top" 
-                        data-tooltip="the intruder placed the 'work-station' inbetween plc1 and plc3">
-                            <span class="has-text-link-dark has-text-weight-bold">
-                                tragets.
-                            </span>
-                        </span>
+    phaseIntroduction: `<div>This is going great. We established that our work-station is the MitM and the two targets are plc1 and plc3.</div> <br>
+<div><span class="has-text-weight-bold">As a quick recap:</span> The intruder poisioned the ARP caches of plc1 (10.0.0.1) and plc3 (10.0.0.3). So instead of communicating directly with each other, all communication between them goes through the compromised work-station (10.0.0.5), fulfilling the role of the MitM in this attack. Although eavesdropping is a common goal in MitM attacks, in our scenario the intruder uses the attack to discrupt the filling process by blocking the communication between plc1 and plc3.</div><br>
+                        <div>
                         Now it is time to stop the attack and
                         <span class="has-tooltip-arrow has-tooltip-multiline has-tooltip-top" 
                         data-tooltip="cleaning up the poisned ARP caches of plc1 and plc3">
@@ -39,7 +28,7 @@ const Unit2RespTasks = {
                         <br>
                         <div><div><span>&#x2139;</span> In the shells you can run as many commands as you need to accomplish the task. In other words, the commands don't count toward your points. Only the flag submission does.</div>
                         <br>
-                        <div>Follow the response instructions below and make a name for yourself as first class incident responder.</div>`,
+                        <div>Follow the response instructions below and make a name for yourself as a first class incident responder.</div>`,
     blanks: [
         {
             level: 4,

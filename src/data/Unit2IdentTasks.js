@@ -6,7 +6,7 @@ const Unit2IdentTasks = {
     failMessage: "Don't panic, in the next phase the luck is on your side.",
     rememberMessage: "Remember you can always revisit lessons.",
     responsePhase: "identification",
-    phaseIntroduction: `<div>This time it is critical to get all the information right. Otherwise we risk taking down the wrong systems, causing even more disruptions!</div> <br> <div>To esbalish the scope of the incident, perform the following two steps.</div>`,
+    phaseIntroduction: `<div>This time it is critical to get all the information right. Otherwise we risk taking down the wrong systems, causing even more disruptions!</div> <br> <div>To establish the scope of the incident, perform the following two steps.</div>`,
     blanks: [
         {
             level: 2,

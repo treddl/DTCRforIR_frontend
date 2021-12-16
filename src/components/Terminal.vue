@@ -26,7 +26,7 @@ export default {
       terminalData: this.termData.terminalData,
       send_to_terminal: "",
       banner: {
-        header: "ICEGERG Shell#",
+        header: "ICEBERG Shell#",
         subHeader: "",
         helpHeader: 'Enter "help" for a list of valid command options.',
         emoji: {
@@ -45,14 +45,32 @@ export default {
       console.log("data: ", this.terminalData);
       const c = [
         {
-          name: "clear : clears terminal screen"
+          name: "ip link show : lists network interfaces"
         },
         {
-          name: "ip link [show|set] [INTERFACE] [OPTIONS] : lists|sets network interfaces"
+          name: "ip link set dev INTERFACE OPTIONS : sets state of selected network interface"
         },
         {
-          name: "arp [OPTIONS] [IP_ADDR] [MAC_ADDR] : lists|sets arp Cache (entries)"
+          name: "&nbsp;&nbsp;&nbsp;OPTIONS"
         },
+        {
+          name: "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;up : sets state to on"
+        }, 
+        {
+          name: "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;down : sets state to off"
+        },
+        {
+          name: "arp : lists arp Cache"
+        },
+        {
+          name: "arp OPTIONS IP_ADDR MAC_ADDR : sets arp Cache entries"
+        },
+        {
+          name: "&nbsp;&nbsp;&nbsp;OPTIONS"
+        },
+        {
+          name: "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-s : sets ARP entry static"
+        },       
         {
           name: "whoami : shows current user"
         },

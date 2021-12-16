@@ -111,6 +111,12 @@
                   The correct command is: <span class="is-family-monospace has-background-light" v-html="this.blank.correctCommand"></span>
                 </div>
             </div>
+            <div class="message is-link"
+                 v-if="this.blank.level == 6">
+                <div class="message-body is-size-5">
+                  Before you continue with the <span class="has-text-weight-bold">final task,</span> take a breath and hit the <span class="has-text-weight-bold">'Refresh'</span> button in the SIEM dashboard.
+                </div>
+            </div>    
         </div>    
         <div v-else-if="triesLeft == 0 && this.blank.wrongTry">
              <div class="message is-danger">
@@ -123,7 +129,13 @@
                 <div class="message-body is-size-5">
                   The correct command is: <span class="is-family-monospace has-background-light" v-html="this.blank.correctCommand"></span>
                 </div>
-            </div>            
+            </div>
+            <div class="message is-link"
+                 v-if="this.blank.level == 6">
+                <div class="message-body is-size-5">
+                  Before you continue with the <span class="has-text-weight-bold">final task,</span> take a breath and hit the <span class="has-text-weight-bold">'Refresh'</span> button in the SIEM dashboard.
+                </div>
+            </div>        
         </div>
       </div>
       <br />
