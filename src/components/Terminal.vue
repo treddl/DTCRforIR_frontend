@@ -26,7 +26,7 @@ export default {
       terminalData: this.termData.terminalData,
       send_to_terminal: "",
       banner: {
-        header: "Cyber Range Shell",
+        header: "ICEGERG Shell#",
         subHeader: "",
         helpHeader: 'Enter "help" for a list of valid command options.',
         emoji: {
