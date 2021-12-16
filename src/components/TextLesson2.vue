@@ -31,7 +31,7 @@
             <div class="block">
               In simple terms, a shell is a computer program that lets you interact with a computer's operating system.  
             </div>
-          <img src="./../assets/shell.png" class="image pl-2" style="height: 400px">
+          <img src="./../assets/shell.png" class="image pl-2" style="width: 80%">
           <br>
           </div>
 
@@ -158,7 +158,7 @@ export default {
     return {
       tileNo: "textlesson2",  
       showAdditionalInformation: false,
-      showInfo: false,
+      showInfo: true,
     };
   },
 

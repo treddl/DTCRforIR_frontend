@@ -46,7 +46,7 @@
             <span class="has-text-dark has-text-weight-bold">Event Overview</span>  
             you can see the most relevant fields.
           </div>
-          <img src="./../assets/SIEM_event.png" class="image pl-2" style="height: 120px">
+          <img src="./../assets/SIEM_event.png" class="image pl-2" style="width: 100%">
           <br> 
           <div class="block">
             The SIEM distinguishes different 
@@ -187,7 +187,7 @@ export default {
     return {
       tileNo: "textlesson1",
       showAdditionalInformation: false,
-      showInfo: false,
+      showInfo: true,
     };
   },
 
