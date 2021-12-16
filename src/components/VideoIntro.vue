@@ -1,6 +1,6 @@
 <template>
   <div>
-    <!-- maps the videos tileNo to this elememt's id -->
+    <!-- maps the videos tileNo to this element's id -->
     <div class="is-info content" :id="this.tileNo">
       <div class="content">
         <div class="has-text-link-dark has-text-left title is-3 is-json" 
@@ -10,8 +10,6 @@
         <!-- display buttons Continue and Show/Hide
               - continue to the next lesson/task/unit while hiding the content below the title and subtile, or to
               - show/hide the content below the title and subtitle --> 
-        <!-- TODO outosource this into a subcomponent if possible -->
-
           <!-- display video from YouTube -->
         <div class="videoWrapper" 
           v-if="showContent">

@@ -52,7 +52,7 @@
                 v-html="this.taskData.partSuccessMessage"
               >
               </span>
-              <!-- display different message in case the traine went out of tries -->
+              <!-- display different message in case the trainee went out of tries -->
               <span
                 v-if="this.triesLeft == 0"
                 v-html="this.taskData.failMessage"
@@ -99,7 +99,7 @@
 
         <br />
        
-        <!-- diplay prior task completion: actual task  -->
+        <!-- display prior task completion: actual task  -->
         <div v-if="showContent ">
       
           <!-- bind the display style of this element to the truthiness of 'taskCompleted' or 'completedBefore' -->

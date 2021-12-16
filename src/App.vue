@@ -272,8 +272,8 @@
                                 Identification Phase
                             </div>
                             <!-- doc on Vue.js
-                            '<flag-submision' represents the component stored in './components/FlagSubmission.vue'
-                            ':taskData=Task1_1' passes down the data stroed in './data/task1_1.js' to the component's prop 'taskData'
+                            '<flag-submission' represents the component stored in './components/FlagSubmission.vue'
+                            ':taskData=Task1_1' passes down the data stored in './data/task1_1.js' to the component's prop 'taskData'
                             'order="this.order"' passes down the the variable 'order' stored in this file to the component's prop 'order'
                             '@submit-points="submitPoints"' listens for the component's broadcast 'submit-points' and 
                             calls the function 'submitPoints()' in this file
@@ -302,7 +302,7 @@
                                   Response Phase
                               </div>
                               <div class="block has-text-weight-medium is-size-5 ">
-                                  You've finished your first incident repsonse playbook! As this was a test alarm, there's no need for response actions. 
+                                  You've finished your first incident response playbook! As this was a test alarm, there's no need for response actions. 
                               </div>
                               <div class="block has-text-weight-medium is-size-5 ">
                                   Before you head on to Playbook 2, quickly hit the <span class="has-text-weight-bold">'Refresh'</span> button in the SIEM dashboard to get the latest events.
@@ -337,7 +337,7 @@
                     
                         <div class="is-info content"  id="prepTwo">
                             <div class="has-text-link-dark has-text-left title is-4 is-json">
-                                Prepration Phase
+                                Preparation Phase
                             </div>
                             <div>
                               <situational-awareness-2 

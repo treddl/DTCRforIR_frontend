@@ -7,11 +7,13 @@ const Unit2RespTasks = {
     rememberMessage: "",
     responsePhase: "identification",
     phaseIntroduction: `<div>This is going great. We established that our work-station is the MitM and the two targets are plc1 and plc3.</div> <br>
-<div><span class="has-text-weight-bold">As a quick recap:</span> The intruder poisioned the ARP caches of plc1 (10.0.0.1) and plc3 (10.0.0.3). So instead of communicating directly with each other, all communication between them goes through the compromised work-station (10.0.0.5), fulfilling the role of the MitM in this attack. Although eavesdropping is a common goal in MitM attacks, in our scenario the intruder uses the attack to discrupt the filling process by blocking the communication between plc1 and plc3.</div><br>
+<div><span class="has-text-weight-bold">As a quick recap:</span> The intruder poisoned the ARP caches of plc1 (10.0.0.1) and plc3 (10.0.0.3). 
+So instead of communicating directly with each other, all communication between them goes through the compromised work-station (10.0.0.5), fulfilling the role of the MitM in this attack. 
+Although eavesdropping is a common goal in MitM attacks, in our scenario the intruder uses the attack to disrupt the filling process by blocking the communication between plc1 and plc3.</div><br>
                         <div>
                         Now it is time to stop the attack and
                         <span class="has-tooltip-arrow has-tooltip-multiline has-tooltip-top" 
-                        data-tooltip="cleaning up the poisned ARP caches of plc1 and plc3">
+                        data-tooltip="cleaning up the poisoned ARP caches of plc1 and plc3">
                             <span class="has-text-link-dark has-text-weight-bold">
                                 recover
                             </span>
@@ -123,7 +125,7 @@ data-tooltip="Don't worry, you recognize it when you see it ;)">
 <span class="is-family-monospace has-background-light">arp</span> 
 you can see that the ARP cache entry for 10.0.0.3 is poisend. 
 Recover the ARP entry by using the correct version of the command
-<span class="is-family-monospace has-background-light">arp -s IP_ADDR MAC_ADDRR</span>
+<span class="is-family-monospace has-background-light">arp -s IP_ADDR MAC_ADDR</span>
 `,
 
             isTerminalTask: true,
@@ -175,7 +177,8 @@ Recover the ARP entry by using the correct version of the command
         {
             level: 6,
             responseActionID: "Step 3",
-            responseActionInstruction: `<div><span>&#62;</span><span>&#62;</span> Recover the ARP cache on PLC3: Replace the spoofed ARP entry with the correct one in mode <span class="is-family-monospace has-background-light">static</span>. </div> <br> <div><span>&#x2139;</span> With this shell you have remote access to <span class="has-text-dark has-text-weight-bold">plc3.</span></div>`,
+            responseActionInstruction: `<div><span>&#62;</span><span>&#62;</span> Recover the ARP cache on PLC3: Replace the spoofed ARP entry with the correct one in mode <span class="is-family-monospace has-background-light">static</span>. </div> <br> 
+            <div><span>&#x2139;</span> With this shell you have remote access to <span class="has-text-dark has-text-weight-bold">plc3.</span></div>`,
             flagInstruction: `Submit the 
 <span class="has-tooltip-arrow has-tooltip-multiline has-tooltip-top" 
 data-tooltip="Don't worry, you recognize it when you see it ;)">
@@ -188,9 +191,9 @@ data-tooltip="Don't worry, you recognize it when you see it ;)">
             placeholder: "enter flag here ..",
             hint: `Do the same as in the previous task. This time you're on plc3 though! With the command 
 <span class="is-family-monospace has-background-light">arp</span> 
-you can see that the ARP cache entry for 10.0.0.1 is poisend. 
+you can see that the ARP cache entry for 10.0.0.1 is poisoned. 
 Recover the ARP entry by using the correct version of the command
-<span class="is-family-monospace has-background-light">arp -s IP_ADDR MAC_ADDRR</span>
+<span class="is-family-monospace has-background-light">arp -s IP_ADDR MAC_ADDR</span>
 `,
 
             isTerminalTask: true,
@@ -242,7 +245,7 @@ Recover the ARP entry by using the correct version of the command
         {
             level: 7,
             responseActionID: "Step 4",
-            responseActionInstruction: `<span>&#62;</span><span>&#62;</span> Verify that the malicous activity has stopped. Monitor the SIEM for the events that <span class="has-text-weight-medium">replace</span> the WARNING logs of <span class="has-text-weight-medium">plc1</span>.`,
+            responseActionInstruction: `<span>&#62;</span><span>&#62;</span> Verify that the malicious activity has stopped. Monitor the SIEM for the events that <span class="has-text-weight-medium">replace</span> the WARNING logs of <span class="has-text-weight-medium">plc1</span>.`,
             flagInstruction:  `Submit the 
 <span class="has-tooltip-arrow has-tooltip-multiline has-tooltip-top" 
 data-tooltip="Don't worry, you recognize it when you see it ;)">
@@ -253,7 +256,8 @@ data-tooltip="Don't worry, you recognize it when you see it ;)">
             flagVariants: ["aurora-polaris", "aurorapolaris"],
             flag: "aurora-polaris",
             placeholder: "enter flag here ..",
-            hint: `You're looking for the event type with plugin_sid 400. Here you need to find at least <span class="has-text-weight-medium">one</span> event that shows the successful value reception of a <span class="has-text-weight-medium">specific</span> PLC. Use the 'detail view' of the events for this.`,
+            hint: `You're looking for the event type with plugin_sid 400. Here you need to find at least <span class="has-text-weight-medium">one</span> 
+            event that shows the successful value reception of a <span class="has-text-weight-medium">specific</span> PLC. Use the 'detail view' of the events for this.`,
 
             isTerminalTask: false,
 

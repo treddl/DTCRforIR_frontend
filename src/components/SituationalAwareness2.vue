@@ -124,7 +124,7 @@
                 <span class="has-text-dark has-text-weight-bold">
                  cleaning up
                 </span>                
-                their malicous activity
+                their malicious activity
             </li>
             </ul>
 

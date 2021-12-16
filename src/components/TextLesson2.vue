@@ -77,25 +77,25 @@
             class="button is-rounded"
             v-if="!showAdditionalInformation"
           >
-            Show More
+            Tell me more
           </button>
           <button
             @click="this.showAdditionalInformation = false"
             class="button is-rounded"
             v-else
           >
-            Show Less
+            Show less
           </button>
         </div>
         
         <!-- show additional lesson content -->
         <div class="pl-4" v-if="showAdditionalInformation">
           <div class="has-text-link-dark has-text-left title is-6 is-json">
-              Tipps on using the shell:
+              Tips on using the shell:
           </div>
           <ul>
             <li>
-              altough a shell is pretty powerful, it is quite strict on the syntax: you need to 
+              although a shell is pretty powerful, it is quite strict on the syntax: you need to 
               <span class="has-text-dark has-text-weight-bold">type the commands in the exact order,</span> 
               including spaces in between
             </li>

@@ -79,7 +79,7 @@
           <div class="block">
             The SIEM triggers an alarm if predefined rules apply. The rules tell the SIEM what events to watch out for and in which sequence. If you must know, this monitoring is done by the 
                 <span class="has-tooltip-arrow has-tooltip-multiline has-tooltip-top"
-                    :data-tooltip="'this is where the magic of a SIEM happens: it’s the thing that notices when something is fishy'"
+                    :data-tooltip="`this is where the magic of a SIEM happens: it's the thing that notices when something is fishy`"
                 >
                     <span class="has-text-link-dark has-text-weight-bold">
                         correlation engine.
@@ -89,7 +89,7 @@
           </div>
           <div class="block">
                 <span class="has-tooltip-arrow has-tooltip-multiline has-tooltip-top"
-                    :data-tooltip="'hey SIEM 👋, please tell me with an alarm 🚨 when you see event A one time 🔍 followed by event B five times 🔍'"
+                    :data-tooltip="'hey SIEM 👋&nbsp; please tell me with an alarm 🚨&nbsp; when you see event A one time 🔍 followed by event B five times 🔍'"
                 >
                     <span class="has-text-link-dark has-text-weight-bold">
                         Hover here for a simple rule example.
@@ -114,14 +114,14 @@
             class="button is-rounded"
             v-if="!showAdditionalInformation"
           >
-            Show More
+            Tell me more
           </button>
           <button
             @click="this.showAdditionalInformation = false"
             class="button is-rounded"
             v-else
           >
-            Show Less
+            Show less
           </button>
         </div>
         
