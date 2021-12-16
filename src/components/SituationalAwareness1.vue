@@ -9,7 +9,7 @@
         v-if="showInfo">
          
         <div class="block">The SIEM triggered our first alarm:  
-            <span class="is-family-monospace has-background-light m-1">
+            <span class="is-family-monospace has-background-light">
                 Successful test of SIEM alarm function
             </span> 
         </div>
@@ -19,9 +19,9 @@
             </span>
             in the network are 
             <span class="has-text-dark has-text-weight-bold">
-              online
+              online.
             </span>
-            .</div>
+            </div>
 
         <div class="block">As the name suggests, this is not a real security incident. The alarm does however show us that all 
             <span class="has-tooltip-arrow has-tooltip-multiline has-tooltip-top"
@@ -73,9 +73,9 @@
             . 
             You can 
             <span class="has-text-dark has-text-weight-bold">
-               check them out now
+               check them out now.
             </span> 
-            . Or, if you feel brave enough, head straight to the tasks in the Identification Phase. Happy investigating!
+            Or, if you feel brave enough, head straight to the tasks in the Identification Phase. Happy investigating!
         </div>
       </div>
       <div class="buttons is-left mt-5">

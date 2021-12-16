@@ -21,47 +21,76 @@
         </button>
       </div>
 
-      <div class="content" v-if="showInfo" >   
+      <!-- show main lesson content -->
+      <div class="content" v-if="showInfo">
+        <div class="has-text-link-dark has-text-left title is-6 is-json">
+          What is a shell?
+        </div>
 
-        <div class="block">here goes the content of the text lesson</div>    
-
-        <div>
-            <div class="buttons is-left mt-5">
-            <button
-                @click="this.showAdditionalInformation = true"
-                class="button is-rounded"
-                v-if="!showAdditionalInformation"
-            >
-                Tell me more
-            </button>
-            <button
-                @click="this.showAdditionalInformation = false"
-                class="button is-rounded"
-                v-else
-            >
-                Show less
-            </button>
+          <div class="pl-2">
+            <div class="block">
+              In simple terms, a shell is a computer program that lets you interact with a computer's operating system.  
             </div>
+            <div class="block mb-5"></div>
+          </div>
 
-            <div v-if="showAdditionalInformation">
-            <ul>
-                <li>
-                <strong>src_ip:</strong>
-                Source IP - refers to the sender of the Event.
-                </li>
-                <li>
-                <strong>dst_ip:</strong>
-                Destination-IP -refers to the receiver of the Event. If the Event
-                is e.g. for information purposes only this is the same as th
-                Source-IP.
-                </li>
-                <li>
-                <strong>plugin_sid:</strong>
-                an ID that is unique to a specific event, e.g., plugin_sid=100 is unique to 'value-udpate-successful'
-                </li>
-            </ul>
+        <div class="has-text-link-dark has-text-left title is-6 is-json">
+          Working with a computer's network interfaces
+        </div>
+          <div class="pl-2">
+            <div class="block">
+              To view the network interfaces available on the computer, run <span class="is-family-monospace has-background-light">ip link show</span>
             </div>
-        </div>        
+            <div class="block mb-5">
+              To turn on or off a specific network interface, run <span class="is-family-monospace has-background-light">ip link set dev NAME up|down:</span>
+            </div>
+          </div>
+
+        <div class="has-text-link-dark has-text-left title is-6 is-json">
+          Working with a computer's ARP cache
+        </div>
+          <div class="pl-2">
+            <div class="block">
+              To view the current ARP cache on the computer, run <span class="is-family-monospace has-background-light">arp</span>
+            </div>
+            <div class="block">
+              To make changes to a specifc entry in the ARP cache, run <span class="is-family-monospace has-background-light">arp IP_ADDR MAC_ADDR</span>
+            </div>
+            <div class="block mb-5"></div>
+          </div>
+
+        
+
+        <!-- buttons for showing additional lesson content -->
+        <div class="buttons is-left mt-5">
+          <button
+            @click="this.showAdditionalInformation = true"
+            class="button is-rounded"
+            v-if="!showAdditionalInformation"
+          >
+            Show More
+          </button>
+          <button
+            @click="this.showAdditionalInformation = false"
+            class="button is-rounded"
+            v-else
+          >
+            Show Less
+          </button>
+        </div>
+        
+        <!-- show additional lesson content -->
+        <div v-if="showAdditionalInformation">
+          <div class="bock">Here are some tipps on using a shell:</div>
+          <ul>
+            <li>
+              with the keys up and down you can go through your history of typed commands; this is a neat feature if you have a typo in a longer command and don't want to retype it
+            </li>
+            <li>
+              <span class="is-family-monospace has-background-light">clear</span> run this command to clear the screen; helpful when you have a lot of output you don't need anymore
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>

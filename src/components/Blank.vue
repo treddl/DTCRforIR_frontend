@@ -64,11 +64,11 @@
               >
               </div>
               <div class="block">
-                <span>&#62;</span><span>&#62;</span> <span v-html="this.blank.responseActionInstruction"></span>
+                <span v-html="this.blank.responseActionInstruction"></span>
               </div>
             
               <div class="block"> 
-                  <span> &#10140; </span><span v-html="this.blank.flagInstruction"></span>
+                  <span> &#10140; </span> <span v-html="this.blank.flagInstruction"></span>
               </div>
               <div class="block"
               >
@@ -99,21 +99,31 @@
               You were wrong. You have {{ triesLeft }} Tries left.
             </div>
         </div>
-        <div
-          class="message is-success"
-          v-else-if="this.blank.rightTry"
-        >
-            <div class="message-body is-size-5">
-              Good on you! You earned {{ triesLeft }} point(s). 🎉
+        <div v-else-if="this.blank.rightTry">
+            <div class="message is-success">
+                <div class="message-body is-size-5">
+                  Good on you! You earned {{ triesLeft }} point(s). 🎉
+                </div>
             </div>
-        </div>
-        <div
-          class="message is-danger"
-          v-else-if="triesLeft == 0 && this.blank.wrongTry"
-        >
-            <div class="message-body">
-              Sorry. You have no tries left.
+            <div class="message is-warning"
+                 v-if="this.blank.isTerminalTask">
+                <div class="message-body is-size-5">
+                  The correct command is: <span class="is-family-monospace has-background-light" v-html="this.blank.correctCommand"></span>
+                </div>
             </div>
+        </div>    
+        <div v-else-if="triesLeft == 0 && this.blank.wrongTry">
+             <div class="message is-danger">
+                <div class="message-body">
+                  Sorry. You have no tries left.
+                </div>
+            </div>
+            <div class="message is-warning"
+                 v-if="this.blank.isTerminalTask">
+                <div class="message-body is-size-5">
+                  The correct command is: <span class="is-family-monospace has-background-light" v-html="this.blank.correctCommand"></span>
+                </div>
+            </div>            
         </div>
       </div>
       <br />
@@ -188,7 +198,7 @@ export default {
         
       if (this.userInput == "") {
         this.emptyInput = true;
-      } else if (this.userInput.trim() != this.blank.flag) {
+      } else if (this.userInput.trim() != this.blank.flagVariants[0] && this.userInput.trim() != this.blank.flagVariants[1]) {
         this.emptyInput = false;
         this.triesLeft -= 1;
         try {

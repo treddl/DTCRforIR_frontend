@@ -20,6 +20,7 @@ data-tooltip="Any type of computer in a network is a host.">
     </span>
 </span> of the network scan.`,
             flagInstruction: "Submit this host's IP address:",
+            flagVariants: ["10.0.0.4", "10.0.04"],
             flag: "10.0.0.4",
             placeholder: "e.g., 10.0.0.10",
             hint: `Check out the 'detail view' of a warning event <span class="has-text-weight-bold">or</span> the alarm itself. Don't get confused by the term WARNING. Remember, this is a test alarm.`,
@@ -43,9 +44,10 @@ data-tooltip="An event type is defined by its unique 'plugin_sid' and its 'title
 </span>
 that indicate the normal operation of the filling plant.`,
             flagInstruction: "Submit the two plugin_sids, separated by a dash '-':",
+            flagVariants: ["100-400", "400-100"],
             flag: "100-400",
             placeholder: "e.g., 500-700",
-            hint: `In the search bar, enter the term 'success' to view only events that indicate normal functioning.`,
+            hint: `In the search bar, enter the term 'successful' to view only events that indicate normal functioning.`,
 
             isTerminalTask: false,
             
