@@ -7,7 +7,15 @@
       <div class="content"
         v-if="showInfo">
          
-        <div class="block">This time the SIEM triggered a serious looking 
+        <div class="block">
+            This time the SIEM triggered a serious looking
+                <span class="has-tooltip-arrow has-tooltip-multiline has-tooltip-top"
+                    :data-tooltip="'Man in the Middle'"
+                 >
+                    <span class="has-text-link-dark has-text-weight-bold">
+                         MitM
+                    </span>
+                </span> 
             <span class="has-text-dark has-text-weight-bold">
               alarm:
             </span>
@@ -64,13 +72,17 @@
         </div>
 
         <div class="block">
-            The attack 
-            <span class="has-text-dark has-text-weight-bold">
-              disrupts
-            </span>
+            It looks like the intruder wants to
+                <span class="has-tooltip-arrow has-tooltip-multiline has-tooltip-top"
+                    :data-tooltip="'another common goal of MitM attacks is eavesdropping'"
+                 >
+                    <span class="has-text-link-dark has-text-weight-bold">
+                         disrupt
+                    </span>
+                </span> 
              the 
             <span class="has-text-dark has-text-weight-bold">
-              filling process.
+              filling process with the attack.
             </span>
              The highest 
             <span class="has-text-dark has-text-weight-bold">
@@ -96,13 +108,9 @@
                 <span class="has-text-dark has-text-weight-bold">
                   the host acting as the 
                 </span>
-                <span class="has-tooltip-arrow has-tooltip-multiline has-tooltip-top"
-                    :data-tooltip="'Man in the Middle'"
-                 >
-                    <span class="has-text-link-dark has-text-weight-bold">
-                         MitM
-                    </span>
-                </span> 
+                <span class="has-text-dark has-text-weight-bold">
+                  MitM
+                </span>
             </li>
             <li>
                 <span class="has-text-dark has-text-weight-bold">

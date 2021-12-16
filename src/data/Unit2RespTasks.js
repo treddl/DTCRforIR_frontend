@@ -44,7 +44,7 @@ const Unit2RespTasks = {
         {
             level: 4,
             responseActionID: "Step 1",
-            responseActionInstruction: `<div><span>&#62;</span><span>&#62;</span> Isolate the attacking host by turning off its network interface.</div> <br> <div><span>&#x2139;</span> With the shell you have remote access to the <span class="has-text-dark has-text-weight-bold">work-station.</span></div>`,
+            responseActionInstruction: `<div><span>&#62;</span><span>&#62;</span> Isolate the attacking host by turning off its network interface.</div> <br> <div><span>&#x2139;</span> With this shell you have remote access to the <span class="has-text-dark has-text-weight-bold">work-station.</span></div>`,
 
             flagInstruction: `Submit the 
                             <span class="has-tooltip-arrow has-tooltip-multiline has-tooltip-top" 
@@ -53,6 +53,7 @@ const Unit2RespTasks = {
                                     flag:
                                 </span>
                             </span>`,
+            flagVariants: ["eating-eskimo", "eatingeskimo"],
             flag: "eating-eskimo",
             placeholder: "enter flag here ..",
             hint: `First find the 
@@ -74,6 +75,7 @@ const Unit2RespTasks = {
             triesLeft: 3,
             wrongTry: false,
             rightTry: false,
+            correctCommand: `ip link set dev work-station-eth0 down`,
             terminalData: {
                 host: "work-station",
                 arpIsRecovered: false,
@@ -115,7 +117,7 @@ Waiting for response ...
         {
             level: 5,
             responseActionID: "Step 2",
-            responseActionInstruction: `<div><span>&#62;</span><span>&#62;</span> Recover the ARP cache on PLC1: Replace the spoofed ARP entry with the correct one in mode <span class="is-family-monospace">static</span>. </div> <br> <div><span>&#x2139;</span> With the shell you have remote access to <span class="has-text-dark has-text-weight-bold">plc1.</span></div></div>`,
+            responseActionInstruction: `<div><span>&#62;</span><span>&#62;</span> Recover the ARP cache on PLC1: Replace the spoofed ARP entry with the correct one in mode <span class="is-family-monospace">static</span>. </div> <br> <div><span>&#x2139;</span> With this shell you have remote access to <span class="has-text-dark has-text-weight-bold">plc1.</span></div></div>`,
 
 
             flagInstruction: `Submit the 
@@ -125,6 +127,7 @@ data-tooltip="Don't worry, you recognize it when you see it ;)">
         flag:
     </span>
 </span>`,
+            flagVariants: ["polar-bear", "polarbear"],
             flag: "polar-bear",
             placeholder: "enter flag here ..",
             hint: `With the command 
@@ -139,6 +142,7 @@ Recover the ARP entry by using the correct version of the command
             triesLeft: 3,
             wrongTry: false,
             rightTry: false,
+            correctCommand: `arp -s 10.0.0.3 00:00:00:00:00:03`,
             terminalData: {
                 host: "plc1",
                 arpIsRecovered: false,
@@ -182,7 +186,7 @@ Recover the ARP entry by using the correct version of the command
         {
             level: 6,
             responseActionID: "Step 3",
-            responseActionInstruction: `<div><span>&#62;</span><span>&#62;</span> Recover the ARP cache on PLC3: Replace the spoofed ARP entry with the correct one in mode <span class="is-family-monospace has-background-light">static</span>. </div> <br> <div><span>&#x2139;</span> With the shell you have remote access to <span class="has-text-dark has-text-weight-bold">plc3.</span></div>`,
+            responseActionInstruction: `<div><span>&#62;</span><span>&#62;</span> Recover the ARP cache on PLC3: Replace the spoofed ARP entry with the correct one in mode <span class="is-family-monospace has-background-light">static</span>. </div> <br> <div><span>&#x2139;</span> With this shell you have remote access to <span class="has-text-dark has-text-weight-bold">plc3.</span></div>`,
             flagInstruction: `Submit the 
 <span class="has-tooltip-arrow has-tooltip-multiline has-tooltip-top" 
 data-tooltip="Don't worry, you recognize it when you see it ;)">
@@ -190,6 +194,7 @@ data-tooltip="Don't worry, you recognize it when you see it ;)">
         flag:
     </span>
 </span>`,
+            flagVariants: ["snow-flake", "snowflake"],
             flag: "snow-flake",
             placeholder: "enter flag here ..",
             hint: `Do the same as in the previous task. This time you're on plc3 though! With the command 
@@ -204,6 +209,7 @@ Recover the ARP entry by using the correct version of the command
             triesLeft: 3,
             wrongTry: false,
             rightTry: false,
+            correctCommand: `arp -s 10.0.0.1 00:00:00:00:00:01`,
             terminalData: {
                 host: "plc3",
                 arpIsRecovered: false,
@@ -247,18 +253,25 @@ Recover the ARP entry by using the correct version of the command
         {
             level: 7,
             responseActionID: "Step 4",
-            responseActionInstruction: `<span>&#62;</span><span>&#62;</span> Verify that the malicous activity has stopped. Monitor the SIEM events and verify the normal functioning of the filling plant.`,
-            flagInstruction: `Submit the plugin_sid and the name, seperated by a dash '-':`,
-            flag: "400-plc1",
-            placeholder: "e.g., 700-name",
-            hint: `Remember that one PLC produced warning logs. The <span class="has-text-weight-medium">same PLC</span> now produces <span class="has-text-weight-medium">INFO</span> logs indicating <span class="has-text-weight-medium">successful</span> operation.`,
+            responseActionInstruction: `<span>&#62;</span><span>&#62;</span> Verify that the malicous activity has stopped. Monitor the SIEM for the events that <span class="has-text-weight-medium">replace</span> the WARNING logs of <span class="has-text-weight-medium">plc1</span>.`,
+            flagInstruction:  `Submit the 
+<span class="has-tooltip-arrow has-tooltip-multiline has-tooltip-top" 
+data-tooltip="Don't worry, you recognize it when you see it ;)">
+    <span class="has-text-link-dark has-text-weight-bold">
+        flag:
+    </span>
+</span>`,
+            flagVariants: ["aurora-polaris", "aurorapolaris"],
+            flag: "aurora-polaris",
+            placeholder: "enter flag here ..",
+            hint: `You're looking for the event type with plugin_sid 400. Here you need to find at least <span class="has-text-weight-medium">one</span> event that shows the successful value reception of a <span class="has-text-weight-medium">specific</span> PLC. Use the 'detail view' of the events for this.`,
 
             isTerminalTask: false,
 
             triesLeft: 3,
             wrongTry: false,
             rightTry: false,
-
+            correctCommand: "",
         },
 
 

@@ -9,7 +9,7 @@
         v-if="showInfo">
          
         <div class="block">The SIEM triggered our first alarm:  
-            <span class="is-family-monospace has-background-light m-1">
+            <span class="is-family-monospace has-background-light">
                 Successful test of SIEM alarm function
             </span> 
         </div>
