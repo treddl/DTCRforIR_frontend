@@ -46,6 +46,8 @@
             <span class="has-text-dark has-text-weight-bold">Event Overview</span>  
             you can see the most relevant fields.
           </div>
+          <img src="./../assets/SIEM_event.svg" class="image is-pulled-right " style="height: 120px">
+          <br> 
           <div class="block">
             The SIEM distinguishes different 
             <span class="has-text-dark has-text-weight-bold">event types</span> 

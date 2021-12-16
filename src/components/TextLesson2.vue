@@ -31,8 +31,8 @@
             <div class="block">
               In simple terms, a shell is a computer program that lets you interact with a computer's operating system.  
             </div>
-
-            <div class="block mb-5"></div>
+          <img src="./../assets/shell.svg" class="image is-pulled-right " style="height: 400px">
+          <br>
           </div>
 
         <div class="has-text-link-dark has-text-left title is-6 is-json">
