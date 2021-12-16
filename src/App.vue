@@ -37,7 +37,7 @@
               User ID cannot be empty.
             </div>
             <div class="has-text-danger" v-if="wrongUserID">
-              User ID is not registered. Please use the registration page before entering the cyber range.
+              User ID is not registered. 
             </div>
 
             <div class="buttons is-centered mt-5">
@@ -473,6 +473,7 @@ export default {
       gameStarted: false,
       userID: null,
       taskTimes: [],
+      tries: [],
       startTime: null,
       evaluationData: [],
       dashboard: null,
@@ -498,6 +499,8 @@ export default {
     console.log(this.url_param);
     if (this.url_param != null) {
       this.userID = this.url_param;
+      var newUrl=this.removeURLParameter(location.href, "userID")
+      history.pushState({}, null, newUrl);
       this.validateId();
     } else {
       console.log("url is empty");
@@ -547,8 +550,31 @@ export default {
   
       
       
+    removeURLParameter(url, parameter) {
+    //prefer to use l.search if you have a location/link object
+    var urlparts = url.split('?');   
+    if (urlparts.length >= 2) {
+
+        var prefix = encodeURIComponent(parameter) + '=';
+        var pars = urlparts[1].split(/[&;]/g);
+
+        //reverse iteration as may be destructive
+        for (var i = pars.length; i-- > 0;) {    
+            //idiom for string.startsWith
+            if (pars[i].lastIndexOf(prefix, 0) !== -1) {  
+                pars.splice(i, 1);
+            }
+        }
+
+        return urlparts[0] + (pars.length > 0 ? '?' + pars.join('&') : '');
+    }
+    return url;
+},
       
-      
+    
+    
+    
+    
     restartDigitalTwinContainer() {
       this.$http
         .get(
@@ -580,7 +606,7 @@ export default {
         .get()
         .then((doc) => {
           if (doc.exists) {
-            console.log(this.mitmRunning)
+            
             this.round = doc.data().round; //in order to only show the trainees from the same round on the dashboard
             if (doc.data().startTime != null) {
               //get data from user who logged in before
@@ -589,6 +615,7 @@ export default {
               this.startTime = doc.data().startTime;
               this.userPseudonym = doc.data().pseudonym;
               this.level = doc.data().level;
+              console.log(this.mitmRunning)
               if (this.level > 4) {
                 this.playbookTwoBegin = true;
                 
@@ -664,6 +691,7 @@ export default {
     async uploadEvaluationData() {
       await userDashboard.doc(this.userID).update({
         taskTimes: JSON.stringify(this.taskTimes),
+        tries: JSON.stringify(this.tries),
       });
     },
 
@@ -675,11 +703,12 @@ export default {
       return this.level_old;
     },*/
 
-    markAsCompleted(taskTimes) {
+    markAsCompleted(taskTimes, tries) {
       //save timer information here
       //this.level += 1; 
       //this.uploadPoints();
       this.taskTimes.push(taskTimes);
+      this.tries.push(tries)
       this.uploadEvaluationData();
     },
 
