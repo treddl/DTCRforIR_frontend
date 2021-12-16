@@ -9,7 +9,7 @@
         >
           <span class="has-text-dark has-text-weight-bold"> TL;TR: </span>
         </span>
-        SIEM alarms & events (text)
+        SIEM events & alarms (text)
       </div>
       <div class="buttons is-left mt-5">
         <button
@@ -94,7 +94,7 @@
           </div>
           <div class="block">
                 <span class="has-tooltip-arrow has-tooltip-multiline has-tooltip-top"
-                    :data-tooltip="'hey SIEM 👋, please tell me with a 🚨 when you see event A one time 🔍 and then see event B five times 🔍'"
+                    :data-tooltip="'hey SIEM 👋, please tell me with an alarm 🚨 when you see event A one time 🔍 followed by event B five times 🔍'"
                 >
                     <span class="has-text-link-dark has-text-weight-bold">
                         Hover here for a simple rule example.
