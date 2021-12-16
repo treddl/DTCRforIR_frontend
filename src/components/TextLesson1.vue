@@ -2,14 +2,7 @@
   <div class="is-info content" :id="this.tileNo">
     <div>
       <div class="has-text-link-dark has-text-left title is-5 is-json">
-        Lesson 3:
-        <span
-          class="has-tooltip-arrow has-tooltip-multiline has-tooltip-top"
-          :data-tooltip="`too long to read`"
-        >
-          <span class="has-text-dark has-text-weight-bold"> TL;TR: </span>
-        </span>
-        SIEM events & alarms (text)
+        Lesson 3: SIEM events & alarms (text)
       </div>
       <div class="buttons is-left mt-5">
         <button
@@ -82,7 +75,7 @@
 
         <div class="pl-2">
           <div class="block">
-            The SIEM triggers an alarm if predefined rules apply. The rules tell the SIEM what events to watch out for an in which sequence. If you must know, this monitoring is done by the 
+            The SIEM triggers an alarm if predefined rules apply. The rules tell the SIEM what events to watch out for and in which sequence. If you must know, this monitoring is done by the 
                 <span class="has-tooltip-arrow has-tooltip-multiline has-tooltip-top"
                     :data-tooltip="'this is where the magic of a SIEM happens: it’s the thing that notices when something is fishy'"
                 >
@@ -112,12 +105,6 @@
           </div>
         </div>
 
-        <div class="block"></div>
-        <div class="block"></div>
-        <div class="block"></div>
-        <div class="block"></div>
-        <div class="block mb-3"></div>
-
         <!-- buttons for showing additional lesson content -->
         <div class="buttons is-left mt-5">
           <button
@@ -137,8 +124,10 @@
         </div>
         
         <!-- show additional lesson content -->
-        <div v-if="showAdditionalInformation">
-          <div class="bock">Here are some definitions of relevant fields:</div>
+        <div class="pl-4" v-if="showAdditionalInformation">
+          <div class="has-text-link-dark has-text-left title is-6 is-json">
+              Here are some definitions of relevant fields:
+          </div>
           <ul>
             <li>
               <span class="is-family-monospace has-background-light">title:</span>
@@ -157,17 +146,17 @@
             </li>
             <li>
               <span class="is-family-monospace has-background-light">src_ip:</span>
-              source IP address - refers to the sender of the log.
+              source IP address - refers to the sender of the log
             </li>
             <li>
               <span class="is-family-monospace has-background-light">dst_ip:</span>
-              destination IP address - refers to the receiver of the log.
+              destination IP address - refers to the receiver of the log
             </li>
             <li>
               <span class="is-family-monospace has-background-light">sensor:</span>
               the system that 
               <span class="has-text-dark has-text-weight-bold">produced</span> 
-              the log. NB: Do not confuse this with the
+              the log; NB: do not confuse this with the
               <span class="has-tooltip-arrow has-tooltip-multiline has-tooltip-top"
                   :data-tooltip="'they measure the liquid level in the filling machine, which then get logged by PLCs'"
               >
@@ -175,10 +164,8 @@
                       sensors of the filling plant
                   </span>
               </span>  
-               
-              itself.
+              itself
             </li>
-
           </ul>
         </div>
       </div>

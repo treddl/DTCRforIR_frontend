@@ -10,7 +10,7 @@
         <div class="block">
             This time the SIEM triggered a serious looking
                 <span class="has-tooltip-arrow has-tooltip-multiline has-tooltip-top"
-                    :data-tooltip="'Man in the Middle'"
+                    :data-tooltip="'Man-in-the-Middle'"
                  >
                     <span class="has-text-link-dark has-text-weight-bold">
                          MitM
@@ -43,7 +43,7 @@
                 </span>
                 by the
                 <span class="has-tooltip-arrow has-tooltip-multiline has-tooltip-top"
-                    :data-tooltip="'Intrusion Detection Systems'">
+                    :data-tooltip="`the 'Intrusion Detection Systems' running on all hosts in the network`">
                     <span class="has-text-link-dark has-text-weight-bold">
                          IDSs
                     </span>

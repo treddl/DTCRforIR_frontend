@@ -23,14 +23,15 @@
 
       <!-- show main lesson content -->
       <div class="content" v-if="showInfo">
+        <div class="block"><span> &#x2139; </span> This lesson will come in handy in the response phase. There you'll be working with the shell.</div>
         <div class="has-text-link-dark has-text-left title is-6 is-json">
-          What is a shell?
+          What the hell is a shell?
         </div>
-
           <div class="pl-2">
             <div class="block">
               In simple terms, a shell is a computer program that lets you interact with a computer's operating system.  
             </div>
+
             <div class="block mb-5"></div>
           </div>
 
@@ -39,10 +40,18 @@
         </div>
           <div class="pl-2">
             <div class="block">
-              To view the network interfaces available on the computer, run <span class="is-family-monospace has-background-light">ip link show</span>
+              To view the network interfaces available on a 
+                <span class="has-tooltip-arrow has-tooltip-multiline has-tooltip-top"
+                    :data-tooltip="'in Windows, most of the shell commands are different'"
+                >
+                    <span class="has-text-link-dark has-text-weight-bold">
+                       (Unix)
+                    </span>
+                </span>
+            computer, run <span class="is-family-monospace has-background-light">ip link show</span>
             </div>
             <div class="block mb-5">
-              To turn on or off a specific network interface, run <span class="is-family-monospace has-background-light">ip link set dev NAME up|down:</span>
+              To turn on or off a specific network interface, run <span class="is-family-monospace has-background-light">ip link set dev NAME up|down</span>
             </div>
           </div>
 
@@ -80,14 +89,55 @@
         </div>
         
         <!-- show additional lesson content -->
-        <div v-if="showAdditionalInformation">
-          <div class="bock">Here are some tipps on using a shell:</div>
+        <div class="pl-4" v-if="showAdditionalInformation">
+          <div class="has-text-link-dark has-text-left title is-6 is-json">
+              Tipps on using the shell:
+          </div>
           <ul>
             <li>
-              with the keys up and down you can go through your history of typed commands; this is a neat feature if you have a typo in a longer command and don't want to retype it
+              altough a shell is pretty powerful, it is quite strict on the syntax: you need to 
+              <span class="has-text-dark has-text-weight-bold">type the commands in the exact order,</span> 
+              including spaces in between
             </li>
             <li>
-              <span class="is-family-monospace has-background-light">clear</span> run this command to clear the screen; helpful when you have a lot of output you don't need anymore
+              with the keys up <span>&#x2191;</span> and down <span>&#x2193;</span> you can go through your 
+                <span class="has-text-dark has-text-weight-bold">history</span> 
+                of typed commands; this is a neat feature if you have a typo in a longer command and don't want to retype it
+            </li>
+            <li>
+              <span class="is-family-monospace has-background-light">clear</span> - run this command to clear the screen; helpful when you have a lot of output you don't need anymore
+            </li>
+          </ul>
+
+              
+          <div class="has-text-link-dark has-text-left title is-6 is-json">
+              More info on selected commands:
+          </div>
+           <ul>
+            <li>
+              <span class="is-family-monospace has-background-light">ip link set dev NAME up|down</span> - replace <span class="is-family-monospace has-background-light">NAME</span> with the network interface you want to turn on (<span class="is-family-monospace has-background-light">up</span>) or off (<span class="is-family-monospace has-background-light">down</span>)
+            </li>
+            <li>
+               The name of a network interface usually contains the term 
+                <span class="has-tooltip-arrow has-tooltip-multiline has-tooltip-top"
+                    :data-tooltip="'eth refers to ethernet, think of your LAN card'"
+                >
+                    <span class="is-family-monospace has-background-light has-text-link-dark has-text-weight-bold">
+                        eth
+                    </span>
+                </span>
+                or
+                <span class="has-tooltip-arrow has-tooltip-multiline has-tooltip-top"
+                    :data-tooltip="'wlan refers to, you guessed it, WLAN'"
+                >
+                    <span class="is-family-monospace has-background-light has-text-link-dark has-text-weight-bold">
+                        wlan
+                    </span>
+                </span>
+            in it. 
+            </li>
+            <li>
+              <span class="is-family-monospace has-background-light">arp -s IP_ADDR MAC_ADDR</span> - run this command to make an ARP entry <span class="has-text-dark has-text-weight-bold">static</span>
             </li>
           </ul>
         </div>
@@ -99,7 +149,7 @@
   <script>
 export default {
   name: "TextLesson2",
-
+// <img src="../assets/shell.png">
   props: {
     order: {},
   },
