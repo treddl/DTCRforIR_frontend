@@ -147,14 +147,6 @@
                e.g., a log of a network packet or a log of a sensor update
             </li>
             <li>
-              <span class="is-family-monospace has-background-light">src_ip:</span>
-              source IP address - refers to the sender of the log
-            </li>
-            <li>
-              <span class="is-family-monospace has-background-light">dst_ip:</span>
-              destination IP address - refers to the receiver of the log
-            </li>
-            <li>
               <span class="is-family-monospace has-background-light">sensor:</span>
               the system that 
               <span class="has-text-dark has-text-weight-bold">produced</span> 
