@@ -37,14 +37,14 @@ const Unit2RespTasks = {
                         </span>
                         to the hosts you need to perform the steps on.</div>
                         <br>
-                        <div><div><span>&#x2139;</span> In the shells you can run as many commands as you need to accomplis the task. In other words, the commands don't count toward your points. Only the flag submission does.</div>
+                        <div><div><span>&#x2139;</span> In the shells you can run as many commands as you need to accomplish the task. In other words, the commands don't count toward your points. Only the flag submission does.</div>
                         <br>
                         <div>Follow the response instructions below and make a name for yourself as first class incident responder.</div>`,
     blanks: [
         {
             level: 4,
             responseActionID: "Step 1",
-            responseActionInstruction: `<div><span>&#62;</span><span>&#62;</span> Isolate the attacking host by turning off its network interface.</div> <br> <div><span>&#x2139;</span> With the shell you have remote access to the work-station.</div>`,
+            responseActionInstruction: `<div><span>&#62;</span><span>&#62;</span> Isolate the attacking host by turning off its network interface.</div> <br> <div><span>&#x2139;</span> With the shell you have remote access to the <span class="has-text-dark has-text-weight-bold">work-station.</span></div>`,
 
             flagInstruction: `Submit the 
                             <span class="has-tooltip-arrow has-tooltip-multiline has-tooltip-top" 
@@ -115,7 +115,7 @@ Waiting for response ...
         {
             level: 5,
             responseActionID: "Step 2",
-            responseActionInstruction: `<div><span>&#62;</span><span>&#62;</span> Recover the ARP cache on PLC1: Replace the spoofed ARP entry with the correct one in mode <span class="is-family-monospace">static</span>. </div> <br> <div><span>&#x2139;</span> With the shell you have remote access to plc1.</div>`,
+            responseActionInstruction: `<div><span>&#62;</span><span>&#62;</span> Recover the ARP cache on PLC1: Replace the spoofed ARP entry with the correct one in mode <span class="is-family-monospace">static</span>. </div> <br> <div><span>&#x2139;</span> With the shell you have remote access to <span class="has-text-dark has-text-weight-bold">plc1.</span></div></div>`,
 
 
             flagInstruction: `Submit the 
@@ -182,7 +182,7 @@ Recover the ARP entry by using the correct version of the command
         {
             level: 6,
             responseActionID: "Step 3",
-            responseActionInstruction: `<div><span>&#62;</span><span>&#62;</span> Recover the ARP cache on PLC3: Replace the spoofed ARP entry with the correct one in mode <span class="is-family-monospace has-background-light">static</span>. </div> <br> <div><span>&#x2139;</span> With the shell you have remote access to plc3.</div>`,
+            responseActionInstruction: `<div><span>&#62;</span><span>&#62;</span> Recover the ARP cache on PLC3: Replace the spoofed ARP entry with the correct one in mode <span class="is-family-monospace has-background-light">static</span>. </div> <br> <div><span>&#x2139;</span> With the shell you have remote access to <span class="has-text-dark has-text-weight-bold">plc3.</span></div>`,
             flagInstruction: `Submit the 
 <span class="has-tooltip-arrow has-tooltip-multiline has-tooltip-top" 
 data-tooltip="Don't worry, you recognize it when you see it ;)">
@@ -247,7 +247,7 @@ Recover the ARP entry by using the correct version of the command
         {
             level: 7,
             responseActionID: "Step 4",
-            responseActionInstruction: `Verify that the malicous activity has stopped. Monitor the SIEM events and verify the normal functioning of the filling plant.`,
+            responseActionInstruction: `<span>&#62;</span><span>&#62;</span> Verify that the malicous activity has stopped. Monitor the SIEM events and verify the normal functioning of the filling plant.`,
             flagInstruction: `Submit the plugin_sid and the name, seperated by a dash '-':`,
             flag: "400-plc1",
             placeholder: "e.g., 700-name",

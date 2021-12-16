@@ -9,9 +9,9 @@
          
         <div class="block">This time the SIEM triggered a serious looking 
             <span class="has-text-dark has-text-weight-bold">
-              alarm
+              alarm:
             </span>
-            :
+            
             <span class="is-family-monospace has-background-danger-light">MitM attack via ARP spoofing</span> 
         </div>
           
@@ -123,9 +123,9 @@
         <div class="block">
             Below you'll find 
             <span class="has-text-dark has-text-weight-bold">
-               further lessons
+               further lessons.
             </span>
-            . Best of luck to you and happy responding!
+            Best of luck to you and happy responding!
         </div>
       </div>
       <div class="buttons is-left mt-5">

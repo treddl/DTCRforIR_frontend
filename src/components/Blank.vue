@@ -64,11 +64,11 @@
               >
               </div>
               <div class="block">
-                <span>&#62;</span><span>&#62;</span> <span v-html="this.blank.responseActionInstruction"></span>
+                <span v-html="this.blank.responseActionInstruction"></span>
               </div>
             
               <div class="block"> 
-                  <span> &#10140; </span><span v-html="this.blank.flagInstruction"></span>
+                  <span> &#10140; </span> <span v-html="this.blank.flagInstruction"></span>
               </div>
               <div class="block"
               >
