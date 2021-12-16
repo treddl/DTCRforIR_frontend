@@ -54,7 +54,7 @@
               To view the current ARP cache on the computer, run <span class="is-family-monospace has-background-light">arp</span>
             </div>
             <div class="block">
-              To make changes to a specifc entry in the ARP cache, run <span class="is-family-monospace has-background-light">arp IP_ADDR MAC_ADDR</span>
+              To make changes to a specific entry in the ARP cache, run <span class="is-family-monospace has-background-light">arp IP_ADDR MAC_ADDR</span>
             </div>
             <div class="block mb-5"></div>
           </div>

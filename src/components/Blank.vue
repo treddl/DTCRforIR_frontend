@@ -96,7 +96,7 @@
             v-else-if="triesLeft < 3 && triesLeft > 0 && !completedBefore && !this.blank.rightTry"
         >
             <div class="message-body">
-              You were wrong. You have {{ triesLeft }} Tries left.
+              You were wrong. You have {{ triesLeft }} attempts left.
             </div>
         </div>
         <div v-else-if="this.blank.rightTry">
@@ -115,7 +115,7 @@
         <div v-else-if="triesLeft == 0 && this.blank.wrongTry">
              <div class="message is-danger">
                 <div class="message-body">
-                  Sorry. You have no tries left.
+                  Sorry. You have no attempts left.
                 </div>
             </div>
             <div class="message is-warning"

@@ -240,7 +240,7 @@
                     
                         <div class="is-info content" id="prepOne">
                             <div class="has-text-link-dark has-text-left title is-4 is-json" > 
-                                Prepration Phase
+                                Preparation Phase
                             </div>
                             
                             <situational-awareness-1 
