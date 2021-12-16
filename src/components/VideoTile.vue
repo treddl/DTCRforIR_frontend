@@ -59,7 +59,7 @@ export default {
       title: this.videoData.title,
       subtitle: this.videoData.subtitle,
       url: this.videoData.url,      
-      showContent: false,
+      showContent: true,
     };
   },
 

@@ -187,7 +187,7 @@ export default {
     return {
       tileNo: "textlesson1",
       showAdditionalInformation: false,
-      showInfo: false,
+      showInfo: true,
     };
   },
 

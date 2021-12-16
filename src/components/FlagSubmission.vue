@@ -166,7 +166,7 @@ export default {
       taskCompleted: false,
       pointsOverall: 0,
       timestamps: [],
-      tries: [],
+      storedTries: [],
       beginPhase: this.getPhase(),
       showContent: true,
       triesLeft: 0,
@@ -221,12 +221,15 @@ export default {
       
     completeTask(points) {
       this.blanks_completed += 1;
-      
 
       this.$emit("submit-points", points);
+      if(points != -1 ){
       this.timestamps.push(new Date ())
-      this.tries.push(this.points)
-      console.log("new Timestamp: ", new Date ())
+       console.log("new Timestamp: ", new Date ())
+      this.storedTries.push(points)
+       console.log("new Point: ", points)
+      }
+     
    
       this.pointsOverall += points;
        try {
@@ -257,7 +260,8 @@ export default {
           1000; */
 
         this.$emit("task-completed", 
-          this.timestamps, this.tries
+          this.timestamps, this.storedTries
+
         );
         this.scrollToElement(this.taskData.tileNo);
       }

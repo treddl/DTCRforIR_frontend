@@ -31,7 +31,7 @@
             <div class="block">
               In simple terms, a shell is a computer program that lets you interact with a computer's operating system.  
             </div>
-          <img src="./../assets/shell.png" class="image pl-2" style="height: auto width: auto">
+          <img src="./../assets/shell.png" class="image pl-2" style="height: auto width: 80%">
           <br>
           </div>
 
@@ -63,7 +63,7 @@
               To view the current ARP cache on the computer, run <span class="is-family-monospace has-background-light">arp</span>
             </div>
             <div class="block">
-              To make changes to a specifc entry in the ARP cache, run <span class="is-family-monospace has-background-light">arp IP_ADDR MAC_ADDR</span>
+              To make changes to a specific entry in the ARP cache, run <span class="is-family-monospace has-background-light">arp IP_ADDR MAC_ADDR</span>
             </div>
             <div class="block mb-5"></div>
           </div>
@@ -158,7 +158,7 @@ export default {
     return {
       tileNo: "textlesson2",  
       showAdditionalInformation: false,
-      showInfo: false,
+      showInfo: true,
     };
   },
 
