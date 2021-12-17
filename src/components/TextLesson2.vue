@@ -29,7 +29,22 @@
         </div>
           <div class="pl-2">
             <div class="block">
-              In simple terms, a shell is a computer program that lets you interact with a computer's operating system.  
+              In simple terms, a shell is a computer program that lets you interact with a computer's operating system in a very direct way. Instead of working with a 
+                <span class="has-tooltip-arrow has-tooltip-multiline has-tooltip-top"
+                    :data-tooltip="'Graphical User Interface'"
+                >
+                    <span class="has-text-link-dark has-text-weight-bold">
+                       GUI,
+                    </span>
+                </span>
+                like the browser you're using right now, the shell lets you interact with the OS and other apps via a 
+                <span class="has-tooltip-arrow has-tooltip-multiline has-tooltip-top"
+                    :data-tooltip="'Command Line Interface'"
+                >
+                    <span class="has-text-link-dark has-text-weight-bold">
+                       CLI.
+                    </span>
+                </span> 
             </div>
           <img src="./../assets/shell.png" class="image pl-2" style="height: auto width: 80%">
           <br>
@@ -120,19 +135,16 @@
             <li>
                The name of a network interface usually contains the term 
                 <span class="has-tooltip-arrow has-tooltip-multiline has-tooltip-top"
-                    :data-tooltip="'eth refers to ethernet, think of your LAN card'"
+                    :data-tooltip="`'eth' refers to ethernet, think of your LAN card`"
                 >
-                    <span class="is-family-monospace has-background-light has-text-link-dark has-text-weight-bold">
-                        eth
-                    </span>
+                    <span class="is-family-monospace has-background-light has-text-link-dark has-text-weight-bold">eth</span>
                 </span>
                 or
                 <span class="has-tooltip-arrow has-tooltip-multiline has-tooltip-top"
                     :data-tooltip="'wlan refers to, you guessed it, WLAN'"
                 >
                     <span class="is-family-monospace has-background-light has-text-link-dark has-text-weight-bold">
-                        wlan
-                    </span>
+                        wlan</span>
                 </span>
             in it. 
             </li>

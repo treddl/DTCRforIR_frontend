@@ -42,9 +42,9 @@
             <span class="has-text-dark has-text-weight-bold">fields.</span>
           </div>
           <div class="block">
-            In the dashboards's
+            In the dashboard's
             <span class="has-text-dark has-text-weight-bold">Event Overview</span>  
-            you can see the most relevant fields.
+            you can see some of the most relevant fields.
           </div>
           <img src="./../assets/SIEM_event.png" class="image pl-2" style="height: auto width: auto">
           <br> 
@@ -140,7 +140,7 @@
             </li>
             <li>
               <span class="is-family-monospace has-background-light">plugin_sid:</span>
-              a unique ID that it used by the SIEM to 
+              a unique ID that is used by the SIEM to 
               <span class="has-text-dark has-text-weight-bold">identify</span> 
               different log
               <span class="has-text-dark has-text-weight-bold">types,</span> 

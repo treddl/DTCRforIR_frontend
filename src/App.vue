@@ -64,7 +64,7 @@
         </h1>
         <br>
         <h2 class="is-json subtitle mb-2">
-          Thanks to your efforts the impact of the attacks on the filling plant were minimal.
+          Thanks to your efforts the impact of the MitM attack on the filling plant were minimal.
         </h2>
         <br>
         <h2 class="is-json subtitle mb-2">

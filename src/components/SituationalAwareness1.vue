@@ -68,9 +68,8 @@
             </span> 
             with all the relevant 
             <span class="has-text-dark has-text-weight-bold">
-               background knowledge
+               background knowledge.
             </span> 
-            . 
             You can 
             <span class="has-text-dark has-text-weight-bold">
                check them out now.

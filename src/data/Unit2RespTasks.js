@@ -9,7 +9,14 @@ const Unit2RespTasks = {
     phaseIntroduction: `<div>This is going great. We established that our work-station is the MitM and the two targets are plc1 and plc3.</div> <br>
 <div><span class="has-text-weight-bold">As a quick recap:</span> The intruder poisoned the ARP caches of plc1 (10.0.0.1) and plc3 (10.0.0.3). 
 So instead of communicating directly with each other, all communication between them goes through the compromised work-station (10.0.0.5), fulfilling the role of the MitM in this attack. 
-Although eavesdropping is a common goal in MitM attacks, in our scenario the intruder uses the attack to disrupt the filling process by blocking the communication between plc1 and plc3.</div><br>
+Although
+<span class="has-tooltip-arrow has-tooltip-multiline has-tooltip-top" 
+    data-tooltip="intercepting and reading passing messages">
+    <span class="has-text-link-dark has-text-weight-bold">
+        eavesdropping
+    </span>
+</span>
+is a common goal in MitM attacks, in our scenario the intruder uses the attack to disrupt the filling process by blocking the communication between plc1 and plc3.</div><br>
                         <div>
                         Now it is time to stop the attack and
                         <span class="has-tooltip-arrow has-tooltip-multiline has-tooltip-top" 
