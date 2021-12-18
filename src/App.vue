@@ -254,12 +254,6 @@
                                 >
                                 </video-tile>
 
-                                <video-tile
-                                  :videoData="VideoData[2]"
-                                  :order="this.order"
-                                >
-                                </video-tile>
-
                                 <text-lesson-1
                                   :order="this.order"
                                   >
@@ -345,7 +339,7 @@
                               >                          
                               </situational-awareness-2>
                               <video-tile
-                                :videoData="VideoData[3]"
+                                :videoData="VideoData[2]"
                                 :order="this.order"
                               >
                               </video-tile>

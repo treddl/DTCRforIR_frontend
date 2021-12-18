@@ -155,7 +155,7 @@
           <div class="has-text-link-dark has-text-left title is-6 is-json">
               The network topology as a reference:
           </div>
-          <img src="./../assets/shell.png" class="image pl-2" style="height: auto width: auto%">
+          <img src="./../assets/network.png" class="image p-10" style="height: 50% width: %">
         </div>
       </div>
     </div>
