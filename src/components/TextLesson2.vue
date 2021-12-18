@@ -152,6 +152,10 @@
               <span class="is-family-monospace has-background-light">arp -s IP_ADDR MAC_ADDR</span> - run this command to make an ARP entry <span class="has-text-dark has-text-weight-bold">static</span>
             </li>
           </ul>
+          <div class="has-text-link-dark has-text-left title is-6 is-json">
+              The network topology as a reference:
+          </div>
+          <img src="./../assets/shell.png" class="image pl-2" style="height: auto width: auto%">
         </div>
       </div>
     </div>
