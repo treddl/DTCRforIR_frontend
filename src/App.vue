@@ -75,10 +75,6 @@
           Please let one of the trainers know you've finished the exercise.
         </h2>
        <br>
-        <h2 class="is-json subtitle mb-2">
-          Now there's only a quick final quiz left to complete 🙏
-        </h2>
-                 <br>
         <img
           src="./assets/iceberg.png"
           class="image is-hcentered"
