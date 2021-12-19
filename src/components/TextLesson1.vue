@@ -2,7 +2,7 @@
   <div class="is-info content" :id="this.tileNo">
     <div>
       <div class="has-text-link-dark has-text-left title is-5 is-json">
-        Lesson 3: SIEM events & alarms (text)
+        Lesson 2: SIEM events & alarms (text)
       </div>
       <div class="buttons is-left mt-5">
         <button
@@ -152,7 +152,7 @@
               <span class="has-text-dark has-text-weight-bold">produced</span> 
               the log; NB: do not confuse this with the
               <span class="has-tooltip-arrow has-tooltip-multiline has-tooltip-top"
-                  :data-tooltip="'they measure the liquid level in the filling machine, which then get logged by PLCs'"
+                  :data-tooltip="'they measure the liquid levels in the filling machine, which then get logged by PLCs'"
               >
                   <span class="has-text-link-dark has-text-weight-bold">
                       sensors of the filling plant

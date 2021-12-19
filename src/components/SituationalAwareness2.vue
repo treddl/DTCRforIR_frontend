@@ -73,13 +73,9 @@
 
         <div class="block">
             It looks like the intruder wants to
-                <span class="has-tooltip-arrow has-tooltip-multiline has-tooltip-top"
-                    :data-tooltip="'another common goal of MitM attacks is eavesdropping'"
-                 >
-                    <span class="has-text-link-dark has-text-weight-bold">
-                         disrupt
-                    </span>
-                </span> 
+            <span class="has-text-dark has-text-weight-bold">
+             disrupt
+            </span>
              the 
             <span class="has-text-dark has-text-weight-bold">
               filling process with the attack.

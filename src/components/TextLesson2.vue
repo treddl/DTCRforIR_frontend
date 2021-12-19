@@ -2,7 +2,7 @@
   <div class="is-info content" :id="this.tileNo">
     <div>
       <div class="has-text-link-dark has-text-left title is-5 is-json" >
-          Lesson 5: Let it shell<span>&#35;</span>, let it shell<span>&#35;</span>, let it shell<span>&#35;</span> (text)
+          Lesson 4: Let it shell<span>&#35;</span>, let it shell<span>&#35;</span>, let it shell<span>&#35;</span> (text)
       </div>
       <div class="buttons is-left mt-5">
         <button
@@ -23,13 +23,13 @@
 
       <!-- show main lesson content -->
       <div class="content" v-if="showInfo">
-        <div class="block"><span> &#x2139; </span> This lesson will come in handy in the response phase. There you'll be working with the shell.</div>
         <div class="has-text-link-dark has-text-left title is-6 is-json">
           What the hell is a shell?
         </div>
           <div class="pl-2">
             <div class="block">
-              In simple terms, a shell is a computer program that lets you interact with a computer's operating system in a very direct way. Instead of working with a 
+              In simple terms, a shell is a computer program that lets you interact with a computer's operating system in a very direct way. 
+                Instead of working with a 
                 <span class="has-tooltip-arrow has-tooltip-multiline has-tooltip-top"
                     :data-tooltip="'Graphical User Interface'"
                 >
@@ -45,6 +45,7 @@
                        CLI.
                     </span>
                 </span> 
+                This means that instead of clicking on things, you need to <span class="has-text-dark has-text-weight-bold">run commands</span> to tell the computer what to do. 
             </div>
           <img src="./../assets/shell.png" class="image pl-2" style="height: auto width: 80%">
           <br>
@@ -115,12 +116,25 @@
               including spaces in between
             </li>
             <li>
-              with the keys up <span>&#x2191;</span> and down <span>&#x2193;</span> you can go through your 
-                <span class="has-text-dark has-text-weight-bold">history</span> 
-                of typed commands; this is a neat feature if you have a typo in a longer command and don't want to retype it
+              with the keys up <span>&#x2191;</span> and down <span>&#x2193;</span> you can go through your
+                <span class="has-tooltip-arrow has-tooltip-multiline has-tooltip-top"
+                    :data-tooltip="`this is a neat feature if you have a typo in a longer command and don't want to retype it`"
+                >
+                    <span class="has-text-link-dark has-text-weight-bold">
+                       history
+                    </span>
+                </span>
+                of typed commands
             </li>
             <li>
-              <span class="is-family-monospace has-background-light">clear</span> - run this command to clear the screen; helpful when you have a lot of output you don't need anymore
+              <span class="is-family-monospace has-background-light">clear</span> - run this command to
+                <span class="has-tooltip-arrow has-tooltip-multiline has-tooltip-top"
+                    :data-tooltip="`helpful when you have a lot of output you don't need anymore`"
+                >
+                    <span class="has-text-link-dark has-text-weight-bold">
+                       clear the screen
+                    </span>
+                </span>
             </li>
           </ul>
 

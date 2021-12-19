@@ -7,7 +7,7 @@ const Unit1IdentTasks = {
     rememberMessage: "Remember you can always revisit lessons.",
     responsePhase: "identification",
     phaseIntroduction: `<div>The purpose of the identification phase is to establish the scope of the security incident. It is essential to know, e.g., which systems behave maliciously and which normally. Only then is an effective response possible.</div> <br> 
-    <div>To clear the ground, perform the following two steps.</div>`,
+    <div>To better undertand the baseline of the network, perform the following two steps.</div>`,
     blanks: [
         {
             level: 0,

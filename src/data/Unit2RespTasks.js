@@ -6,17 +6,9 @@ const Unit2RespTasks = {
     failMessage: "Don't beat yourself up. Maybe response just isn't your cup of tea.",
     rememberMessage: "",
     responsePhase: "identification",
-    phaseIntroduction: `<div>This is going great. We established that our work-station is the MitM and the two targets are plc1 and plc3.</div> <br>
+    phaseIntroduction: `<div>This is going great. Now we have all the information to stop the attack.</div> <br>
 <div><span class="has-text-weight-bold">As a quick recap:</span> The intruder poisoned the ARP caches of plc1 (10.0.0.1) and plc3 (10.0.0.3). 
-So instead of communicating directly with each other, all communication between them goes through the compromised work-station (10.0.0.5), fulfilling the role of the MitM in this attack. 
-Although
-<span class="has-tooltip-arrow has-tooltip-multiline has-tooltip-top" 
-    data-tooltip="intercepting and reading passing messages">
-    <span class="has-text-link-dark has-text-weight-bold">
-        eavesdropping
-    </span>
-</span>
-is a common goal in MitM attacks, in our scenario the intruder uses the attack to disrupt the filling process by blocking the communication between plc1 and plc3.</div><br>
+So instead of communicating directly with each other, all communication between them goes through the compromised work-station (10.0.0.5), the MitM in this attack. In our scenario the intruder uses the attack to disrupt the filling process by blocking the communication between plc1 and plc3.</div><br>
                         <div>
                         Now it is time to stop the attack and
                         <span class="has-tooltip-arrow has-tooltip-multiline has-tooltip-top" 
@@ -35,7 +27,7 @@ is a common goal in MitM attacks, in our scenario the intruder uses the attack t
                         </span>
                         to the hosts you need to perform the steps on.</div>
                         <br>
-                        <div><div><span>&#x2139;</span> In the shells you can run as many commands as you need to accomplish the task. In other words, the commands don't count toward your points. Only the flag submission does.</div>
+                        <div><div><span>&#x2139;</span> In the shells you can run as many commands as you need to accomplish the task. In other words, the commands don't count toward your points.</div>
                         <br>
                         <div>Follow the response instructions below and make a name for yourself as a first class incident responder.</div>`,
     blanks: [
@@ -115,7 +107,7 @@ Waiting for response ...
         {
             level: 5,
             responseActionID: "Step 2",
-            responseActionInstruction: `<div><span>&#62;</span><span>&#62;</span> Recover the ARP cache on PLC1: Replace the spoofed ARP entry with the correct one in mode <span class="is-family-monospace">static</span>. </div> <br> <div><span>&#x2139;</span> With this shell you have remote access to <span class="has-text-dark has-text-weight-bold">plc1.</span></div></div>`,
+            responseActionInstruction: `<div><span>&#62;</span><span>&#62;</span> Recover the ARP cache on PLC1: Replace the poisoned ARP entry with the correct one in mode <span class="is-family-monospace">static</span>. </div> <br> <div><span>&#x2139;</span> With this shell you have remote access to <span class="has-text-dark has-text-weight-bold">plc1.</span></div></div>`,
 
 
             flagInstruction: `Submit the 
@@ -184,7 +176,7 @@ Recover the ARP entry by using the correct version of the command
         {
             level: 6,
             responseActionID: "Step 3",
-            responseActionInstruction: `<div><span>&#62;</span><span>&#62;</span> Recover the ARP cache on PLC3: Replace the spoofed ARP entry with the correct one in mode <span class="is-family-monospace has-background-light">static</span>. </div> <br> 
+            responseActionInstruction: `<div><span>&#62;</span><span>&#62;</span> Recover the ARP cache on PLC3: Replace the poisoned ARP entry with the correct one in mode <span class="is-family-monospace has-background-light">static</span>. </div> <br> 
             <div><span>&#x2139;</span> With this shell you have remote access to <span class="has-text-dark has-text-weight-bold">plc3.</span></div>`,
             flagInstruction: `Submit the 
 <span class="has-tooltip-arrow has-tooltip-multiline has-tooltip-top" 
