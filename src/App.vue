@@ -40,7 +40,7 @@
           </div>
         </form>
       </div>
-      <h2 class="is-json subtitle mb-6">A master's project 🎓 at the University of Regensburg.</h2>
+      <h2 class="is-json subtitle mb-6">A research project 🎓 at the University of Regensburg.</h2>
     </div>
 
     <!-- layout post exercise: informs user about completion exercise -->
