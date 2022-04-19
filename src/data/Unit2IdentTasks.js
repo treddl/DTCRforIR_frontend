@@ -37,8 +37,8 @@ data-tooltip="A host can be identified by its IP address or its name.">
         host's name:
     </span>
 </span>`,
-            flagVariants: ["work-station", "workstation"],            
-            flag: "work-station",
+            flagVariants: ["work-station", "10.0.0.5", "workstation"],
+            flag: "work-station (10.0.0.5)",
             placeholder: "enter host name here ..",
             hint: `Remember, the attacker <span class="has-text-weight-bold">replaces their MAC address</span> with that of the target.`,
 

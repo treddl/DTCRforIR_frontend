@@ -1,267 +1,244 @@
 <template >
-  <body>
-    <div>
-      <!-- layout prior exercise: prompts user to login -->
-      <div v-if="!gameStarted" class="is-vhcentered has-text-centered">
-        
-      
-            <img class="image is-hcentered" style="width: 100px"
-              src="./assets/iceberg.png"
-            /> 
-        
-        <div v-if="!VMAssigned" class="is-json title mt-6 pt-6">
-          Welcome to ICEBERG! 
-          <div class="subtitle mb-6 pb-6"> A Cyber Range for Incident Response Training. </div> </div>
+<body>
+  <div>
+    <!-- layout prior exercise: prompts user to login -->
+    <div v-if="!gameStarted" class="is-vhcentered has-text-centered">
+      <img class="image is-hcentered" style="width: 100px" src="./assets/iceberg.png" />
 
+      <div v-if="!VMAssigned" class="is-json title mt-6 pt-6">
+        Welcome to ICEBERG!
+        <div class="subtitle mb-6 pb-6">A Cyber Range for Incident Response Training.</div>
+      </div>
 
-        <div class="margin-big has-text-centered">
-          <form @submit.prevent="validateId()">
-            
-            <div class="field">
-               <span>
-            <input
-              class="input input-label-short is-size-6"
-              :value="'Your NDS account: '"
-            />
-              </span>
+      <div class="margin-big has-text-centered">
+        <form @submit.prevent="validateId()">
+          <div class="field">
+            <span>
+              <input class="input input-label-short is-size-6" :value="'Your NDS account: '" />
+            </span>
             <span>
               <input
                 class="input input-short is-size-6 blank-input"
                 v-model.trim="userID"
                 :placeholder="'ID (e.g., glr02834)'"
               />
-              </span>
-              </div>
-           
-            <div class="has-text-danger" v-if="emptyInput">
-              User ID cannot be empty.
-            </div>
-            <div class="has-text-danger" v-if="wrongUserID">
-              User ID is not registered. 
-            </div>
+            </span>
+          </div>
 
-            <div class="buttons is-centered mt-5">
-              <button
-                class="button submit-button is-rounded mt-5"
-                type="submit"
-                value="Submit"
-                @click="validateId()"
-              >
-                <span>START</span>
-              </button>
-            </div>
-          </form>
-        </div>
-        <h2 class="is-json subtitle mb-6">
-          A master's project 🎓 at the University of Regensburg.
-        </h2>
+          <div class="has-text-danger" v-if="emptyInput">User ID cannot be empty.</div>
+          <div class="has-text-danger" v-if="wrongUserID">User ID is not registered.</div>
+
+          <div class="buttons is-centered mt-5">
+            <button
+              class="button submit-button is-rounded mt-5"
+              type="submit"
+              value="Submit"
+              @click="validateId()"
+            >
+              <span>START</span>
+            </button>
+          </div>
+        </form>
+      </div>
+      <h2 class="is-json subtitle mb-6">A master's project 🎓 at the University of Regensburg.</h2>
+    </div>
+
+    <!-- layout post exercise: informs user about completion exercise -->
+    <div v-if="gameCompleted" class="is-vhcentered has-text-centered">
+      <h1
+        class="is-json title mt-5"
+      >Congrats {{ String(this.userPseudonym) }}, you've completed the exercise. 🎊</h1>
+      <br />
+      <h2
+        class="is-json subtitle mb-2"
+      >Thanks to your efforts the impact of the MitM attack on the filling plant were minimal.</h2>
+      <br />
+      <h2 class="is-json subtitle mb-2">
+        You achieved
+        <strong>{{ this.points }} points 💪</strong>
+      </h2>
+      <br />
+
+      <br />
+      <h2 class="subtitle is-6">
+        To complete the cyber range training please take part in our final quiz
+        and let one of the trainers know when you finished.
+        <br />Please use again your
+        <strong>last name</strong> to register for the
+        quiz.
+      </h2>
+      <!--CHANGE back-->
+
+      <div class="buttons is-centered pt-3">
+        <button
+          class="button submit-button is-rounded"
+          type="submit"
+          value="Submit"
+          @click="
+                //proceedToQuiz();
+                showFinalQuiz=true"
+          v-if="!showFinalQuiz"
+        >
+          <span>Final Quiz &#10140;</span>
+        </button>
       </div>
 
-      <!-- layout post exercise: informs user about completion exercise -->
-      <div v-if="gameCompleted" class="is-vhcentered has-text-centered">
-        <h1 class="is-json title mt-5">
-          Congrats {{ String(this.userPseudonym) }}, you've completed the exercise. 🎊
-        </h1>
-        <br>
-        <h2 class="is-json subtitle mb-2">
-          Thanks to your efforts the impact of the MitM attack on the filling plant were minimal.
-        </h2>
-        <br>
-        <h2 class="is-json subtitle mb-2">
-            You achieved <strong>{{ this.points }} points 💪 </strong>
-        </h2>
-        <br>
-        <h2 class="is-json subtitle mb-2">
-          Please let one of the trainers know you've finished the exercise.
-        </h2>
-       <br>
-        <img
-          src="./assets/iceberg.png"
-          class="image is-hcentered"
-          style="width: 500px"
-        />
-      </div>
+      <iframe
+        v-if="showFinalQuiz"
+        src="https://quizizz.com/join?gc=63925173"
+        style="display: block; width: 100%; height: 50vh"
+        class="pt-6 pb-6 mb-6"
+      ></iframe>
+    </div>
 
-      <!-- comment -->
-      <!-- layout during exercise: provides user with the exercise units to progress through -->
-      <div v-if="gameStarted && !gameCompleted">
-        <head>
-          <meta charset="UTF-8" />
-          <title>cr</title>
-        </head>
+    <!-- comment -->
+    <!-- layout during exercise: provides user with the exercise units to progress through -->
+    <div v-if="gameStarted && !gameCompleted">
+      <head>
+        <meta charset="UTF-8" />
+        <title>cr</title>
+      </head>
 
-        <!-- main container dividing the layout of the front end in two parts
+      <!-- main container dividing the layout of the front end in two parts
           - a) the kibana dashboard including an 
             - additional navigation bar with 
               - a scoreboard and and 
               - feature to display the kibana dashboard in fullscreen
           - b) the learning material consisting of the introductory video and the three exercise units 
-          -->
-        <div class="columns">
-          <!-- Part 1: the kibana dashboard including a navigation bar -->
-          <div
-            class="column is-fixed is-full"
-            :class="{ 'is-half': !fullscreen }"
+      -->
+      <div class="columns">
+        <!-- Part 1: the kibana dashboard including a navigation bar -->
+        <div class="column is-fixed is-full" :class="{ 'is-half': !fullscreen }">
+          <!-- kibana dashboard -->
+          <section v-if="kibanaOn">
+            <figure class="pb-5">
+              <iframe :src="kibanaUrl" style="display: block; width: 100%; height: 100vh"></iframe>
+            </figure>
+          </section>
+
+          <!-- navigation bar 
+          with scoreboard and feature to display the kibana dashboard in fullscreen-->
+          <nav
+            class="navbar is-fixed-bottom is-transparent mb-1"
+            v-if="gameStarted && !gameCompleted"
           >
-            <!-- kibana dashboard -->
-            <section v-if="kibanaOn">
-              <figure class="pb-5">
-                <iframe
-                  :src="kibanaUrl"
-                  style="display: block; width: 100%; height: 100vh"
-                ></iframe>
-              </figure>
-            </section>               
-            
-            <!-- navigation bar 
-            with scoreboard and feature to display the kibana dashboard in fullscreen --> 
-            <nav
-              class="navbar is-fixed-bottom is-transparent mb-1"
-              v-if="gameStarted && !gameCompleted"
-            >
-              <div class="navbar-brand navbar-background is-half">
-                <div class="">
-                  <!-- implementation of the scoreboard -->
-                  <div class="navbar-brand"   v-if="!hideScoreboard">
-                    <table
-                      class="table is-size-7 has-text-white dashboard mt-1 mb-1"
-                      width="100%"
-                    
-                    >
-                      <tbody class="pt-0 has-text-white">
-                        <tr class="has-text-white">
-                          <th class="has-text-white">Rank</th>
-                          <th class="has-text-white">Username</th>
-                          <th class="has-text-white">Points</th>
-                          <th class="has-text-white">Level</th>
-                        </tr>
-                        <tr
-                          v-for="(item, index) in dashboard"
-                          :key="item"
-                          :class="{
+            <div class="navbar-brand navbar-background is-half">
+              <div class>
+                <!-- implementation of the scoreboard -->
+                <div class="navbar-brand" v-if="!hideScoreboard">
+                  <table class="table is-size-7 has-text-white dashboard mt-1 mb-1" width="100%">
+                    <tbody class="pt-0 has-text-white">
+                      <tr class="has-text-white">
+                        <th class="has-text-white">Rank</th>
+                        <th class="has-text-white">Username</th>
+                        <th class="has-text-white">Points</th>
+                        <th class="has-text-white">Level</th>
+                      </tr>
+                      <tr
+                        v-for="(item, index) in dashboard"
+                        :key="item"
+                        :class="{
                             'has-text-primary has-text-weight-bold':
                               item.userID == this.userID,
                           }"
-                        
-                        >
-                          <td>{{ index + 1 }}</td>
-                          <td>{{ item.pseudonym }}</td>
-                          <td>{{ item.points }}</td>
-                          <td>{{ item.level }}</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
+                      >
+                        <td>{{ index + 1 }}</td>
+                        <td>{{ item.pseudonym }}</td>
+                        <td>{{ item.points }}</td>
+                        <td>{{ item.level }}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
 
-                  <!-- implementation of the buttons 
+                <!-- implementation of the buttons 
                         - to hide/show the scoreboard 
                         - to enable/disable fullscreen mode for the kibana dashboard
-                        -->
-                  <div id="navbarBasicExample" class="navbar-menu">
-                    <div class="buttons is-left">
-                      <button class="button is-primary is-static is-small has-background-primary has-text-white">
-                        <strong>Points: {{ points }}</strong>
-                      </button>
+                -->
+                <div id="navbarBasicExample" class="navbar-menu">
+                  <div class="buttons is-left">
+                    <button
+                      class="button is-primary is-static is-small has-background-primary has-text-white"
+                    >
+                      <strong>Points: {{ points }}</strong>
+                    </button>
 
-                      <button class="button is-primary is-small is-static">
-                        <strong>Level: {{ this.level }}</strong>
-                      </button>
+                    <button class="button is-primary is-small is-static">
+                      <strong>Level: {{ this.level }}</strong>
+                    </button>
 
-                      <button class="button show-button is-small has-tooltip-arrow has-tooltip-multiline has-tooltip-top"
-                        @click="(fullscreen = true), (hideScoreboard = true), rememberScrollPos()"
-                        :data-tooltip="'Show SIEM dashboard in fullscreen'"
-                        v-if="!fullscreen"
-                      >
-                        <font-awesome-icon :icon="['fa', 'expand']" />
-                      </button>
+                    <button
+                      class="button show-button is-small has-tooltip-arrow has-tooltip-multiline has-tooltip-top"
+                      @click="(fullscreen = true), (hideScoreboard = true), rememberScrollPos()"
+                      :data-tooltip="'Show SIEM dashboard in fullscreen'"
+                      v-if="!fullscreen"
+                    >
+                      <font-awesome-icon :icon="['fa', 'expand']" />
+                    </button>
 
-                      <button class="button show-button is-small has-tooltip-arrow has-tooltip-multiline has-tooltip-top"
-                        @click="(fullscreen = false), (hideScoreboard = false), scrollBack()"
-                        :data-tooltip="'Split display and show exercise units'"
-                        v-else
-                      >
-                        <font-awesome-icon :icon="['fa', 'compress']" />
-                      </button>
+                    <button
+                      class="button show-button is-small has-tooltip-arrow has-tooltip-multiline has-tooltip-top"
+                      @click="(fullscreen = false), (hideScoreboard = false), scrollBack()"
+                      :data-tooltip="'Split display and show exercise units'"
+                      v-else
+                    >
+                      <font-awesome-icon :icon="['fa', 'compress']" />
+                    </button>
 
-                      <button class="button show-button is-small has-tooltip-arrow has-tooltip-multiline has-tooltip-top"
-                        @click="this.hideScoreboard = true"
-                        :data-tooltip="'Hide scoreboard'"
-                        v-if="!hideScoreboard"
-                      >
-                        &#128469;
-                      </button>
+                    <button
+                      class="button show-button is-small has-tooltip-arrow has-tooltip-multiline has-tooltip-top"
+                      @click="this.hideScoreboard = true"
+                      :data-tooltip="'Hide scoreboard'"
+                      v-if="!hideScoreboard"
+                    >&#128469;</button>
 
-                      <button class="button show-button is-small has-tooltip-arrow has-tooltip-multiline has-tooltip-top"
-                        @click="this.hideScoreboard = false"
-                        :data-tooltip="'Show scoreboard'"
-                        v-else
-                      >
-                        &#128470;
-                      </button>
-                    </div>
+                    <button
+                      class="button show-button is-small has-tooltip-arrow has-tooltip-multiline has-tooltip-top"
+                      @click="this.hideScoreboard = false"
+                      :data-tooltip="'Show scoreboard'"
+                      v-else
+                    >&#128470;</button>
                   </div>
                 </div>
               </div>
-            </nav>            
-          </div>
-        
+            </div>
+          </nav>
+        </div>
 
-          <!-- Part 2: the actual exercise 
-          comprising the the introductory video and the two/three exercise units -->
-          <div
-              class="column right is-half" 
-              v-if="!fullscreen">
+        <!-- Part 2: the actual exercise 
+        comprising the the introductory video and the two/three exercise units-->
+        <div class="column right is-half" v-if="!fullscreen">
+          <!-- <glossary :order="this.order"></glossary> --->
 
-             <!-- <glossary :order="this.order"></glossary> --->
-              
-              <!-- introductory video --->
-              <video-intro 
-                :videoData="VideoData[0]" 
-                :order="this.order"
-                @start-playbook-one="this.startPlaybookOne = true"
-              >
-              </video-intro>
+          <!-- introductory video --->
+          <video-intro
+            :videoData="VideoData[0]"
+            :order="this.order"
+            @start-playbook-one="this.startPlaybookOne = true"
+          ></video-intro>
 
-              <!-- Unit 1 / Playbook 1 --->
-              <div id="playbookOne">
-                <div class="is-info content"
-                  v-if="this.startPlaybookOne || this.level > 0"
-                >
-                        <div class="has-text-link-dark has-text-left title is-3 is-json">
-                            Playbook 1 
-                        </div>
-                        <div class="subtitle nice-subtitle">
-                            Introduction to Incident Response
-                        </div>
-                    
-                        <div class="is-info content" id="prepOne">
-                            <div class="has-text-link-dark has-text-left title is-4 is-json" > 
-                                Preparation Phase
-                            </div>
-                            
-                            <situational-awareness-1 
-                              :order="this.order"
-                            >                          
-                            </situational-awareness-1>                          
-                            <div>                            
-                                <video-tile
-                                  :videoData="VideoData[1]"
-                                  :order="this.order"
-                                >
-                                </video-tile>
+          <!-- Unit 1 / Playbook 1 --->
+          <div id="playbookOne">
+            <div class="is-info content" v-if="this.startPlaybookOne || this.level > 0">
+              <div class="has-text-link-dark has-text-left title is-3 is-json">Playbook 1</div>
+              <div class="subtitle nice-subtitle">Introduction to Incident Response</div>
 
-                                <text-lesson-1
-                                  :order="this.order"
-                                  >
-                                </text-lesson-1>
-                            </div>    
-                        </div>
+              <div class="is-info content" id="prepOne">
+                <div class="has-text-link-dark has-text-left title is-4 is-json">Preparation Phase</div>
 
-                        <div class="is-info content" id="identOne">
-                            <div class="has-text-link-dark has-text-left title is-4 is-json">
-                                Identification Phase
-                            </div>
-                            <!-- doc on Vue.js
+                <situational-awareness-1 :order="this.order"></situational-awareness-1>
+                <div>
+                  <video-tile :videoData="VideoData[1]" :order="this.order"></video-tile>
+
+                  <text-lesson-1 :order="this.order"></text-lesson-1>
+                </div>
+              </div>
+
+              <div class="is-info content" id="identOne">
+                <div
+                  class="has-text-link-dark has-text-left title is-4 is-json"
+                >Identification Phase</div>
+                <!-- doc on Vue.js
                             '<flag-submission' represents the component stored in './components/FlagSubmission.vue'
                             ':taskData=Task1_1' passes down the data stored in './data/task1_1.js' to the component's prop 'taskData'
                             'order="this.order"' passes down the the variable 'order' stored in this file to the component's prop 'order'
@@ -269,129 +246,105 @@
                             calls the function 'submitPoints()' in this file
                             '@task-completed="markAsCompleted"' listens for the component's broadcast 'task-completed' and 
                             calls the function 'markAsCompleted()' in this file
-                                  --->
-                            <div>                              
-                              <flag-submission
-                                :taskData="Unit1IdentTasks"
-                                :order="this.order"
-                                :tasksCompleted="tasksCompleted"
-                                :userPseudonym="this.userPseudonym" 
-                                :userLevel="this.level"
-                                @submit-points="submitPoints"
-                                @task-completed="markAsCompleted"
-                                @ident-one-completed="this.startRespOne = true"  
-                              >
-                              </flag-submission>
-                            </div>
-                        </div>
+                --->
+                <div>
+                  <flag-submission
+                    :taskData="Unit1IdentTasks"
+                    :order="this.order"
+                    :tasksCompleted="tasksCompleted"
+                    :userPseudonym="this.userPseudonym"
+                    :userLevel="this.level"
+                    @submit-points="submitPoints"
+                    @task-completed="markAsCompleted"
+                    @ident-one-completed="this.startRespOne = true"
+                  ></flag-submission>
+                </div>
+              </div>
 
-                        <div id="respOne">
-                          <div class="is-info content" 
-                                v-if="this.startRespOne || this.level > 1">
-                              <div class="has-text-link-dark has-text-left title is-4 is-json" >
-                                  Response Phase
-                              </div>
-                              <div class="block has-text-weight-medium is-size-5 ">
-                                  You've finished your first incident response playbook! As this was a test alarm, there's no need for response actions. 
-                              </div>
-                              <div class="block has-text-weight-medium is-size-5 ">
-                                  Before you head on to Playbook 2, quickly hit the <span class="has-text-weight-bold">'Refresh'</span> button in the SIEM dashboard to get the latest events.
-                              </div>
-                              <!-- display buttons Continue and Show/Hide to 
+              <div id="respOne">
+                <div class="is-info content" v-if="this.startRespOne || this.level > 1">
+                  <div class="has-text-link-dark has-text-left title is-4 is-json">Response Phase</div>
+                  <div
+                    class="block has-text-weight-medium is-size-5"
+                  >You've finished your first incident response playbook! As this was a test alarm, there's no need for response actions.</div>
+                  <div class="block has-text-weight-medium is-size-5">
+                    Before you head on to Playbook 2, quickly hit the
+                    <span
+                      class="has-text-weight-bold"
+                    >'Refresh'</span> button in the SIEM dashboard to get the latest events.
+                  </div>
+                  <!-- display buttons Continue and Show/Hide to 
                                     - continue to the next lesson/task/unit while hiding the content below the title and subtile, or to
-                                    - show/hide the content below the title and subtitle -->
-                              <div class="buttons is-left mt-5">
-                                <button class="button is-rounded submit-button"
-                                  @click="this.startPlaybookTwo = true; this.scrollToPlaybookTwo()"                                  
-                                  >
-                                  <span>&#9655;</span> Start with Playbook 2
-                                </button>
-                              </div>                        
-                          </div>
-                        </div>
+                  - show/hide the content below the title and subtitle-->
+                  <div class="buttons is-left mt-5">
+                    <button
+                      class="button is-rounded submit-button"
+                      @click="this.startPlaybookTwo = true; this.scrollToPlaybookTwo()"
+                    >
+                      <span>&#9655;</span> Start with Playbook 2
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Unit 2 / Playbook 2 --->
+          <div id="playbookTwo">
+            <div class="is-info content" v-if="startPlaybookTwo || this.level > 2">
+              <div class="has-text-link-dark has-text-left title is-3 is-json">Playbook 2</div>
+              <div class="subtitle nice-subtitle">Responding to a MitM attack</div>
+
+              <div class="is-info content" id="prepTwo">
+                <div class="has-text-link-dark has-text-left title is-4 is-json">Preparation Phase</div>
+                <div>
+                  <situational-awareness-2 :order="this.order"></situational-awareness-2>
+                  <video-tile :videoData="VideoData[2]" :order="this.order"></video-tile>
+                  <text-lesson-2 :order="this.order"></text-lesson-2>
                 </div>
               </div>
 
+              <div class="is-info content" id="identTwo">
+                <div
+                  class="has-text-link-dark has-text-left title is-4 is-json"
+                >Identification Phase</div>
 
-
-              <!-- Unit 2 / Playbook 2 --->
-              <div id="playbookTwo">
-                <div class="is-info content"
-                    v-if="startPlaybookTwo || this.level > 2">
-                        <div class="has-text-link-dark has-text-left title is-3 is-json">
-                            Playbook 2 
-                        </div>
-                        <div class="subtitle nice-subtitle">
-                            Responding to a MitM attack
-                        </div>
-                    
-                        <div class="is-info content"  id="prepTwo">
-                            <div class="has-text-link-dark has-text-left title is-4 is-json">
-                                Preparation Phase
-                            </div>
-                            <div>
-                              <situational-awareness-2 
-                                :order="this.order"
-                              >                          
-                              </situational-awareness-2>
-                              <video-tile
-                                :videoData="VideoData[2]"
-                                :order="this.order"
-                              >
-                              </video-tile>
-                              <text-lesson-2
-                                :order="this.order"
-                              >                                                      
-                              </text-lesson-2>
-                            </div>                        
-                        </div>
-
-                        <div class="is-info content" id="identTwo">
-                            <div class="has-text-link-dark has-text-left title is-4 is-json">
-                                Identification Phase
-                            </div>
-
-                            <div>
-                              <flag-submission
-                                :taskData="Unit2IdentTasks"
-                                :order="this.order"
-                                :tasksCompleted="tasksCompleted"
-                                :userPseudonym="this.userPseudonym"
-                                :userLevel="this.level"
-                                @submit-points="submitPoints"
-                                @task-completed="markAsCompleted"
-                                @ident-two-completed="this.startRespTwo = true"
-                              >
-                              </flag-submission>
-                            </div>
-                        </div>
-
-                        <div id="respTwo">
-                          <div class="is-info content" 
-                              v-if="this.level >= 4">
-                              <div class="has-text-link-dark has-text-left title is-4 is-json">
-                                  Response Phase
-                              </div>
-                              <flag-submission
-                                :taskData="Unit2RespTasks"
-                                :order="this.order"
-                                :tasksCompleted="tasksCompleted"
-                                :userPseudonym="this.userPseudonym"
-                                :userLevel="this.level"
-                                @submit-points="submitPoints"
-                                @task-completed="markAsCompleted"
-                                @game-finished="this.finishGame"
-                              >
-                              </flag-submission>
-                          </div>
-                        </div>
+                <div>
+                  <flag-submission
+                    :taskData="Unit2IdentTasks"
+                    :order="this.order"
+                    :tasksCompleted="tasksCompleted"
+                    :userPseudonym="this.userPseudonym"
+                    :userLevel="this.level"
+                    @submit-points="submitPoints"
+                    @task-completed="markAsCompleted"
+                    @ident-two-completed="this.startRespTwo = true"
+                  ></flag-submission>
                 </div>
               </div>
+
+              <div id="respTwo">
+                <div class="is-info content" v-if="this.level >= 4">
+                  <div class="has-text-link-dark has-text-left title is-4 is-json">Response Phase</div>
+                  <flag-submission
+                    :taskData="Unit2RespTasks"
+                    :order="this.order"
+                    :tasksCompleted="tasksCompleted"
+                    :userPseudonym="this.userPseudonym"
+                    :userLevel="this.level"
+                    @submit-points="submitPoints"
+                    @task-completed="markAsCompleted"
+                    @game-finished="this.finishGame"
+                  ></flag-submission>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </body>
+  </div>
+</body>
 </template>
 
 
@@ -411,13 +364,13 @@ import Unit1IdentTasks from "./data/Unit1IdentTasks.js";
 import Unit2IdentTasks from "./data/Unit2IdentTasks.js";
 import Unit2RespTasks from "./data/Unit2RespTasks.js";
 
-import { userDashboard } from "@/firebase"; 
-import { VM_db } from "@/firebase"; 
+import { userDashboard } from "@/firebase";
+import { VM_db } from "@/firebase";
 export default {
   name: "App",
 
   components: {
- //   Glossary,
+    //   Glossary,
     VideoIntro,
     VideoTile,
     SituationalAwareness1,
@@ -426,8 +379,6 @@ export default {
     TextLesson2,
     FlagSubmission,
   },
-    
-  
 
   data() {
     return {
@@ -458,7 +409,7 @@ export default {
       startPlaybookOne: false,
       startRespOne: false,
       startPlaybookTwo: false,
-      startRespTwo: false, 
+      startRespTwo: false,
       gameCompleted: false,
       gameStarted: false,
       userID: null,
@@ -471,6 +422,7 @@ export default {
       level: null,
       round: null,
       wrongUserID: false,
+      showFinalQuiz: false,
       tasksCompleted: 0,
       emptyInput: false,
       fullscreen: false,
@@ -489,21 +441,21 @@ export default {
     console.log(this.url_param);
     if (this.url_param != null) {
       this.userID = this.url_param;
-      var newUrl=this.removeURLParameter(location.href, "userID")
+      var newUrl = this.removeURLParameter(location.href, "userID");
       history.pushState({}, null, newUrl);
       this.validateId();
     } else {
       console.log("url is empty");
     }
   },
-    
-    computed: {
+
+  computed: {
     mitmRunning() {
       if (this.level == 2) {
-      this.makeAPICall("start_mitm"); 
+        this.makeAPICall("start_mitm");
         return true;
-      } else if (this.level == 7){
-          this.makeAPICall("stop_mitm"); 
+      } else if (this.level == 7) {
+        this.makeAPICall("stop_mitm");
         return false;
       }
       return false;
@@ -516,65 +468,46 @@ export default {
 
       if (this.userID == null) {
         this.emptyInput = true;
-      } 
-      else {
-      var docRef = userDashboard.doc(String(this.userID));
-      docRef
-        .get()
-        .then((doc) => {
+      } else {
+        var docRef = userDashboard.doc(String(this.userID));
+        docRef.get().then((doc) => {
           if (doc.exists) {
-        this.emptyInput = false;
-        this.gameStarted = true;
-        
-       
-       
-        this.getUserPoints();
-        //this.restartDigitalTwinContainer();   // restarts the digital twin docker container via the Flask 
-              }
+            this.emptyInput = false;
+            this.gameStarted = true;
 
-             else {
-                this.wrongUserID= true;
-                
-      }})}
-      
-   window.onbeforeunload = function() {
-  return "Data will be lost if you leave the page, are you sure?";
-};
-    
-      
-      },
+            this.getUserPoints();
+            //this.restartDigitalTwinContainer();   // restarts the digital twin docker container via the Flask
+          } else {
+            this.wrongUserID = true;
+          }
+        });
+      }
 
-        
-   
+      window.onbeforeunload = function () {
+        return "Data will be lost if you leave the page, are you sure?";
+      };
+    },
 
-  
-      
-      
     removeURLParameter(url, parameter) {
-    //prefer to use l.search if you have a location/link object
-    var urlparts = url.split('?');   
-    if (urlparts.length >= 2) {
-
-        var prefix = encodeURIComponent(parameter) + '=';
+      //prefer to use l.search if you have a location/link object
+      var urlparts = url.split("?");
+      if (urlparts.length >= 2) {
+        var prefix = encodeURIComponent(parameter) + "=";
         var pars = urlparts[1].split(/[&;]/g);
 
         //reverse iteration as may be destructive
-        for (var i = pars.length; i-- > 0;) {    
-            //idiom for string.startsWith
-            if (pars[i].lastIndexOf(prefix, 0) !== -1) {  
-                pars.splice(i, 1);
-            }
+        for (var i = pars.length; i-- > 0; ) {
+          //idiom for string.startsWith
+          if (pars[i].lastIndexOf(prefix, 0) !== -1) {
+            pars.splice(i, 1);
+          }
         }
 
-        return urlparts[0] + (pars.length > 0 ? '?' + pars.join('&') : '');
-    }
-    return url;
-},
-      
-     
-    
-    
-    
+        return urlparts[0] + (pars.length > 0 ? "?" + pars.join("&") : "");
+      }
+      return url;
+    },
+
     restartDigitalTwinContainer() {
       this.$http
         .get(
@@ -583,7 +516,6 @@ export default {
         .then((response) => {
           console.log(response.data);
         });
-
     },
 
     getUnits: function () {
@@ -601,12 +533,11 @@ export default {
 
     getUserPoints() {
       var docRef = userDashboard.doc(String(this.userID));
-      
+
       docRef
         .get()
         .then((doc) => {
           if (doc.exists) {
-            
             this.round = doc.data().round; //in order to only show the trainees from the same round on the dashboard
             if (doc.data().startTime != null) {
               //get data from user who logged in before
@@ -615,10 +546,9 @@ export default {
               this.startTime = doc.data().startTime;
               this.userPseudonym = doc.data().pseudonym;
               this.level = doc.data().level;
-              console.log(this.mitmRunning)
+              console.log(this.mitmRunning);
               if (this.level > 4) {
                 this.playbookTwoBegin = true;
-                
               }
               if (doc.data().taskTimes != null) {
                 this.taskTimes = JSON.parse(doc.data().taskTimes);
@@ -633,11 +563,17 @@ export default {
                 startTime: this.startTime,
               });
 
-            var storedTries = [3,3,3,3,3,3,3,3];
-            var blanksCompleted = {unit1Ident: 0, unit2Ident: 0, unit2Resp: 0};
-            localStorage.setItem("storedTries",JSON.stringify(storedTries))
-            localStorage.setItem("blanksCompleted",JSON.stringify(blanksCompleted))
-            
+              var storedTries = [3, 3, 3, 3, 3, 3, 3, 3];
+              var blanksCompleted = {
+                unit1Ident: 0,
+                unit2Ident: 0,
+                unit2Resp: 0,
+              };
+              localStorage.setItem("storedTries", JSON.stringify(storedTries));
+              localStorage.setItem(
+                "blanksCompleted",
+                JSON.stringify(blanksCompleted)
+              );
             }
           } else {
             // if not only played with preset users
@@ -658,8 +594,6 @@ export default {
           console.log("Error getting document:", error);
         });
     },
-
-      
 
     async getVM() {
       const snapshot = await VM_db.limit(1).get();
@@ -683,10 +617,7 @@ export default {
         startTime: this.startTime,
       });
       this.getMarker();
-    }
-      
-      
-      ,
+    },
 
     async uploadEvaluationData() {
       await userDashboard.doc(this.userID).update({
@@ -705,10 +636,10 @@ export default {
 
     markAsCompleted(taskTimes, tries) {
       //save timer information here
-      //this.level += 1; 
+      //this.level += 1;
       //this.uploadPoints();
       this.taskTimes.push(taskTimes);
-      this.tries.push(tries)
+      this.tries.push(tries);
       this.uploadEvaluationData();
     },
 
@@ -724,7 +655,6 @@ export default {
       this.uploadEvaluationData();
       console.log("uploaded");
     },
-
 
     submitEvaluationData() {
       this.$http
@@ -746,43 +676,31 @@ export default {
     rememberScrollPos() {
       this.scrollPos = window.scrollY;
     },
-      
-     makeAPICall(apiPath) {
-    
-         this.$http
-        .get(
-          window.location.href.replace("7080", "9090") + apiPath
-        )
+
+    makeAPICall(apiPath) {
+      this.$http
+        .get(window.location.href.replace("7080", "9090") + apiPath)
         .then((response) => {
           console.log(response.data);
-          
         });
-         
-
-    
-       
     },
 
-
     submitPoints(points2) {
-
       this.points += points2;
-      console.log("points now: ", this.points)
-      if (points2 >= 0)
-      {
-      this.level += 1; 
-      console.log(this.mitmRunning)}
-        
-        
+      console.log("points now: ", this.points);
+      if (points2 >= 0) {
+        this.level += 1;
+        console.log(this.mitmRunning);
+      }
+
       this.uploadPoints();
     },
     scrollToPlaybookTwo() {
-      const el = document.getElementById('playbookTwo');
+      const el = document.getElementById("playbookTwo");
       setTimeout(() => {
         el.scrollIntoView({ behavior: "smooth", alignToTop: true });
       });
     },
- 
   },
 };
 </script>
