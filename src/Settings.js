@@ -1,9 +1,9 @@
 const settings = {
 
-    urlPostQuiz: "https://quizizz.com/join?gc=63925173",
+    urlPostQuiz: "https://quizizz.com/join?gc=24177005",
     naming: "name",
     namingPlaceholder: "e.g. mglas"
-
+    //TODO: Datenbanken als Settings hier aufnehmen
 
 }
 
